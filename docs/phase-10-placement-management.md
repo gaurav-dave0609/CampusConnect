@@ -2,7 +2,7 @@
 
 ## 1. Overview & Architecture
 
-Phase 10 introduces the complete **Placement & Career Management Module** for CampusSphere. It bridges the gap between campus recruitment, student preparation, and institutional placement cell operations. The design strictly implements zero-trust server-side validation: all eligibility criteria evaluations, question authoring permissions, answer key hiding, and timed quiz scoring are performed exclusively on the server.
+Phase 10 introduces the complete **Placement & Career Management Module** for Campus Connect. It bridges the gap between campus recruitment, student preparation, and institutional placement cell operations. The design strictly implements zero-trust server-side validation: all eligibility criteria evaluations, question authoring permissions, answer key hiding, and timed quiz scoring are performed exclusively on the server.
 
 ### Primary Workflows
 

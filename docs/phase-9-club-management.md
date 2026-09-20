@@ -1,7 +1,7 @@
 # Phase 9: Club Management, Membership & Coordinator Workflows
 
 ## 1. Executive Summary & Overview
-Phase 9 delivers a comprehensive, production-grade **Club Management, Membership & Coordinator System** for CampusSphere. It serves as the institutional community and co-curricular backbone, connecting students, faculty mentors, club coordinators, and academic administrators.
+Phase 9 delivers a comprehensive, production-grade **Club Management, Membership & Coordinator System** for Campus Connect. It serves as the institutional community and co-curricular backbone, connecting students, faculty mentors, club coordinators, and academic administrators.
 
 The primary workflow supported is:
 $$\text{Discover Clubs} \longrightarrow \text{View Club Detail} \longrightarrow \text{Join Club} \longrightarrow \text{Coordinator Review} \longrightarrow \text{Manage Members} \longrightarrow \text{Host Activities} \longrightarrow \text{Link Phase 8 Events} \longrightarrow \text{Track Deterministic Engagement}$$
@@ -170,7 +170,7 @@ Club public events (competitions, symposiums, hackathons) **do not duplicate eve
 
 ## 6. Deterministic Engagement Score Formula
 
-CampusSphere strictly avoids opaque or fabricated "AI" scores. Club engagement is evaluated deterministically based on empirical participation telemetry:
+Campus Connect strictly avoids opaque or fabricated "AI" scores. Club engagement is evaluated deterministically based on empirical participation telemetry:
 
 $$\text{Score} = \min\left(100, \;\; \lfloor w_m \cdot S_{\text{members}} + w_e \cdot S_{\text{events}} + w_r \cdot S_{\text{registrations}} + w_a \cdot S_{\text{activities}} \rfloor\right)$$
 

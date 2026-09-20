@@ -1,4 +1,4 @@
-# CampusSphere — All-in-One College Ecosystem
+# Campus Connect — All-in-One College Ecosystem
 
 > A production-grade, multi-role academic enterprise resource planning (ERP) and campus life management platform engineered with Next.js 16 App Router, TypeScript, Tailwind CSS, Prisma ORM, and PostgreSQL.
 
@@ -6,7 +6,7 @@
 
 ## Overview
 
-**CampusSphere** is a centralized college ecosystem designed to unify the academic, administrative, and student life activities of higher education institutions. Rather than relying on fragmented third-party tools, legacy desktop systems, and disconnected spreadsheets, CampusSphere delivers an integrated, real-time platform covering curriculum scheduling, daily attendance, continuous grading, semester examinations, corporate placements, club governance, lost-and-found recoveries, and executive intelligence.
+**Campus Connect** is a centralized college ecosystem designed to unify the academic, administrative, and student life activities of higher education institutions. Rather than relying on fragmented third-party tools, legacy desktop systems, and disconnected spreadsheets, Campus Connect delivers an integrated, real-time platform covering curriculum scheduling, daily attendance, continuous grading, semester examinations, corporate placements, club governance, lost-and-found recoveries, and executive intelligence.
 
 ---
 
@@ -19,7 +19,7 @@ Higher education institutions face significant operational and data silos:
 4. **Campus Life Disconnection:** Campus drives, club memberships, campus notices, and lost item recovery operate on informal social groups lacking verification or auditability.
 5. **Lack of Institutional Visibility:** Department heads and deans lack real-time predictive analytics to forecast pass rates, monitor room utilization, and benchmark department workloads.
 
-CampusSphere resolves these challenges through a unified data model, deterministic algorithms (constraint satisfaction, multi-factor matching, weighted readiness scoring), and strict role-based access control.
+Campus Connect resolves these challenges through a unified data model, deterministic algorithms (constraint satisfaction, multi-factor matching, weighted readiness scoring), and strict role-based access control.
 
 ---
 
@@ -42,7 +42,7 @@ CampusSphere resolves these challenges through a unified data model, determinist
 
 ## User Roles
 
-CampusSphere enforces strict server-side zero-trust authorization across five institutional roles:
+Campus Connect enforces strict server-side zero-trust authorization across five institutional roles:
 
 | Role | Primary Responsibilities | Default Landing Route |
 | :--- | :--- | :--- |
@@ -69,7 +69,7 @@ CampusSphere enforces strict server-side zero-trust authorization across five in
 
 ## System Architecture
 
-CampusSphere uses a hybrid Next.js App Router architecture:
+Campus Connect uses a hybrid Next.js App Router architecture:
 ```
 Client Browser (Desktop / Tablet / Mobile)
        │
@@ -193,7 +193,7 @@ The normalized PostgreSQL schema spans 24+ core relational entities:
 
 ## Testing
 
-CampusSphere maintains an automated dual-layer testing pyramid:
+Campus Connect maintains an automated dual-layer testing pyramid:
 - **Unit & Integration Suite (Vitest):** 19 test files covering all 16 modules, RBAC boundaries, CSP solver algorithms, grading formulas, and file scanners.
   - **Result: 446 / 446 tests passing (100%)**
 - **Live HTTP Verification Suite (`scripts/verify-api.mjs`):** Full end-to-end HTTP assertions against live Next.js server endpoints.
@@ -211,11 +211,11 @@ Pre-seeded institutional accounts for local and evaluation demonstrations:
 
 | Role | Email | Password |
 | :--- | :--- | :--- |
-| **Student** | `student@campussphere.edu` | `StudentPassword@123` |
-| **Faculty** | `faculty@campussphere.edu` | `FacultyPassword@123` |
-| **Admin** | `admin@campussphere.edu` | `AdminPassword@123` |
-| **Placement Officer** | `placement@campussphere.edu`| `PlacementPassword@123` |
-| **Club Coordinator** | `club@campussphere.edu` | `ClubPassword@123` |
+| **Student** | `student@campusconnect.edu` | `StudentPassword@123` |
+| **Faculty** | `faculty@campusconnect.edu` | `FacultyPassword@123` |
+| **Admin** | `admin@campusconnect.edu` | `AdminPassword@123` |
+| **Placement Officer** | `placement@campusconnect.edu`| `PlacementPassword@123` |
+| **Club Coordinator** | `club@campusconnect.edu` | `ClubPassword@123` |
 
 *Note: The login screen includes a 1-click Demo Role Switcher to instantly switch sessions without manual typing.*
 
@@ -231,8 +231,8 @@ Pre-seeded institutional accounts for local and evaluation demonstrations:
 ### Installation
 ```bash
 # 1. Clone repository
-git clone https://github.com/your-org/CampusSphere.git
-cd CampusSphere
+git clone https://github.com/your-org/Campus Connect.git
+cd Campus Connect
 
 # 2. Install dependencies
 npm install
@@ -250,8 +250,8 @@ Configure `.env` using `.env.example` as a template:
 
 | Variable | Description | Example / Default |
 | :--- | :--- | :--- |
-| `DATABASE_URL` | PostgreSQL connection string | `postgresql://postgres:postgres@localhost:5432/campussphere?schema=public` |
-| `JWT_SECRET` | Secret key for signing session tokens | `campussphere-super-secure-jwt-secret-key-2026-evaluation-token` |
+| `DATABASE_URL` | PostgreSQL connection string | `postgresql://postgres:postgres@localhost:5432/campusconnect?schema=public` |
+| `JWT_SECRET` | Secret key for signing session tokens | `campusconnect-super-secure-jwt-secret-key-2026-evaluation-token` |
 | `NEXT_PUBLIC_APP_URL`| Base application URL | `http://localhost:3000` |
 | `NODE_ENV` | Runtime environment | `development` / `production` |
 
@@ -270,7 +270,7 @@ npx prisma migrate deploy
 npm run seed
 ```
 
-*Note: For evaluation and testing environments without a live PostgreSQL daemon, CampusSphere features resilient in-memory fallback catalogs for all services, enabling full demonstration and automated testing.*
+*Note: For evaluation and testing environments without a live PostgreSQL daemon, Campus Connect features resilient in-memory fallback catalogs for all services, enabling full demonstration and automated testing.*
 
 ---
 
@@ -303,14 +303,14 @@ npm run start
 
 ## Vercel Deployment
 
-CampusSphere is pre-configured for zero-configuration deployment on Vercel:
+Campus Connect is pre-configured for zero-configuration deployment on Vercel:
 
 1. **Push Repository to GitHub / GitLab:** Ensure all changes are pushed to your remote repository.
-2. **Import Project into Vercel:** Go to [Vercel Dashboard](https://vercel.com/new) and select the CampusSphere repository.
+2. **Import Project into Vercel:** Go to [Vercel Dashboard](https://vercel.com/new) and select the Campus Connect repository.
 3. **Configure Environment Variables:**
    - Add `DATABASE_URL` (pointing to Vercel Postgres, Neon, or Supabase).
    - Add `JWT_SECRET` (secure random string).
-   - Add `NEXT_PUBLIC_APP_URL` (your production Vercel URL, e.g., `https://campussphere.vercel.app`).
+   - Add `NEXT_PUBLIC_APP_URL` (your production Vercel URL, e.g., `https://campusconnect.vercel.app`).
 4. **Deploy:** Click **Deploy**. Vercel will run `prisma generate && next build` automatically.
 5. **Run Migrations on Production Database:**
    ```bash

@@ -5,7 +5,7 @@ import { Role } from "@prisma/client";
 describe("JWT Session Management (jose)", () => {
   const mockUser: SessionUser = {
     id: "user-test-uuid",
-    email: "student@campussphere.edu",
+    email: "student@campusconnect.edu",
     role: Role.STUDENT,
     firstName: "Aarav",
     lastName: "Mehta",

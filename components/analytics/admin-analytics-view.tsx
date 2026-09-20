@@ -162,14 +162,14 @@ export function AdminAnalyticsView() {
   return (
     <div className="max-w-7xl mx-auto space-y-6 pb-16">
       {/* Top Header */}
-      <div className="flex flex-wrap items-center justify-between gap-4 bg-gradient-to-r from-indigo-900 via-indigo-800 to-slate-900 p-8 rounded-3xl text-white shadow-xl">
+      <div className="flex flex-wrap items-center justify-between gap-4 bg-white border border-emerald-100/80 p-8 rounded-3xl text-slate-900 shadow-sm">
         <div>
-          <div className="inline-flex items-center gap-2 bg-indigo-500/20 border border-indigo-400/30 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider text-indigo-200 mb-2">
+          <div className="inline-flex items-center gap-2 bg-emerald-50 border border-emerald-200/60 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider text-emerald-700 mb-2">
             <Activity className="w-3.5 h-3.5" />
             Institutional Intelligence Layer
           </div>
-          <h1 className="text-3xl font-black tracking-tight">Institutional Analytics & Reporting</h1>
-          <p className="text-slate-300 text-sm mt-1 max-w-2xl">
+          <h1 className="text-3xl font-black tracking-tight text-slate-900">Institutional Analytics & Reporting</h1>
+          <p className="text-slate-600 text-sm mt-1 max-w-2xl">
             Real-time authoritative telemetry across students, faculty workload, attendance health,
             corporate placements, campus life, and configuration integrity.
           </p>
@@ -178,7 +178,7 @@ export function AdminAnalyticsView() {
         <div className="flex items-center gap-3">
           <button
             onClick={() => setExportModalOpen(true)}
-            className="flex items-center gap-2 bg-white text-indigo-900 hover:bg-indigo-50 px-4 py-2.5 rounded-xl text-xs font-bold transition shadow-md"
+            className="flex items-center gap-2 bg-emerald-600 text-white hover:bg-emerald-700 px-4 py-2.5 rounded-xl text-xs font-bold transition shadow-sm"
           >
             <Download className="w-4 h-4" />
             Export CSV Reports

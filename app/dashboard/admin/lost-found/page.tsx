@@ -3,7 +3,7 @@ import { Role } from "@prisma/client";
 import { AdminLostFoundDashboard } from "@/components/lost-found/admin-lost-found-dashboard";
 
 export const metadata = {
-  title: "Lost & Found Governance & Moderation | CampusSphere",
+  title: "Lost & Found Governance & Moderation | Campus Connect",
   description: "Institutional lost & found repository, report moderation, and campus recovery metrics.",
 };
 

@@ -29,7 +29,7 @@ describe("Critical-Path Authentication & RBAC Verification", () => {
   // Test 7: Test unauthorized role access simulation
   it("should prevent unauthorized roles from acquiring elevated permissions", async () => {
     const studentAuth = await AuthService.authenticate({
-      email: "student@campussphere.edu",
+      email: "student@campusconnect.edu",
       password: "StudentPassword@123",
     });
     expect(studentAuth).not.toBeNull();
@@ -55,7 +55,7 @@ describe("Critical-Path Authentication & RBAC Verification", () => {
   // Test 9: Test invalid credentials
   it("should fail authentication with invalid credentials and return null", async () => {
     const wrongPass = await AuthService.authenticate({
-      email: "admin@campussphere.edu",
+      email: "admin@campusconnect.edu",
       password: "CompletelyWrongPassword!1",
     });
     expect(wrongPass).toBeNull();
@@ -70,13 +70,13 @@ describe("Critical-Path Authentication & RBAC Verification", () => {
   // Test 10: Test protected API simulation for Admin
   it("should permit Admin to access protected system actions while blocking non-admins", async () => {
     const adminAuth = await AuthService.authenticate({
-      email: "admin@campussphere.edu",
+      email: "admin@campusconnect.edu",
       password: "AdminPassword@123",
     });
     expect(adminAuth?.role).toBe(Role.ADMIN);
 
     const facultyAuth = await AuthService.authenticate({
-      email: "faculty@campussphere.edu",
+      email: "faculty@campusconnect.edu",
       password: "FacultyPassword@123",
     });
     expect(facultyAuth?.role).toBe(Role.FACULTY);

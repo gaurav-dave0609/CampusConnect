@@ -2,7 +2,7 @@
 
 ## Overview
 
-Phase 12 delivers the authoritative Academic Setup, Infrastructure, and Resource Management foundation for **CampusSphere — All-in-One College Ecosystem**. It establishes a centralized, zero-trust administrative control plane for institutions to define:
+Phase 12 delivers the authoritative Academic Setup, Infrastructure, and Resource Management foundation for **Campus Connect — All-in-One College Ecosystem**. It establishes a centralized, zero-trust administrative control plane for institutions to define:
 
 1. **Academic Hierarchy**: Departments, Programs/Courses, Batches, Academic Semesters, Classes, and Divisions.
 2. **Curricular Setup**: Theory, Laboratory, and Elective Subjects with credit units, weekly teaching frequencies, and lab constraints.

@@ -342,31 +342,31 @@ export function AdminTimetableManager({
   return (
     <div className="space-y-6">
       {/* Top Banner */}
-      <div className="rounded-2xl bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 p-6 sm:p-8 text-white shadow-xl border border-indigo-500/20">
+      <div className="rounded-2xl bg-white border border-emerald-100/80 p-6 sm:p-8 text-slate-900 shadow-sm">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/20 text-indigo-300 text-xs font-semibold backdrop-blur-sm border border-indigo-400/30 mb-2">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 text-xs font-semibold border border-emerald-200/60 mb-2">
               <Cpu className="h-3.5 w-3.5" />
               Deterministic Constraint Satisfaction Solver (CSP)
             </div>
-            <h1 className="text-2xl sm:text-3xl font-black tracking-tight">
+            <h1 className="text-2xl sm:text-3xl font-black tracking-tight text-slate-900">
               Academic Timetable Generator
             </h1>
-            <p className="text-indigo-100/80 text-sm mt-1 max-w-xl">
+            <p className="text-slate-600 text-sm mt-1 max-w-xl">
               Mathematically guaranteed conflict-free scheduling using Backtracking Search, Minimum Remaining Values (MRV), Degree Heuristic, and Forward Checking.
             </p>
           </div>
 
-          <div className="flex items-center gap-3 bg-white/5 backdrop-blur-md px-4 py-3 rounded-xl border border-white/10">
-            <CalendarDays className="h-8 w-8 text-indigo-300" />
+          <div className="flex items-center gap-3 bg-[#F0FDF4] px-4 py-3 rounded-xl border border-emerald-100">
+            <CalendarDays className="h-8 w-8 text-emerald-600" />
             <div>
-              <div className="text-xs text-indigo-300 uppercase font-semibold tracking-wider">
+              <div className="text-xs text-slate-500 uppercase font-semibold tracking-wider">
                 Timetable State
               </div>
-              <div className="text-lg font-bold flex items-center gap-2">
+              <div className="text-lg font-bold flex items-center gap-2 text-slate-900">
                 <span>{activeTimetable ? activeTimetable.status : "NO SCHEDULE"}</span>
                 {activeTimetable && (
-                  <span className="text-xs px-2 py-0.5 rounded-full bg-indigo-500/30 text-indigo-200">
+                  <span className="text-xs px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 font-medium">
                     v{activeTimetable.version}
                   </span>
                 )}
@@ -623,8 +623,8 @@ export function AdminTimetableManager({
 
       {/* Manual Slot Edit Modal */}
       {editingSlot && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4 animate-in fade-in duration-200">
-          <div className="bg-card border border-border rounded-2xl max-w-md w-full p-6 shadow-2xl space-y-4">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4 animate-in fade-in duration-200">
+          <div className="bg-white border border-emerald-100 rounded-2xl max-w-md w-full p-6 shadow-2xl space-y-4 relative">
             <div className="flex items-center justify-between border-b border-border pb-3">
               <div className="flex items-center gap-2 font-bold text-lg text-foreground">
                 <Edit3 className="h-5 w-5 text-primary" />

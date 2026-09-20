@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { DashboardSidebar } from "./sidebar";
 import { DashboardHeader } from "./header";
+import { FloatingAIAssistant } from "@/components/ai/floating-ai-assistant";
 import { SessionUser } from "@/lib/auth/session";
 
 export function DashboardShell({
@@ -15,7 +16,7 @@ export function DashboardShell({
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
-    <div className="min-h-screen flex bg-slate-50 dark:bg-slate-950">
+    <div className="min-h-screen flex bg-gradient-to-br from-[#F0FDF4] via-[#F6FDF9] to-[#E0F7F1]">
       {/* Desktop Persistent Sidebar */}
       <div className="hidden md:flex flex-shrink-0">
         <DashboardSidebar role={user.role} />
@@ -43,6 +44,9 @@ export function DashboardShell({
         <DashboardHeader user={user} onOpenMobile={() => setMobileOpen(true)} />
         <main className="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8">{children}</main>
       </div>
+
+      {/* Globally Accessible Floating AI Assistant */}
+      <FloatingAIAssistant user={user} />
     </div>
   );
 }

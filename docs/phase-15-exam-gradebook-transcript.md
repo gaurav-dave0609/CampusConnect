@@ -1,7 +1,7 @@
 # Phase 15 — Exam Management, Gradebook, Results, GPA/CGPA & Academic Transcript
 
 ## 1. Overview & Architecture
-Phase 15 completes the foundational academic examination gap in CampusSphere by introducing a normalized, deterministic, enterprise-grade examination lifecycle engine, faculty gradebook, multi-semester results engine, credit-weighted GPA/CGPA computation, formal academic transcript generator with RFC 4180 CSV & print-ready document exports, and audited revaluation workflow.
+Phase 15 completes the foundational academic examination gap in Campus Connect by introducing a normalized, deterministic, enterprise-grade examination lifecycle engine, faculty gradebook, multi-semester results engine, credit-weighted GPA/CGPA computation, formal academic transcript generator with RFC 4180 CSV & print-ready document exports, and audited revaluation workflow.
 
 ---
 

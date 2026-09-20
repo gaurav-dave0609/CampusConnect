@@ -1,6 +1,6 @@
 # Software Project Management (SPM) — Academic Project Evidence Document
 
-**Project Name:** CampusSphere — All-in-One College Ecosystem  
+**Project Name:** Campus Connect — All-in-One College Ecosystem  
 **Subject:** Software Project Management (SPM)  
 **Academic Year:** 2025–2026  
 **Document Version:** 1.0 (Final Submission)  
@@ -10,7 +10,7 @@
 
 ## 1. Project Overview
 
-CampusSphere is an enterprise-grade, multi-tenant college ecosystem platform designed to streamline higher education operations. It consolidates academic management, student life, attendance projection, exam scheduling, gradebook computation, corporate placement preparation, and institutional reporting into an integrated, zero-trust web application.
+Campus Connect is an enterprise-grade, multi-tenant college ecosystem platform designed to streamline higher education operations. It consolidates academic management, student life, attendance projection, exam scheduling, gradebook computation, corporate placement preparation, and institutional reporting into an integrated, zero-trust web application.
 
 - **Primary Stack:** Next.js 16 (App Router), TypeScript, Tailwind CSS, Prisma 6.4 LTS, PostgreSQL
 - **Total Development Phases:** 16 Phases (Foundation, RBAC, Profiles, Attendance, Timetable CSP, Assignments, Notices, Events, Clubs, Placements, Lost & Found, Admin Setup, Notifications, Analytics, Exams & Gradebook, Final Integration & Security)
@@ -99,7 +99,7 @@ The repository was managed using standard Git branching and feature-commit conve
 - **Recent Repository Commits:**
   - `ed57c4f` — *feat: add exam management gradebook and academic transcripts* (Phase 15 completion)
   - Preceding commits covering Phases 1 through 14.
-  - Final Phase 16 Commit — *feat: finalize CampusSphere for production deployment*.
+  - Final Phase 16 Commit — *feat: finalize Campus Connect for production deployment*.
 
 > **GitHub Pull Request & Webhook Screenshots:**  
 > `EVIDENCE REQUIRED`  
@@ -109,7 +109,7 @@ The repository was managed using standard Git branching and feature-commit conve
 
 ## 9. Testing & Quality Assurance Workflow
 
-CampusSphere implemented a zero-regression, multi-layer testing protocol:
+Campus Connect implemented a zero-regression, multi-layer testing protocol:
 
 ```
                   ┌──────────────────────────────┐
@@ -197,7 +197,7 @@ CampusSphere implemented a zero-regression, multi-layer testing protocol:
 - **Cloud Database:** Ready for integration with Neon, Supabase, or Vercel Postgres via `DATABASE_URL`.
 - **Live Vercel Deployment Link:**  
   `EVIDENCE REQUIRED`  
-  *(When deployed by the project team to their university Vercel team account, paste the live URL here: e.g., `https://campussphere-spm.vercel.app`).*
+  *(When deployed by the project team to their university Vercel team account, paste the live URL here: e.g., `https://campusconnect-spm.vercel.app`).*
 
 ---
 

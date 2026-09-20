@@ -127,9 +127,9 @@ export function StudentClubDiscovery({ initialClubs, currentUserId }: StudentClu
       {/* Top Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-border pb-6">
         <div>
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-rose-50 text-rose-700 dark:bg-rose-950/60 dark:text-rose-300 border border-rose-200 dark:border-rose-800 mb-2">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200/60 mb-2">
             <Sparkles className="h-3.5 w-3.5" />
-            <span>CampusSphere Student Community Hub</span>
+            <span>Campus Connect Student Community Hub</span>
           </div>
           <h1 className="text-3xl font-extrabold tracking-tight text-foreground">
             Campus Clubs
@@ -141,7 +141,7 @@ export function StudentClubDiscovery({ initialClubs, currentUserId }: StudentClu
 
         <Link
           href="/dashboard/student/clubs/my-clubs"
-          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-primary text-primary-foreground text-sm font-bold hover:bg-primary/90 transition shadow-sm self-start sm:self-auto"
+          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-emerald-600 text-white text-sm font-bold hover:bg-emerald-700 transition shadow-sm self-start sm:self-auto"
         >
           <Users className="h-4 w-4" />
           <span>My Campus Clubs</span>
@@ -224,7 +224,7 @@ export function StudentClubDiscovery({ initialClubs, currentUserId }: StudentClu
 
               <Link
                 href={`/dashboard/student/clubs/${featuredClub.id}`}
-                className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl bg-white text-slate-900 font-bold text-sm hover:bg-rose-50 transition shadow-md"
+                className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl bg-white text-slate-900 font-bold text-sm hover:bg-emerald-50 transition shadow-md"
               >
                 <span>Explore Club</span>
                 <ArrowRight className="h-4 w-4" />

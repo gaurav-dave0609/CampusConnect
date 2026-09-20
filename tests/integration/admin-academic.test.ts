@@ -256,7 +256,7 @@ describe("Phase 12 — Admin Management: Academic Setup, Faculty Mapping, Rooms 
         type: SubjectType.THEORY,
         weeklyHours: 4,
         description: "Supervised and unsupervised learning, deep neural networks, reinforcement learning",
-        syllabusUrl: "https://campussphere.edu/syllabus/comp-307.pdf",
+        syllabusUrl: "https://campusconnect.edu/syllabus/comp-307.pdf",
         requiresLab: false,
         isActive: true,
       };

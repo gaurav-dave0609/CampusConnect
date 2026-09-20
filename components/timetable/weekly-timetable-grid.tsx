@@ -2,7 +2,7 @@
 
 import { DayOfWeek } from "@prisma/client";
 import { CSPSlotAssignment } from "@/lib/timetable/csp-solver";
-import { BookOpen, FlaskConical, MapPin, User, Clock } from "lucide-react";
+import { BookOpen, FlaskConical, MapPin, User, Clock, Sparkles } from "lucide-react";
 
 export interface TimetableGridProps {
   slots: CSPSlotAssignment[];
@@ -13,6 +13,7 @@ export interface TimetableGridProps {
   highlightFaculty?: string;
   highlightSubject?: string;
   readonly?: boolean;
+  currentDay?: DayOfWeek;
 }
 
 const DEFAULT_DAYS: DayOfWeek[] = [
@@ -41,6 +42,7 @@ export function WeeklyTimetableGrid({
   highlightFaculty,
   highlightSubject,
   readonly = false,
+  currentDay,
 }: TimetableGridProps) {
   // Map slots by "DAY-PERIOD" for quick O(1) cell lookup
   const slotMap = new Map<string, CSPSlotAssignment>();
@@ -51,24 +53,39 @@ export function WeeklyTimetableGrid({
   const periods = Array.from({ length: periodsCount }, (_, i) => i + 1);
 
   return (
-    <div className="overflow-x-auto rounded-2xl border border-border bg-card shadow-sm">
-      <table className="w-full border-collapse text-left min-w-[780px]">
+    <div className="overflow-x-auto rounded-2xl border border-emerald-100/90 bg-white shadow-[0_4px_25px_-4px_rgba(16,185,129,0.06)]">
+      <table className="w-full border-collapse text-left min-w-[840px]">
         {/* Table Header: Working Days */}
         <thead>
-          <tr className="bg-muted/50 border-b border-border text-xs font-bold uppercase tracking-wider text-muted-foreground">
-            <th className="p-3.5 w-28 text-center border-r border-border">
-              Period / Time
+          <tr className="bg-[#F0FDF4] border-b border-emerald-100 text-xs font-bold uppercase tracking-wider text-slate-700">
+            <th className="p-4 w-32 text-center border-r border-emerald-100/70">
+              <span className="text-slate-500 font-semibold text-[11px]">Period / Time</span>
             </th>
-            {workingDays.map((day) => (
-              <th key={day} className="p-3.5 text-center border-r border-border last:border-r-0">
-                {day}
-              </th>
-            ))}
+            {workingDays.map((day) => {
+              const isToday = currentDay === day;
+              return (
+                <th
+                  key={day}
+                  className={`p-4 text-center border-r border-emerald-100/70 last:border-r-0 transition-colors ${
+                    isToday ? "bg-emerald-100/60 text-emerald-900" : ""
+                  }`}
+                >
+                  <div className="flex items-center justify-center gap-1.5">
+                    <span>{day}</span>
+                    {isToday && (
+                      <span className="px-1.5 py-0.5 rounded-full bg-[#10B981] text-white text-[9px] font-extrabold normal-case">
+                        Today
+                      </span>
+                    )}
+                  </div>
+                </th>
+              );
+            })}
           </tr>
         </thead>
 
         {/* Table Body: Periods */}
-        <tbody className="divide-y divide-border">
+        <tbody className="divide-y divide-emerald-50">
           {periods.map((periodNum) => {
             const timing = periodTimings.find((t) => t.periodNumber === periodNum) || {
               startTime: `${periodNum + 8}:00`,
@@ -76,30 +93,33 @@ export function WeeklyTimetableGrid({
             };
 
             return (
-              <tr key={periodNum} className="hover:bg-muted/10 transition-colors">
+              <tr key={periodNum} className="hover:bg-[#F6FDF9]/50 transition-colors">
                 {/* Period Time Column */}
-                <td className="p-3 text-center bg-muted/20 border-r border-border align-middle">
-                  <div className="font-extrabold text-xs text-foreground">
+                <td className="p-3.5 text-center bg-[#F8FCF9] border-r border-emerald-100/70 align-middle">
+                  <div className="inline-flex items-center justify-center px-2.5 py-1 rounded-lg bg-white border border-emerald-100 shadow-2xs font-extrabold text-xs text-slate-800">
                     Period {periodNum}
                   </div>
-                  <div className="text-[10px] text-muted-foreground font-mono mt-0.5 flex items-center justify-center gap-1">
-                    <Clock className="h-3 w-3" />
-                    {timing.startTime} – {timing.endTime}
+                  <div className="text-[11px] text-slate-500 font-mono mt-1.5 flex items-center justify-center gap-1">
+                    <Clock className="h-3 w-3 text-emerald-600" />
+                    <span>{timing.startTime} – {timing.endTime}</span>
                   </div>
                 </td>
 
                 {/* Day Columns */}
                 {workingDays.map((day) => {
                   const slot = slotMap.get(`${day}-${periodNum}`);
+                  const isToday = currentDay === day;
 
                   if (!slot) {
                     return (
                       <td
                         key={`${day}-${periodNum}`}
-                        className="p-2 border-r border-border last:border-r-0 align-top"
+                        className={`p-2 border-r border-emerald-100/50 last:border-r-0 align-top ${
+                          isToday ? "bg-emerald-50/20" : ""
+                        }`}
                       >
-                        <div className="h-24 rounded-xl border border-dashed border-border/70 flex items-center justify-center text-xs text-muted-foreground/60 select-none bg-muted/5">
-                          Free Slot
+                        <div className="h-28 rounded-xl border border-dashed border-slate-200/90 flex flex-col items-center justify-center text-xs text-slate-400 select-none bg-slate-50/40 hover:bg-slate-50/80 transition-colors">
+                          <span className="text-[11px] font-medium text-slate-400">Free Slot</span>
                         </div>
                       </td>
                     );
@@ -112,28 +132,30 @@ export function WeeklyTimetableGrid({
                   return (
                     <td
                       key={`${day}-${periodNum}`}
-                      className="p-1.5 border-r border-border last:border-r-0 align-top"
+                      className={`p-2 border-r border-emerald-100/50 last:border-r-0 align-top ${
+                        isToday ? "bg-emerald-50/20" : ""
+                      }`}
                     >
                       <div
                         onClick={() => !readonly && onSlotClick?.(slot)}
-                        className={`h-24 p-2.5 rounded-xl border transition-all text-left flex flex-col justify-between ${
+                        className={`h-28 p-3 rounded-xl border transition-all text-left flex flex-col justify-between group ${
                           slot.isLabSession
-                            ? "bg-emerald-50/70 dark:bg-emerald-950/30 border-emerald-200 dark:border-emerald-800/60 hover:border-emerald-400"
-                            : "bg-indigo-50/70 dark:bg-indigo-950/30 border-indigo-200 dark:border-indigo-800/60 hover:border-indigo-400"
+                            ? "bg-white hover:bg-[#ECFDF5]/50 border-emerald-200/90 shadow-[0_2px_8px_rgba(16,185,129,0.06)] hover:shadow-md hover:border-emerald-400"
+                            : "bg-white hover:bg-slate-50 border-slate-200/80 shadow-[0_2px_8px_rgba(0,0,0,0.03)] hover:shadow-md hover:border-emerald-300"
                         } ${
-                          isHighlighted ? "ring-2 ring-primary shadow-md scale-[1.02]" : ""
-                        } ${!readonly ? "cursor-pointer active:scale-95" : ""}`}
+                          isHighlighted ? "ring-2 ring-emerald-500 shadow-md scale-[1.02]" : ""
+                        } ${!readonly ? "cursor-pointer active:scale-98" : ""}`}
                       >
                         {/* Top: Code & Badge */}
-                        <div className="flex items-start justify-between gap-1">
-                          <span className="font-mono text-xs font-black text-foreground truncate">
+                        <div className="flex items-center justify-between gap-1.5">
+                          <span className="font-mono text-xs font-bold text-slate-900 truncate group-hover:text-emerald-700 transition-colors">
                             {slot.subjectCode}
                           </span>
                           <span
-                            className={`text-[9px] font-extrabold uppercase px-1.5 py-0.5 rounded-md border shrink-0 ${
+                            className={`text-[9px] font-extrabold uppercase px-2 py-0.5 rounded-md border shrink-0 ${
                               slot.isLabSession
-                                ? "bg-emerald-100 text-emerald-800 border-emerald-300 dark:bg-emerald-900 dark:text-emerald-200 dark:border-emerald-700"
-                                : "bg-indigo-100 text-indigo-800 border-indigo-300 dark:bg-indigo-900 dark:text-indigo-200 dark:border-indigo-700"
+                                ? "bg-emerald-100 text-emerald-800 border-emerald-200"
+                                : "bg-blue-50 text-blue-700 border-blue-200"
                             }`}
                           >
                             {slot.isLabSession ? "Lab" : "Lecture"}
@@ -141,18 +163,18 @@ export function WeeklyTimetableGrid({
                         </div>
 
                         {/* Middle: Subject Name */}
-                        <div className="text-xs font-semibold text-foreground line-clamp-1 mt-0.5">
+                        <div className="text-xs font-semibold text-slate-800 line-clamp-1 mt-1 leading-snug">
                           {slot.subjectName}
                         </div>
 
                         {/* Bottom: Faculty & Room */}
-                        <div className="flex items-center justify-between text-[11px] text-muted-foreground border-t border-border/40 pt-1 mt-1">
+                        <div className="flex items-center justify-between text-[11px] text-slate-500 border-t border-slate-100 pt-1.5 mt-1.5">
                           <span className="flex items-center gap-1 truncate max-w-[110px]" title={slot.facultyName}>
-                            <User className="h-3 w-3 text-muted-foreground shrink-0" />
+                            <User className="h-3 w-3 text-slate-400 shrink-0" />
                             <span className="truncate">{slot.facultyName.split(" ").slice(-1)[0]}</span>
                           </span>
-                          <span className="flex items-center gap-0.5 font-medium shrink-0 text-foreground/80">
-                            <MapPin className="h-3 w-3 text-primary shrink-0" />
+                          <span className="flex items-center gap-1 font-semibold text-slate-700 bg-slate-100/80 px-1.5 py-0.5 rounded text-[10px]">
+                            <MapPin className="h-2.5 w-2.5 text-emerald-600 shrink-0" />
                             {slot.roomNumber.replace("Room ", "R-").replace("Computer Lab ", "Lab-")}
                           </span>
                         </div>

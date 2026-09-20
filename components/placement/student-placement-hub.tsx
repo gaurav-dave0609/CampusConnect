@@ -129,17 +129,17 @@ export function StudentPlacementHub() {
   return (
     <div className="space-y-8 max-w-7xl mx-auto pb-12">
       {/* Hero / Readiness Section */}
-      <div className="relative overflow-hidden rounded-3xl border border-indigo-100 bg-gradient-to-br from-slate-900 via-indigo-950 to-blue-900 p-6 sm:p-8 text-white shadow-xl dark:border-indigo-950">
+      <div className="relative overflow-hidden rounded-3xl border border-emerald-100/80 bg-white p-6 sm:p-8 text-slate-900 shadow-sm">
         <div className="relative z-10 grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
           <div className="lg:col-span-2 space-y-4">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-indigo-500/30 text-indigo-200 border border-indigo-400/30 backdrop-blur-sm">
-              <Sparkles className="h-3.5 w-3.5 text-indigo-300" />
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200/60">
+              <Sparkles className="h-3.5 w-3.5 text-emerald-600" />
               <span>Campus Career Portal &bull; Placement Phase 10</span>
             </div>
-            <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight">
+            <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900">
               Placement Hub &amp; Opportunities
             </h1>
-            <p className="text-slate-300 text-sm sm:text-base max-w-xl leading-relaxed">
+            <p className="text-slate-600 text-sm sm:text-base max-w-xl leading-relaxed">
               Discover verified campus recruitment drives, verify your real-time server eligibility,
               hone your technical and aptitude speed in timed quizzes, and track your recruitment pipeline.
             </p>
@@ -147,62 +147,59 @@ export function StudentPlacementHub() {
             <div className="flex flex-wrap gap-3 pt-2">
               <Link
                 href="/dashboard/student/placements/applications"
-                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white text-slate-900 text-sm font-semibold hover:bg-slate-100 transition-colors shadow-md shadow-slate-950/20"
+                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-emerald-600 text-white text-sm font-semibold hover:bg-emerald-700 transition-colors shadow-sm"
               >
-                <Briefcase className="h-4 w-4 text-indigo-600" />
+                <Briefcase className="h-4 w-4" />
                 <span>My Applications Tracker</span>
               </Link>
               <Link
                 href="/dashboard/student/placements/preparation"
-                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-indigo-800/60 text-white text-sm font-semibold hover:bg-indigo-700/60 border border-indigo-400/30 transition-colors"
+                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-emerald-50 text-emerald-800 text-sm font-semibold hover:bg-emerald-100 border border-emerald-200/60 transition-colors"
               >
-                <BookOpen className="h-4 w-4 text-indigo-300" />
+                <BookOpen className="h-4 w-4 text-emerald-700" />
                 <span>Prep Bank &amp; Quizzes</span>
               </Link>
             </div>
           </div>
 
           {/* Placement Readiness Score Gauge Card */}
-          <div className="bg-white/10 backdrop-blur-md rounded-2xl p-5 border border-white/20 text-white flex flex-col justify-between">
+          <div className="bg-[#F0FDF4] rounded-2xl p-5 border border-emerald-100 text-slate-900 flex flex-col justify-between shadow-xs">
             <div className="flex items-center justify-between">
-              <span className="text-xs font-bold uppercase tracking-wider text-indigo-200">
+              <span className="text-xs font-bold uppercase tracking-wider text-slate-600">
                 Placement Readiness
               </span>
-              <span className="text-xs px-2.5 py-0.5 rounded-full font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-400/30">
+              <span className="text-xs px-2.5 py-0.5 rounded-full font-bold bg-emerald-100 text-emerald-800 border border-emerald-200">
                 {readiness?.readinessTier || "Placement Ready"}
               </span>
             </div>
 
             <div className="my-4 flex items-baseline gap-2">
-              <span className="text-4xl sm:text-5xl font-black tracking-tight text-white">
+              <span className="text-4xl sm:text-5xl font-black tracking-tight text-emerald-700">
                 {readiness?.readinessScore || 86}
               </span>
-              <span className="text-lg text-indigo-200 font-bold">/ 100</span>
+              <span className="text-lg text-slate-500 font-bold">/ 100</span>
             </div>
 
-            <p className="text-xs text-indigo-200 leading-relaxed">
+            <p className="text-xs text-slate-600 leading-relaxed">
               Institutional indicator calculated from quiz speed, skill portfolio, academic CGPA, and interview consistency.
             </p>
 
-            <div className="mt-4 pt-3 border-t border-white/10 grid grid-cols-3 gap-2 text-center text-xs">
+            <div className="mt-4 pt-3 border-t border-emerald-200/60 grid grid-cols-3 gap-2 text-center text-xs">
               <div>
-                <p className="text-slate-400">Quizzes</p>
-                <p className="font-bold text-white mt-0.5">{readiness?.metrics.quizzesAttempted || 4} taken</p>
+                <p className="text-slate-500">Quizzes</p>
+                <p className="font-bold text-slate-800 mt-0.5">{readiness?.metrics.quizzesAttempted || 4} taken</p>
               </div>
               <div>
-                <p className="text-slate-400">Accuracy</p>
-                <p className="font-bold text-emerald-400 mt-0.5">{readiness?.metrics.averageScorePercent || 82}%</p>
+                <p className="text-slate-500">Accuracy</p>
+                <p className="font-bold text-emerald-700 mt-0.5">{readiness?.metrics.averageScorePercent || 82}%</p>
               </div>
               <div>
-                <p className="text-slate-400">Status</p>
-                <p className="font-bold text-indigo-300 mt-0.5">Verified</p>
+                <p className="text-slate-500">Status</p>
+                <p className="font-bold text-emerald-700 mt-0.5">Verified</p>
               </div>
             </div>
           </div>
         </div>
-
-        {/* Decorative blur */}
-        <div className="absolute -right-12 -bottom-12 w-64 h-64 bg-blue-500/20 rounded-full blur-3xl pointer-events-none" />
       </div>
 
       {/* Filter and Search Bar */}
@@ -299,7 +296,7 @@ export function StudentPlacementHub() {
               setTypeFilter("ALL");
               setEligibleOnly(false);
             }}
-            className="mt-4 px-4 py-2 text-sm font-semibold rounded-xl bg-indigo-600 text-white hover:bg-indigo-700"
+            className="mt-4 px-4 py-2 text-sm font-semibold rounded-xl bg-[#10B981] text-white hover:bg-[#059669] cursor-pointer"
           >
             Reset Filters
           </button>
@@ -403,7 +400,7 @@ export function StudentPlacementHub() {
 
                   <Link
                     href={`/dashboard/student/placements/${drive.id}`}
-                    className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-indigo-600 text-white text-xs font-semibold hover:bg-indigo-700 transition-colors shadow-sm"
+                    className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-[#10B981] text-white text-xs font-semibold hover:bg-[#059669] transition-colors shadow-sm"
                   >
                     <span>View &amp; Apply</span>
                     <ArrowRight className="h-3.5 w-3.5" />

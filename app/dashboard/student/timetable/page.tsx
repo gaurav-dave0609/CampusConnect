@@ -4,7 +4,7 @@ import { TimetableService } from "@/services/timetable.service";
 import { StudentTimetableView } from "@/components/timetable/student-timetable-view";
 
 export const metadata = {
-  title: "Weekly Timetable & Schedule | CampusSphere",
+  title: "Weekly Timetable & Schedule | Campus Connect",
   description: "View published division timetable, classroom allocations, and today's upcoming lectures.",
 };
 

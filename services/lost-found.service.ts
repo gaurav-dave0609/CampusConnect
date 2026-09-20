@@ -235,7 +235,7 @@ export class LostFoundService {
 
     // Resolve user details
     let reporterName = "Campus User";
-    let reporterEmail = "user@campussphere.edu";
+    let reporterEmail = "user@campusconnect.edu";
     try {
       const { ProfileService } = await import("@/services/profile.service");
       const profile = await ProfileService.getProfile(userId);
@@ -573,7 +573,7 @@ export class LostFoundService {
 
     // Resolve claimant details
     let claimantName = "Campus Student";
-    let claimantEmail = "student@campussphere.edu";
+    let claimantEmail = "student@campusconnect.edu";
     let claimantRoll = "CS-2024-001";
 
     try {

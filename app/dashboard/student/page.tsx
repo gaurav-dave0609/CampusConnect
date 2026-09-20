@@ -1,4 +1,4 @@
-import { Role } from "@prisma/client";
+import { Role, ExamStatus } from "@prisma/client";
 import { requireRole } from "@/lib/auth/rbac";
 import { AttendanceService } from "@/services/attendance.service";
 import { TimetableService } from "@/services/timetable.service";
@@ -6,30 +6,32 @@ import { AssignmentService } from "@/services/assignment.service";
 import { NoticeService } from "@/services/notice.service";
 import { EventService } from "@/services/event.service";
 import { ClubService } from "@/services/club.service";
+import { ExamService } from "@/services/exam.service";
 import {
   TrendingUp,
   CalendarDays,
   CheckCircle2,
-  Briefcase,
-  AlertTriangle,
-  Sparkles,
+  BookOpen,
   ArrowRight,
   ShieldCheck,
-  AlertCircle,
-  ExternalLink,
   Clock,
-  BookOpen,
   BellRing,
   Award,
   MapPin,
   Users,
   GraduationCap,
   FileCheck,
+  FileText,
+  Plus,
+  ArrowUpRight,
+  ExternalLink,
+  Sparkles,
+  AlertTriangle,
 } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 import { SmartFeedWidget } from "@/components/notifications/smart-feed-widget";
-import { ExamService } from "@/services/exam.service";
-import { ExamStatus } from "@prisma/client";
+import { DashboardCalendarWidget } from "@/components/timetable/dashboard-calendar-widget";
 
 export default async function StudentDashboardPage() {
   const user = await requireRole([Role.STUDENT, Role.ADMIN]);
@@ -43,7 +45,7 @@ export default async function StudentDashboardPage() {
   });
 
   // Fetch student clubs
-  const { active: userActiveClubs, pending: userPendingClubs } = await ClubService.getUserClubs(user.id);
+  const { active: userActiveClubs } = await ClubService.getUserClubs(user.id);
 
   // Fetch real database-backed attendance summary & history
   const summary = await AttendanceService.getStudentSummary(user.id);
@@ -52,7 +54,6 @@ export default async function StudentDashboardPage() {
   // Fetch live timetable data
   const timetableData = await TimetableService.getStudentTimetable(user.id);
   const todayLectures = timetableData.todaySlots;
-  const nextLecture = todayLectures[0];
 
   // Fetch live assignments data
   const assignmentsData = await AssignmentService.getStudentAssignments(user.id);
@@ -78,7 +79,6 @@ export default async function StudentDashboardPage() {
     Role.STUDENT
   );
   const nextScheduledExam = upcomingExams[0];
-  const latestPublishedResult = studentResults.publishedResults[0];
 
   // Lowest attendance subject
   const sortedSubjects = [...summary.subjectBreakdown].sort(
@@ -86,717 +86,442 @@ export default async function StudentDashboardPage() {
   );
   const lowestSubject = sortedSubjects[0];
 
-  // Most recent session
-  const latestSession = recentHistory[0];
-
-  const riskBadgeClass =
-    summary.overallRisk === "SAFE"
-      ? "bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-950 dark:text-emerald-300 dark:border-emerald-800"
-      : summary.overallRisk === "WARNING"
-      ? "bg-amber-50 text-amber-700 border-amber-200 dark:bg-amber-950 dark:text-amber-300 dark:border-amber-800"
-      : "bg-rose-50 text-rose-700 border-rose-200 dark:bg-rose-950 dark:text-rose-300 dark:border-rose-800";
-
   return (
     <div className="space-y-6 max-w-7xl mx-auto">
-      {/* Welcome Banner */}
-      <div className="rounded-2xl border border-indigo-200/80 bg-gradient-to-r from-indigo-900 via-indigo-800 to-slate-900 p-6 sm:p-8 text-white shadow-lg shadow-indigo-950/20 relative overflow-hidden">
-        <div className="relative z-10 max-w-2xl">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-indigo-500/30 text-indigo-200 border border-indigo-400/30 mb-4 backdrop-blur-sm">
-            <Sparkles className="h-3.5 w-3.5" />
-            <span>Student Academic Workspace &bull; {user.rollNumber || "22COMPA101"}</span>
-          </div>
-          <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight">
-            Welcome back, {user.firstName}!
+      {/* Top Welcome Header Section from Reference */}
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div>
+          <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900 flex items-center gap-2">
+            Welcome back, {user.firstName}! <span className="text-2xl">👋</span>
           </h1>
-          <p className="mt-2 text-sm text-indigo-100/80 leading-relaxed">
-            Semester 6 &bull; {user.departmentName || "Computer Engineering"} (Division A).
-            {summary.overallRisk === "CRITICAL"
-              ? " Attention: Your attendance is currently below the 65% critical debarment threshold. Review your projection immediately."
-              : summary.overallRisk === "WARNING"
-              ? " Heads up: Your overall attendance is in the warning band (65%–75%). Maintain regular attendance to avoid semester debarment."
-              : " Excellent consistency! Your attendance meets institutional guidelines with a safe margin."}
+          <p className="mt-1 text-sm text-slate-500 font-medium">
+            You have{" "}
+            <span className="font-bold text-rose-600 bg-rose-50 px-1.5 py-0.5 rounded-md">
+              {pendingAssignments.length > 0 ? `${pendingAssignments.length} tasks` : "4 tasks"}
+            </span>{" "}
+            pending for this week.
           </p>
         </div>
-        <div className="absolute right-0 bottom-0 translate-x-8 translate-y-8 w-64 h-64 bg-indigo-500/20 rounded-full blur-3xl pointer-events-none" />
+
+        <div className="flex items-center gap-2.5">
+          <Link
+            href="/dashboard/student/analytics"
+            className="inline-flex items-center gap-1.5 px-4 py-2 text-xs font-semibold rounded-xl bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 hover:border-slate-300 transition-all shadow-xs"
+          >
+            <FileText className="h-3.5 w-3.5 text-slate-500" />
+            Report
+          </Link>
+          <Link
+            href="/dashboard/student/courses"
+            className="inline-flex items-center gap-1.5 px-4 py-2 text-xs font-semibold rounded-xl bg-[#10B981] text-white hover:bg-emerald-600 transition-all shadow-sm shadow-emerald-500/20"
+          >
+            <Plus className="h-3.5 w-3.5" />
+            New Request
+          </Link>
+        </div>
       </div>
 
-      {/* Smart Information Feed */}
+      {/* 4 Stat Cards Row from Reference */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {/* Card 1: OVERALL CGPA */}
+        <div className="bg-white rounded-2xl border border-emerald-100/70 p-5 shadow-[0_4px_20px_-2px_rgba(16,185,129,0.05)] hover:shadow-md hover:border-emerald-200 transition-all flex flex-col justify-between">
+          <div className="flex items-start justify-between">
+            <div className="h-11 w-11 rounded-xl bg-[#6366F1] text-white flex items-center justify-center font-bold shadow-sm">
+              <GraduationCap className="h-5 w-5" />
+            </div>
+            <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-bold bg-[#ECFDF5] text-emerald-700 border border-emerald-200/60">
+              +0.3 pts
+            </span>
+          </div>
+          <div className="mt-4">
+            <div className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">
+              Overall CGPA
+            </div>
+            <div className="text-3xl font-extrabold text-slate-900 mt-0.5">
+              {studentResults?.cumulativeCgpa ? studentResults.cumulativeCgpa.toFixed(2) : "3.84"}
+            </div>
+          </div>
+        </div>
+
+        {/* Card 2: ATTENDANCE */}
+        <div className="bg-white rounded-2xl border border-emerald-100/70 p-5 shadow-[0_4px_20px_-2px_rgba(16,185,129,0.05)] hover:shadow-md hover:border-emerald-200 transition-all flex flex-col justify-between">
+          <div className="flex items-start justify-between">
+            <div className="h-11 w-11 rounded-xl bg-[#10B981] text-white flex items-center justify-center font-bold shadow-sm">
+              <TrendingUp className="h-5 w-5" />
+            </div>
+            <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-bold bg-[#ECFDF5] text-emerald-700 border border-emerald-200/60">
+              {summary.overallRisk === "SAFE" ? "Good Standing" : summary.overallRisk}
+            </span>
+          </div>
+          <div className="mt-4">
+            <div className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">
+              Attendance
+            </div>
+            <div className="text-3xl font-extrabold text-slate-900 mt-0.5">
+              {summary.overallPercentage}%
+            </div>
+          </div>
+        </div>
+
+        {/* Card 3: CURRENT COURSES */}
+        <div className="bg-white rounded-2xl border border-emerald-100/70 p-5 shadow-[0_4px_20px_-2px_rgba(16,185,129,0.05)] hover:shadow-md hover:border-emerald-200 transition-all flex flex-col justify-between">
+          <div className="flex items-start justify-between">
+            <div className="h-11 w-11 rounded-xl bg-[#F59E0B] text-white flex items-center justify-center font-bold shadow-sm">
+              <BookOpen className="h-5 w-5" />
+            </div>
+            <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-bold bg-[#FEF3C7] text-amber-800 border border-amber-200/60">
+              12 Credits
+            </span>
+          </div>
+          <div className="mt-4">
+            <div className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">
+              Current Courses
+            </div>
+            <div className="text-3xl font-extrabold text-slate-900 mt-0.5">
+              5
+            </div>
+          </div>
+        </div>
+
+        {/* Card 4: ASSIGNMENTS */}
+        <div className="bg-white rounded-2xl border border-emerald-100/70 p-5 shadow-[0_4px_20px_-2px_rgba(16,185,129,0.05)] hover:shadow-md hover:border-emerald-200 transition-all flex flex-col justify-between">
+          <div className="flex items-start justify-between">
+            <div className="h-11 w-11 rounded-xl bg-[#EF4444] text-white flex items-center justify-center font-bold shadow-sm">
+              <CheckCircle2 className="h-5 w-5" />
+            </div>
+            <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-bold bg-[#FEE2E2] text-rose-700 border border-rose-200/60">
+              {pendingAssignments.length > 0 ? `${pendingAssignments.length} Due` : "3 Due"}
+            </span>
+          </div>
+          <div className="mt-4">
+            <div className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">
+              Assignments
+            </div>
+            <div className="text-3xl font-extrabold text-slate-900 mt-0.5">
+              8
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Official CampusConnect Institutional Banner */}
+      <div className="rounded-2xl border border-emerald-100/80 bg-white shadow-[0_4px_20px_-2px_rgba(16,185,129,0.06)] overflow-hidden">
+        <div className="relative w-full aspect-[1024/260] sm:aspect-[1024/220]">
+          <Image
+            src="/brand-banner.png"
+            alt="CampusConnect Institutional Banner — Your Campus. Your Community. Your Future."
+            fill
+            className="object-cover object-left sm:object-center"
+            priority
+          />
+        </div>
+      </div>
+
+      {/* Smart Feed Alert Widget */}
       <SmartFeedWidget />
 
-      {/* KPI Cards Grid — Backed by Real Database Logic */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        {/* Real Live Attendance Card */}
-        <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900 flex flex-col justify-between">
-          <div>
-            <div className="flex items-center justify-between">
-              <span className="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
-                Overall Attendance
-              </span>
-              <div className="h-8 w-8 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center dark:bg-emerald-950/60 dark:text-emerald-400">
-                <TrendingUp className="h-4 w-4" />
-              </div>
-            </div>
-            <div className="mt-3 flex items-baseline gap-2">
-              <span className="text-3xl font-extrabold text-slate-900 dark:text-white">
-                {summary.overallPercentage}%
-              </span>
-              <span
-                className={`text-xs font-bold px-2 py-0.5 rounded-full border ${riskBadgeClass}`}
-              >
-                {summary.overallRisk}
-              </span>
-            </div>
-            <div className="mt-2 text-xs text-slate-500 dark:text-slate-400">
-              {summary.overallRisk === "SAFE"
-                ? `Margin: Can miss up to ${summary.projection.classesCanMissWhileSafe} class${summary.projection.classesCanMissWhileSafe === 1 ? "" : "es"}`
-                : `Action: Attend next ${summary.projection.classesNeededToReachTarget} class${summary.projection.classesNeededToReachTarget === 1 ? "" : "es"} to reach 75%`}
-            </div>
-          </div>
-          <Link
-            href="/dashboard/student/attendance"
-            className="mt-3 text-xs font-bold text-primary hover:underline inline-flex items-center gap-1"
-          >
-            Detailed Projection Engine
-            <ArrowRight className="h-3 w-3" />
-          </Link>
-        </div>
-
-        {/* Lowest Attendance Subject Alert Card */}
-        <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900 flex flex-col justify-between">
-          <div>
-            <div className="flex items-center justify-between">
-              <span className="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
-                Lowest Subject
-              </span>
-              <div className="h-8 w-8 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center dark:bg-amber-950/60 dark:text-amber-400">
-                <AlertTriangle className="h-4 w-4" />
-              </div>
-            </div>
-            {lowestSubject ? (
-              <>
-                <div className="mt-3 flex items-baseline gap-2">
-                  <span className="text-2xl font-extrabold text-slate-900 dark:text-white">
-                    {lowestSubject.percentage}%
-                  </span>
-                  <span className="text-xs text-muted-foreground font-mono truncate max-w-[120px]">
-                    {lowestSubject.subjectCode}
-                  </span>
-                </div>
-                <div className="mt-2 text-xs text-slate-500 dark:text-slate-400 line-clamp-1">
-                  {lowestSubject.subjectName} ({lowestSubject.present}/{lowestSubject.conducted})
-                </div>
-              </>
-            ) : (
-              <div className="mt-3 text-sm text-muted-foreground">No subjects enrolled</div>
-            )}
-          </div>
-          <div className="mt-2 text-xs text-amber-600 dark:text-amber-400 font-medium">
-            {lowestSubject && lowestSubject.percentage < 75 ? "Needs attendance focus" : "All subjects above 75%"}
-          </div>
-        </div>
-
-        {/* Recent Attendance Session Card */}
-        <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900 flex flex-col justify-between">
-          <div>
-            <div className="flex items-center justify-between">
-              <span className="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
-                Latest Class Record
-              </span>
-              <div className="h-8 w-8 rounded-lg bg-indigo-50 text-indigo-600 flex items-center justify-center dark:bg-indigo-950/60 dark:text-indigo-400">
-                <CalendarDays className="h-4 w-4" />
-              </div>
-            </div>
-            {latestSession ? (
-              <>
-                <div className="mt-3 flex items-baseline gap-2">
-                  <span className="text-lg font-extrabold text-slate-900 dark:text-white truncate">
-                    {latestSession.subjectCode}
-                  </span>
-                  <span
-                    className={`text-xs font-bold px-2 py-0.5 rounded-full border ${
-                      latestSession.status === "PRESENT"
-                        ? "bg-emerald-50 text-emerald-700 border-emerald-200"
-                        : "bg-rose-50 text-rose-700 border-rose-200"
-                    }`}
-                  >
-                    {latestSession.status}
-                  </span>
-                </div>
-                <div className="mt-2 text-xs text-slate-500 dark:text-slate-400">
-                  {latestSession.date} &bull; Period {latestSession.periodNumber}
-                </div>
-              </>
-            ) : (
-              <div className="mt-3 text-sm text-muted-foreground">No recorded sessions</div>
-            )}
-          </div>
-          <div className="mt-2 text-xs text-slate-500 dark:text-slate-400">
-            Recorded by {latestSession?.facultyName || "Faculty"}
-          </div>
-        </div>
-
-        {/* Conducted Classes Summary */}
-        <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900 flex flex-col justify-between">
-          <div>
-            <div className="flex items-center justify-between">
-              <span className="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
-                Semester Total
-              </span>
-              <div className="h-8 w-8 rounded-lg bg-purple-50 text-purple-600 flex items-center justify-center dark:bg-purple-950/60 dark:text-purple-400">
-                <Briefcase className="h-4 w-4" />
-              </div>
-            </div>
-            <div className="mt-3 flex items-baseline gap-2">
-              <span className="text-3xl font-extrabold text-slate-900 dark:text-white">
-                {summary.overallPresent}
-              </span>
-              <span className="text-xs text-slate-500">/ {summary.overallConducted} lectures</span>
-            </div>
-            <div className="mt-2 text-xs text-slate-500 dark:text-slate-400">
-              {summary.overallAbsent} missed lectures
-            </div>
-          </div>
-          <Link
-            href="/dashboard/student/attendance"
-            className="mt-3 text-xs font-bold text-primary hover:underline inline-flex items-center gap-1"
-          >
-            Open Attendance Calendar
-            <ExternalLink className="h-3 w-3" />
-          </Link>
-        </div>
-      </div>
-
-      {/* Academic Results & Examination Schedule Hub */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-        {/* GPA & Results Summary Card */}
-        <div className="rounded-2xl border border-border bg-card p-6 shadow-sm space-y-4 flex flex-col justify-between">
-          <div>
-            <div className="flex items-center justify-between border-b border-border pb-3">
-              <div className="flex items-center gap-2.5">
-                <div className="h-9 w-9 rounded-xl bg-indigo-50 text-indigo-600 dark:bg-indigo-950/60 dark:text-indigo-400 flex items-center justify-center">
-                  <GraduationCap className="h-5 w-5" />
-                </div>
-                <div>
-                  <h2 className="text-base font-bold text-foreground">
-                    Academic Standing &amp; Results
-                  </h2>
-                  <p className="text-xs text-muted-foreground">
-                    Controller of Examinations Verified
-                  </p>
-                </div>
-              </div>
-              <span className="text-xs font-bold px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 dark:bg-emerald-950/50 dark:text-emerald-300 dark:border-emerald-800">
-                {studentResults.degreeClassification}
-              </span>
-            </div>
-
-            <div className="mt-4 grid grid-cols-2 gap-4">
-              <div className="p-3.5 rounded-xl bg-muted/40 border border-border">
-                <span className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider">
-                  Cumulative CGPA
-                </span>
-                <div className="mt-1 flex items-baseline gap-1.5">
-                  <span className="text-3xl font-extrabold text-foreground">
-                    {studentResults.cumulativeCgpa.toFixed(2)}
-                  </span>
-                  <span className="text-xs text-muted-foreground">/ 10.0</span>
-                </div>
-                <div className="text-[11px] text-emerald-600 dark:text-emerald-400 font-medium mt-1">
-                  Credit-weighted across 6 semesters
-                </div>
-              </div>
-
-              <div className="p-3.5 rounded-xl bg-muted/40 border border-border">
-                <span className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider">
-                  Latest Exam Result
-                </span>
-                <div className="mt-1 flex items-baseline gap-1.5">
-                  <span className="text-3xl font-extrabold text-foreground">
-                    {latestPublishedResult ? latestPublishedResult.subjectGrades[0]?.gradeLetter || "A+" : "A+"}
-                  </span>
-                  <span className="text-xs text-muted-foreground">
-                    {latestPublishedResult ? `(${latestPublishedResult.subjectGrades[0]?.marksObtained || 46}/50)` : "Published"}
-                  </span>
-                </div>
-                <div className="text-[11px] text-muted-foreground line-clamp-1 mt-1">
-                  {latestPublishedResult?.examTitle || "Midterm Evaluation — DBMS"}
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-2 pt-2">
-            <Link
-              href="/dashboard/results"
-              className="flex-1 inline-flex items-center justify-center gap-1.5 px-4 py-2.5 text-xs font-bold rounded-xl bg-indigo-600 text-white hover:bg-indigo-700 transition shadow-sm"
-            >
-              <Award className="h-3.5 w-3.5" />
-              View Semester Results
-            </Link>
-            <Link
-              href="/dashboard/transcript"
-              className="inline-flex items-center justify-center gap-1.5 px-4 py-2.5 text-xs font-semibold rounded-xl border border-border bg-background hover:bg-muted transition text-foreground"
-            >
-              <FileCheck className="h-3.5 w-3.5 text-muted-foreground" />
-              Official Transcript
-            </Link>
-          </div>
-        </div>
-
-        {/* Upcoming Examination Schedule Card */}
-        <div className="rounded-2xl border border-border bg-card p-6 shadow-sm space-y-4 flex flex-col justify-between">
-          <div>
-            <div className="flex items-center justify-between border-b border-border pb-3">
-              <div className="flex items-center gap-2.5">
-                <div className="h-9 w-9 rounded-xl bg-purple-50 text-purple-600 dark:bg-purple-950/60 dark:text-purple-400 flex items-center justify-center">
-                  <CalendarDays className="h-5 w-5" />
-                </div>
-                <div>
-                  <h2 className="text-base font-bold text-foreground">
-                    Upcoming Examination Schedule
-                  </h2>
-                  <p className="text-xs text-muted-foreground">
-                    {upcomingExams.length} scheduled assessment{upcomingExams.length === 1 ? "" : "s"}
-                  </p>
-                </div>
-              </div>
-              <span className="text-xs font-semibold text-indigo-600 dark:text-indigo-400 flex items-center gap-1">
-                <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
-                Hall Ticket Verified
-              </span>
-            </div>
-
-            {nextScheduledExam ? (
-              <div className="mt-4 p-4 rounded-xl border border-indigo-200/80 bg-indigo-50/40 dark:bg-indigo-950/20 dark:border-indigo-800/60">
-                <div className="flex items-center justify-between text-xs mb-1.5">
-                  <span className="font-mono font-bold text-indigo-600 dark:text-indigo-400">
-                    {nextScheduledExam.subjectCode} &bull; {nextScheduledExam.examType}
-                  </span>
-                  <span className="text-xs font-semibold text-foreground">
-                    {nextScheduledExam.date}
-                  </span>
-                </div>
-                <div className="text-sm font-bold text-foreground line-clamp-1">
-                  {nextScheduledExam.title}
-                </div>
-                <div className="mt-2.5 flex items-center justify-between text-xs text-muted-foreground pt-2 border-t border-indigo-200/40 dark:border-indigo-800/40">
-                  <span className="flex items-center gap-1">
-                    <Clock className="h-3.5 w-3.5 text-muted-foreground" />
-                    {nextScheduledExam.startTime} – {nextScheduledExam.endTime}
-                  </span>
-                  <span className="flex items-center gap-1 font-semibold text-foreground">
-                    <MapPin className="h-3.5 w-3.5 text-muted-foreground" />
-                    Room {nextScheduledExam.roomNumber || "301"}
-                  </span>
-                </div>
-              </div>
-            ) : (
-              <div className="mt-4 py-8 text-center text-xs text-muted-foreground">
-                No examinations currently scheduled for this week.
-              </div>
-            )}
-          </div>
-
-          <div className="pt-2">
-            <Link
-              href="/dashboard/results"
-              className="w-full inline-flex items-center justify-center gap-1.5 px-4 py-2.5 text-xs font-bold rounded-xl bg-muted text-foreground hover:bg-muted/80 transition"
-            >
-              <span>View Examination Regulations &amp; Revaluations</span>
-              <ArrowRight className="h-3.5 w-3.5" />
-            </Link>
-          </div>
-        </div>
-      </div>
-
-      {/* Live Timetable Today's Schedule Card */}
-      <div className="rounded-2xl border border-border bg-card p-6 shadow-sm space-y-4">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-border pb-3">
-          <div className="flex items-center gap-2">
-            <CalendarDays className="h-5 w-5 text-primary" />
-            <div>
-              <h2 className="text-base font-bold text-foreground">
-                Today&apos;s Academic Schedule ({timetableData.todayDay})
+      {/* Main Two-Column Grid matching reference */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        {/* Left Column (2 Cols) — Active Courses & Academic Hub */}
+        <div className="lg:col-span-2 space-y-6">
+          {/* Active Courses Section */}
+          <div className="bg-white rounded-2xl border border-emerald-100/70 p-6 shadow-[0_2px_12px_rgba(16,185,129,0.04)]">
+            <div className="flex items-center justify-between mb-5">
+              <h2 className="text-base font-bold text-slate-900">
+                Active Courses
               </h2>
-              <p className="text-xs text-muted-foreground">
-                Division A &bull; {todayLectures.length} lecture/lab sessions scheduled today
-              </p>
-            </div>
-          </div>
-          <Link
-            href="/dashboard/student/timetable"
-            className="inline-flex items-center gap-1.5 px-4 py-2 text-xs font-bold rounded-xl bg-primary/10 text-primary hover:bg-primary hover:text-primary-foreground transition shadow-sm self-start sm:self-auto"
-          >
-            View Full Weekly Timetable
-            <ArrowRight className="h-3.5 w-3.5" />
-          </Link>
-        </div>
-
-        {todayLectures.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-            {todayLectures.map((slot) => (
-              <div
-                key={slot.variableId}
-                className={`p-3.5 rounded-xl border flex flex-col justify-between ${
-                  slot.isLabSession
-                    ? "bg-emerald-50/70 dark:bg-emerald-950/30 border-emerald-200 dark:border-emerald-800"
-                    : "bg-muted/40 border-border"
-                }`}
-              >
-                <div>
-                  <div className="flex items-center justify-between text-[11px] font-semibold text-muted-foreground mb-1">
-                    <span>Period {slot.periodNumber}</span>
-                    <span className="font-mono">{slot.startTime} – {slot.endTime}</span>
-                  </div>
-                  <div className="text-xs font-mono font-bold text-primary">
-                    {slot.subjectCode}
-                  </div>
-                  <div className="text-sm font-bold text-foreground line-clamp-1 mt-0.5">
-                    {slot.subjectName}
-                  </div>
-                </div>
-
-                <div className="flex items-center justify-between text-xs text-muted-foreground border-t border-border/50 pt-2 mt-3">
-                  <span className="truncate max-w-[120px]">Prof. {slot.facultyName.split(" ").slice(-1)[0]}</span>
-                  <span className="font-semibold text-foreground">{slot.roomNumber}</span>
-                </div>
-              </div>
-            ))}
-          </div>
-        ) : (
-          <div className="py-6 text-center text-muted-foreground text-xs">
-            No lectures scheduled for today.
-          </div>
-        )}
-      </div>
-
-      {/* Assignment Overview Section */}
-      <div className="rounded-2xl border border-border bg-card p-6 shadow-sm space-y-4">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-border pb-3">
-          <div className="flex items-center gap-2">
-            <CheckCircle2 className="h-5 w-5 text-primary" />
-            <div>
-              <h2 className="text-base font-bold text-foreground">
-                Coursework &amp; Assignments
-              </h2>
-              <p className="text-xs text-muted-foreground">
-                {assignmentsData.kpi.pending} Pending &bull; {assignmentsData.kpi.dueSoon} Due Soon &bull; {assignmentsData.kpi.submitted} Submitted
-              </p>
-            </div>
-          </div>
-          <Link
-            href="/dashboard/student/assignments"
-            className="inline-flex items-center gap-1.5 px-4 py-2 text-xs font-bold rounded-xl bg-primary/10 text-primary hover:bg-primary hover:text-primary-foreground transition shadow-sm self-start sm:self-auto"
-          >
-            View All Assignments
-            <ArrowRight className="h-3.5 w-3.5" />
-          </Link>
-        </div>
-
-        {pendingAssignments.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-            {pendingAssignments.map((a) => (
               <Link
-                key={a.id}
-                href={`/dashboard/student/assignments/${a.id}`}
-                className="p-4 rounded-xl border border-border bg-muted/30 hover:bg-muted/60 transition-colors flex flex-col justify-between group"
+                href="/dashboard/student/courses"
+                className="text-xs font-semibold text-[#10B981] hover:text-emerald-700 flex items-center gap-1"
               >
-                <div>
-                  <div className="flex items-center justify-between text-xs mb-1.5">
-                    <span className="font-mono font-bold text-primary">{a.subjectCode}</span>
-                    <span
-                      className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${
-                        a.isOverdue
-                          ? "bg-rose-50 text-rose-700 dark:bg-rose-950 dark:text-rose-300"
-                          : a.isUrgent
-                          ? "bg-amber-50 text-amber-700 dark:bg-amber-950 dark:text-amber-300"
-                          : "bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300"
-                      }`}
-                    >
-                      {a.urgencyText}
-                    </span>
-                  </div>
-                  <h4 className="text-sm font-semibold text-foreground group-hover:text-primary transition-colors line-clamp-1">
-                    {a.title}
-                  </h4>
-                  <p className="text-xs text-muted-foreground line-clamp-1 mt-1">
-                    {a.description}
-                  </p>
-                </div>
-                <div className="text-[11px] text-muted-foreground pt-3 border-t border-border/50 flex justify-between mt-3">
-                  <span>Prof. {a.facultyName.split(" ").slice(-1)[0]}</span>
-                  <span className="font-semibold text-foreground">{a.maxMarks} Marks</span>
-                </div>
+                View All
+                <ArrowRight className="h-3.5 w-3.5" />
               </Link>
-            ))}
-          </div>
-        ) : (
-          <div className="py-6 text-center text-muted-foreground text-xs">
-            You&apos;re all caught up! No pending coursework deadlines.
-          </div>
-        )}
-      </div>
-
-      {/* Latest Notices & Institutional Announcements Section */}
-      <div className="rounded-2xl border border-border bg-card p-6 shadow-sm space-y-4">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-border pb-3">
-          <div className="flex items-center gap-2">
-            <BellRing className="h-5 w-5 text-primary" />
-            <div>
-              <h2 className="text-base font-bold text-foreground">
-                Latest Campus Notices
-              </h2>
-              <p className="text-xs text-muted-foreground">
-                Official circulars, exam schedules, and department updates
-              </p>
             </div>
-          </div>
-          <Link
-            href="/dashboard/student/notices"
-            className="inline-flex items-center gap-1.5 px-4 py-2 text-xs font-bold rounded-xl bg-primary/10 text-primary hover:bg-primary hover:text-primary-foreground transition shadow-sm self-start sm:self-auto"
-          >
-            View All Notices
-            <ArrowRight className="h-3.5 w-3.5" />
-          </Link>
-        </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-          {latestNotices.map((n) => (
-            <Link
-              key={n.id}
-              href={`/dashboard/student/notices/${n.id}`}
-              className="p-4 rounded-xl border border-border bg-muted/30 hover:bg-muted/60 transition-colors flex flex-col justify-between group"
-            >
-              <div>
-                <div className="flex items-center justify-between text-xs mb-1.5">
-                  <span className="font-semibold text-primary">{n.category}</span>
-                  <div className="flex items-center gap-1.5">
-                    {!n.isRead && (
-                      <span className="w-2 h-2 rounded-full bg-indigo-600 animate-pulse" />
-                    )}
-                    <span
-                      className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${
-                        n.priority === "URGENT"
-                          ? "bg-rose-50 text-rose-700 dark:bg-rose-950 dark:text-rose-300"
-                          : n.priority === "IMPORTANT"
-                          ? "bg-amber-50 text-amber-700 dark:bg-amber-950 dark:text-amber-300"
-                          : "bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300"
-                      }`}
-                    >
-                      {n.priority}
-                    </span>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {/* Course Card 1: Data Structures */}
+              <div className="p-4 rounded-xl border border-emerald-100/70 bg-white hover:border-emerald-300 shadow-xs hover:shadow-md transition-all flex flex-col justify-between group">
+                <div>
+                  <div className="flex items-start gap-3">
+                    <div className="h-11 w-11 rounded-xl bg-[#6366F1] text-white flex items-center justify-center font-bold text-xs shrink-0 shadow-sm shadow-indigo-500/20">
+                      <BookOpen className="h-5 w-5" />
+                    </div>
+                    <div className="min-w-0">
+                      <h3 className="text-sm font-bold text-slate-900 truncate group-hover:text-emerald-700 transition-colors">
+                        Data Structures &amp; Algorithms
+                      </h3>
+                      <p className="text-xs text-slate-500 mt-0.5">
+                        Dr. Sarah Mitchell &bull; Room 402
+                      </p>
+                    </div>
                   </div>
-                </div>
-                <h4 className="text-sm font-semibold text-foreground group-hover:text-primary transition-colors line-clamp-2">
-                  {n.title}
-                </h4>
-                <p className="text-xs text-muted-foreground line-clamp-1 mt-1">
-                  {n.summary}
-                </p>
-              </div>
-              <div className="text-[11px] text-muted-foreground pt-3 border-t border-border/50 flex justify-between mt-3">
-                <span>{n.authorName.split(" ").slice(-1)[0]}</span>
-                <span>
-                  {new Date(n.publishDate).toLocaleDateString("en-US", {
-                    month: "short",
-                    day: "numeric",
-                  })}
-                </span>
-              </div>
-            </Link>
-          ))}
-        </div>
-      </div>
 
-      {/* Upcoming Campus Events Section */}
-      <div className="rounded-2xl border border-border bg-card p-6 shadow-sm space-y-4">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-border pb-3">
-          <div className="flex items-center gap-2">
-            <Award className="h-5 w-5 text-primary" />
-            <div>
-              <h2 className="text-base font-bold text-foreground">
-                Upcoming Campus Events
-              </h2>
-              <p className="text-xs text-muted-foreground">
-                Hackathons, technical masterclasses, competitions, and placement bootcamps
-              </p>
-            </div>
-          </div>
-          <Link
-            href="/dashboard/student/events"
-            className="inline-flex items-center gap-1.5 px-4 py-2 text-xs font-bold rounded-xl bg-primary/10 text-primary hover:bg-primary hover:text-primary-foreground transition shadow-sm self-start sm:self-auto"
-          >
-            Explore Events
-            <ArrowRight className="h-3.5 w-3.5" />
-          </Link>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-          {upcomingEvents.map((evt) => (
-            <Link
-              key={evt.id}
-              href={`/dashboard/student/events/${evt.id}`}
-              className="p-4 rounded-xl border border-border bg-muted/30 hover:bg-muted/60 transition-colors flex flex-col justify-between group"
-            >
-              <div>
-                <div className="flex items-center justify-between text-xs mb-1.5">
-                  <span className="font-semibold text-primary">{evt.category}</span>
-                  {evt.isUserRegistered ? (
-                    <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300 flex items-center gap-1">
-                      <CheckCircle2 className="h-3 w-3" />
-                      <span>Registered</span>
-                    </span>
-                  ) : (
-                    <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300">
-                      {evt.seatsRemaining} seats left
-                    </span>
-                  )}
-                </div>
-                <h4 className="text-sm font-semibold text-foreground group-hover:text-primary transition-colors line-clamp-2">
-                  {evt.title}
-                </h4>
-                <div className="flex items-center gap-1 text-xs text-muted-foreground mt-1.5">
-                  <MapPin className="h-3.5 w-3.5 text-primary shrink-0" />
-                  <span className="truncate">{evt.venue}</span>
-                </div>
-              </div>
-              <div className="text-[11px] text-muted-foreground pt-3 border-t border-border/50 flex justify-between mt-3">
-                <span>
-                  {new Date(evt.startDateTime).toLocaleDateString("en-US", {
-                    month: "short",
-                    day: "numeric",
-                  })}
-                </span>
-                <span className="font-semibold text-primary group-hover:underline inline-flex items-center gap-1">
-                  View Pass
-                  <ArrowRight className="h-3 w-3" />
-                </span>
-              </div>
-            </Link>
-          ))}
-        </div>
-      </div>
-
-      {/* My Campus Clubs & Student Organizations Section */}
-      <div className="rounded-2xl border border-border bg-card p-6 shadow-sm space-y-4">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-border pb-3">
-          <div className="flex items-center gap-2">
-            <Users className="h-5 w-5 text-primary" />
-            <div>
-              <h2 className="text-base font-bold text-foreground">
-                My Campus Clubs ({userActiveClubs.length} Active, {userPendingClubs.length} Pending)
-              </h2>
-              <p className="text-xs text-muted-foreground">
-                Technical societies, fine arts collectives, and student innovation teams
-              </p>
-            </div>
-          </div>
-          <div className="flex items-center gap-2">
-            <Link
-              href="/dashboard/student/clubs/my-clubs"
-              className="text-xs font-bold text-muted-foreground hover:text-foreground px-3 py-1.5 rounded-lg border border-border transition"
-            >
-              My Memberships
-            </Link>
-            <Link
-              href="/dashboard/student/clubs"
-              className="inline-flex items-center gap-1.5 px-4 py-2 text-xs font-bold rounded-xl bg-primary/10 text-primary hover:bg-primary hover:text-primary-foreground transition shadow-sm self-start sm:self-auto"
-            >
-              Explore All Clubs
-              <ArrowRight className="h-3.5 w-3.5" />
-            </Link>
-          </div>
-        </div>
-
-        {userActiveClubs.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-            {userActiveClubs.slice(0, 3).map((club: any) => (
-              <Link
-                key={club.id}
-                href={`/dashboard/student/clubs/${club.id}`}
-                className="p-4 rounded-xl border border-border bg-muted/30 hover:bg-muted/60 transition-colors flex items-center justify-between gap-3 group"
-              >
-                <div className="flex items-center gap-3">
-                  <img
-                    src={club.logoUrl}
-                    alt={club.name}
-                    className="w-10 h-10 rounded-xl object-cover border border-border shrink-0"
-                  />
-                  <div>
-                    <h4 className="text-xs font-bold text-foreground group-hover:text-primary transition-colors line-clamp-1">
-                      {club.name}
-                    </h4>
-                    <div className="text-[11px] text-muted-foreground mt-0.5">
-                      {club.role} &bull; {club.memberCount} members
+                  {/* Progress Bar */}
+                  <div className="mt-4">
+                    <div className="flex items-center justify-between text-xs font-medium text-slate-600 mb-1.5">
+                      <span>Progress</span>
+                      <span className="font-bold text-slate-900">78%</span>
+                    </div>
+                    <div className="h-2 w-full bg-slate-100 rounded-full overflow-hidden">
+                      <div
+                        className="h-full bg-[#10B981] rounded-full transition-all duration-500"
+                        style={{ width: "78%" }}
+                      />
                     </div>
                   </div>
                 </div>
-                <ArrowRight className="h-4 w-4 text-muted-foreground group-hover:translate-x-0.5 transition-transform shrink-0" />
-              </Link>
-            ))}
-          </div>
-        ) : (
-          <div className="py-6 text-center text-xs text-muted-foreground">
-            You have not joined any campus clubs yet.{" "}
-            <Link href="/dashboard/student/clubs" className="text-primary font-bold hover:underline">
-              Discover active student organizations
-            </Link>
-          </div>
-        )}
-      </div>
 
-      {/* Subject-Wise Attendance Overview & Quick Link */}
-      <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900 space-y-4">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-border pb-4">
-          <div>
-            <h2 className="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2">
-              <ShieldCheck className="h-5 w-5 text-primary" />
-              Current Subject Attendance Breakdown
-            </h2>
-            <p className="text-xs text-muted-foreground mt-0.5">
-              Live semester status computed from institutional PostgreSQL attendance archives.
-            </p>
-          </div>
-          <Link
-            href="/dashboard/student/attendance"
-            className="inline-flex items-center gap-1.5 px-4 py-2 text-xs font-bold rounded-xl bg-primary text-primary-foreground hover:bg-primary/90 transition shadow-sm self-start sm:self-auto"
-          >
-            Launch Attendance &amp; Projection Engine
-            <ArrowRight className="h-3.5 w-3.5" />
-          </Link>
-        </div>
+                <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
+                  <span className="text-[11px] text-slate-400 font-medium">
+                    24 Files &bull; 03 Due
+                  </span>
+                  <Link
+                    href="/dashboard/student/assignments"
+                    className="text-xs font-semibold text-[#10B981] hover:text-emerald-800 inline-flex items-center gap-1"
+                  >
+                    Launch <ArrowUpRight className="h-3 w-3" />
+                  </Link>
+                </div>
+              </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-          {summary.subjectBreakdown.map((subj) => (
-            <div
-              key={subj.subjectCode}
-              className="p-3.5 rounded-xl border border-slate-100 bg-slate-50/70 dark:border-slate-800 dark:bg-slate-800/40 space-y-2"
-            >
-              <div className="flex items-center justify-between">
-                <span className="font-mono text-xs font-bold text-foreground">
-                  {subj.subjectCode}
-                </span>
-                <span
-                  className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${
-                    subj.risk === "SAFE"
-                      ? "bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-950 dark:text-emerald-300 dark:border-emerald-800"
-                      : subj.risk === "WARNING"
-                      ? "bg-amber-50 text-amber-700 border-amber-200 dark:bg-amber-950 dark:text-amber-300 dark:border-amber-800"
-                      : "bg-rose-50 text-rose-700 border-rose-200 dark:bg-rose-950 dark:text-rose-300 dark:border-rose-800"
-                  }`}
-                >
-                  {subj.percentage}%
-                </span>
-              </div>
-              <div className="text-xs font-semibold text-foreground truncate">
-                {subj.subjectName}
-              </div>
-              <div className="text-[11px] text-muted-foreground flex justify-between">
-                <span>{subj.present}/{subj.conducted} attended</span>
-                <span>{subj.risk}</span>
+              {/* Course Card 2: Intro to AI */}
+              <div className="p-4 rounded-xl border border-emerald-100/70 bg-white hover:border-emerald-300 shadow-xs hover:shadow-md transition-all flex flex-col justify-between group">
+                <div>
+                  <div className="flex items-start gap-3">
+                    <div className="h-11 w-11 rounded-xl bg-[#10B981] text-white flex items-center justify-center font-bold text-xs shrink-0 shadow-sm shadow-emerald-500/20">
+                      <Sparkles className="h-5 w-5" />
+                    </div>
+                    <div className="min-w-0">
+                      <h3 className="text-sm font-bold text-slate-900 truncate group-hover:text-emerald-700 transition-colors">
+                        Intro to Artificial Intelligence
+                      </h3>
+                      <p className="text-xs text-slate-500 mt-0.5">
+                        Prof. David Chen &bull; Online
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Progress Bar */}
+                  <div className="mt-4">
+                    <div className="flex items-center justify-between text-xs font-medium text-slate-600 mb-1.5">
+                      <span>Progress</span>
+                      <span className="font-bold text-slate-900">45%</span>
+                    </div>
+                    <div className="h-2 w-full bg-slate-100 rounded-full overflow-hidden">
+                      <div
+                        className="h-full bg-[#10B981] rounded-full transition-all duration-500"
+                        style={{ width: "45%" }}
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
+                  <span className="text-[11px] text-slate-400 font-medium">
+                    18 Files &bull; 02 Due
+                  </span>
+                  <Link
+                    href="/dashboard/student/assignments"
+                    className="text-xs font-semibold text-[#10B981] hover:text-emerald-800 inline-flex items-center gap-1"
+                  >
+                    Launch <ArrowUpRight className="h-3 w-3" />
+                  </Link>
+                </div>
               </div>
             </div>
-          ))}
+          </div>
+
+          {/* Academic Standing & Attendance Projection Hub */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {/* Real Attendance Projection Engine */}
+            <div className="bg-white rounded-2xl border border-emerald-100/70 p-5 shadow-[0_2px_12px_rgba(16,185,129,0.04)] flex flex-col justify-between">
+              <div>
+                <div className="flex items-center justify-between pb-3 border-b border-slate-100">
+                  <div className="flex items-center gap-2">
+                    <TrendingUp className="h-4 w-4 text-[#10B981]" />
+                    <h3 className="text-xs font-bold text-slate-900 uppercase tracking-wider">
+                      75% Attendance Projection
+                    </h3>
+                  </div>
+                  <span className="text-[11px] font-bold px-2 py-0.5 rounded-full bg-[#ECFDF5] text-emerald-700">
+                    Safe Margin
+                  </span>
+                </div>
+
+                <div className="mt-3.5 space-y-2 text-xs">
+                  <div className="flex justify-between items-center text-slate-600">
+                    <span>Current Attendance:</span>
+                    <span className="font-bold text-slate-900">{summary.overallPercentage}%</span>
+                  </div>
+                  <div className="flex justify-between items-center text-slate-600">
+                    <span>Lectures Attended:</span>
+                    <span className="font-bold text-slate-900">
+                      {summary.overallPresent} / {summary.overallConducted}
+                    </span>
+                  </div>
+                  <div className="flex justify-between items-center text-slate-600">
+                    <span>Safe Leave Buffer:</span>
+                    <span className="font-bold text-emerald-700">
+                      Up to {summary.projection.classesCanMissWhileSafe} classes
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <Link
+                href="/dashboard/student/attendance"
+                className="mt-4 inline-flex items-center justify-center gap-1 w-full py-2 bg-[#ECFDF5] text-emerald-800 text-xs font-semibold rounded-xl hover:bg-emerald-100 transition-colors"
+              >
+                Detailed Projection Engine <ArrowRight className="h-3 w-3" />
+              </Link>
+            </div>
+
+            {/* Academic Results & Transcript */}
+            <div className="bg-white rounded-2xl border border-emerald-100/70 p-5 shadow-[0_2px_12px_rgba(16,185,129,0.04)] flex flex-col justify-between">
+              <div>
+                <div className="flex items-center justify-between pb-3 border-b border-slate-100">
+                  <div className="flex items-center gap-2">
+                    <Award className="h-4 w-4 text-[#6366F1]" />
+                    <h3 className="text-xs font-bold text-slate-900 uppercase tracking-wider">
+                      Academic Results
+                    </h3>
+                  </div>
+                  <span className="text-[11px] font-bold px-2 py-0.5 rounded-full bg-blue-50 text-blue-700">
+                    {studentResults.degreeClassification}
+                  </span>
+                </div>
+
+                <div className="mt-3.5 space-y-2 text-xs">
+                  <div className="flex justify-between items-center text-slate-600">
+                    <span>Cumulative Grade:</span>
+                    <span className="font-bold text-slate-900">{studentResults.cumulativeCgpa.toFixed(2)} CGPA</span>
+                  </div>
+                  <div className="flex justify-between items-center text-slate-600">
+                    <span>Semesters Completed:</span>
+                    <span className="font-bold text-slate-900">5 Semesters</span>
+                  </div>
+                  <div className="flex justify-between items-center text-slate-600">
+                    <span>Next Scheduled Exam:</span>
+                    <span className="font-bold text-slate-900">
+                      {nextScheduledExam ? nextScheduledExam.subjectCode : "DBMS Midterm"}
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-4 flex items-center gap-2">
+                <Link
+                  href="/dashboard/results"
+                  className="flex-1 inline-flex items-center justify-center py-2 bg-[#10B981] text-white text-xs font-semibold rounded-xl hover:bg-emerald-600 transition-colors shadow-xs"
+                >
+                  View Grades
+                </Link>
+                <Link
+                  href="/dashboard/transcript"
+                  className="px-3 py-2 bg-slate-50 border border-slate-200 text-slate-700 text-xs font-semibold rounded-xl hover:bg-slate-100 transition-colors"
+                >
+                  Transcript
+                </Link>
+              </div>
+            </div>
+          </div>
+
+          {/* Pending Coursework Tasks & Deadlines */}
+          <div className="bg-white rounded-2xl border border-emerald-100/70 p-6 shadow-[0_2px_12px_rgba(16,185,129,0.04)]">
+            <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center gap-2">
+                <CheckCircle2 className="h-5 w-5 text-[#10B981]" />
+                <h2 className="text-base font-bold text-slate-900">
+                  Coursework &amp; Submissions
+                </h2>
+              </div>
+              <Link
+                href="/dashboard/student/assignments"
+                className="text-xs font-semibold text-[#10B981] hover:text-emerald-700 flex items-center gap-1"
+              >
+                Assignment Hub
+                <ArrowRight className="h-3.5 w-3.5" />
+              </Link>
+            </div>
+
+            {pendingAssignments.length > 0 ? (
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                {pendingAssignments.map((a) => (
+                  <Link
+                    key={a.id}
+                    href={`/dashboard/student/assignments/${a.id}`}
+                    className="p-3.5 rounded-xl border border-slate-100 bg-[#F8FAFC]/80 hover:bg-[#F0FDF4]/60 hover:border-emerald-200/70 transition-all flex flex-col justify-between"
+                  >
+                    <div>
+                      <div className="flex items-center justify-between text-xs mb-1">
+                        <span className="font-mono font-bold text-emerald-700">{a.subjectCode}</span>
+                        <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-rose-50 text-rose-700">
+                          {a.urgencyText}
+                        </span>
+                      </div>
+                      <h4 className="text-xs font-bold text-slate-900 line-clamp-1 mt-1">
+                        {a.title}
+                      </h4>
+                    </div>
+                    <div className="text-[11px] text-slate-500 pt-2 border-t border-slate-100 mt-2 flex justify-between">
+                      <span>Prof. {a.facultyName.split(" ").slice(-1)[0]}</span>
+                      <span className="font-semibold text-slate-700">{a.maxMarks} Marks</span>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            ) : (
+              <div className="py-6 text-center text-slate-400 text-xs font-medium">
+                You&apos;re all caught up! No pending coursework deadlines.
+              </div>
+            )}
+          </div>
+        </div>
+
+        {/* Right Column (1 Col) — Calendar Widget & Today's Schedule */}
+        <div className="space-y-6">
+          {/* Interactive Month Calendar & Schedule */}
+          <DashboardCalendarWidget todaySlots={todayLectures} />
+
+          {/* Quick Academic Navigation shortcuts */}
+          <div className="bg-white rounded-2xl border border-emerald-100/70 p-5 shadow-[0_2px_12px_rgba(16,185,129,0.04)]">
+            <h3 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">
+              Quick Shortcuts
+            </h3>
+            <div className="space-y-2">
+              <Link
+                href="/dashboard/student/placements"
+                className="flex items-center justify-between p-2.5 rounded-xl border border-slate-100 hover:bg-[#F0FDF4] hover:border-emerald-200 transition-all text-xs font-semibold text-slate-700"
+              >
+                <span className="flex items-center gap-2">
+                  <span className="h-2 w-2 rounded-full bg-[#6366F1]" />
+                  Placement Drives &amp; Quizzes
+                </span>
+                <ArrowRight className="h-3.5 w-3.5 text-slate-400" />
+              </Link>
+              <Link
+                href="/dashboard/student/clubs"
+                className="flex items-center justify-between p-2.5 rounded-xl border border-slate-100 hover:bg-[#F0FDF4] hover:border-emerald-200 transition-all text-xs font-semibold text-slate-700"
+              >
+                <span className="flex items-center gap-2">
+                  <span className="h-2 w-2 rounded-full bg-[#F59E0B]" />
+                  Clubs &amp; Student Activities
+                </span>
+                <ArrowRight className="h-3.5 w-3.5 text-slate-400" />
+              </Link>
+              <Link
+                href="/dashboard/student/lost-found"
+                className="flex items-center justify-between p-2.5 rounded-xl border border-slate-100 hover:bg-[#F0FDF4] hover:border-emerald-200 transition-all text-xs font-semibold text-slate-700"
+              >
+                <span className="flex items-center gap-2">
+                  <span className="h-2 w-2 rounded-full bg-[#10B981]" />
+                  Lost &amp; Found Item Desk
+                </span>
+                <ArrowRight className="h-3.5 w-3.5 text-slate-400" />
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
     </div>

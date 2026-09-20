@@ -5,7 +5,7 @@ import { AdminNoticeManager, AdminNoticeItem, AdminAnalyticsData } from "@/compo
 import { Role } from "@prisma/client";
 
 export const metadata = {
-  title: "Notice Center & Broadcast Management | CampusSphere",
+  title: "Notice Center & Broadcast Management | Campus Connect",
   description: "Institutional circulars, administrative alerts, and reach metrics.",
 };
 

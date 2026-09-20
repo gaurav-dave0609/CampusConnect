@@ -4,7 +4,7 @@ import { requireRole } from "@/lib/auth/rbac";
 import { AdminAnalyticsView } from "@/components/analytics/admin-analytics-view";
 
 export const metadata: Metadata = {
-  title: "Institutional Analytics & Intelligence | CampusSphere",
+  title: "Institutional Analytics & Intelligence | Campus Connect",
   description:
     "Executive-level overview of campus operations: attendance health, faculty workload, assignments, placement pipeline, and configuration audits.",
 };

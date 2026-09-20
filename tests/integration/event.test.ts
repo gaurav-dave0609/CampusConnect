@@ -258,7 +258,7 @@ describe("Phase 8 — Events Discovery, Capacity Management & Registration Syste
     it("15. student successfully registers and receives formatted confirmation code", async () => {
       const registration = await EventService.registerForEvent("evt-005", {
         id: "demo-student-001",
-        email: "student@campussphere.edu",
+        email: "student@campusconnect.edu",
         firstName: "Aarav",
         lastName: "Mehta",
         rollNumber: "22COMPA101",
@@ -276,7 +276,7 @@ describe("Phase 8 — Events Discovery, Capacity Management & Registration Syste
       await expect(
         EventService.registerForEvent("evt-001", {
           id: "demo-student-001",
-          email: "student@campussphere.edu",
+          email: "student@campusconnect.edu",
           firstName: "Aarav",
           lastName: "Mehta",
         })
@@ -308,7 +308,7 @@ describe("Phase 8 — Events Discovery, Capacity Management & Registration Syste
       await expect(
         EventService.registerForEvent(pastDeadlineEvent.id, {
           id: "demo-student-005",
-          email: "student5@campussphere.edu",
+          email: "student5@campusconnect.edu",
           firstName: "Vikram",
           lastName: "Rao",
         })
@@ -343,13 +343,13 @@ describe("Phase 8 — Events Discovery, Capacity Management & Registration Syste
       // Two students attempt registration concurrently
       const userA = {
         id: "user-concurrent-A",
-        email: "userA@campussphere.edu",
+        email: "userA@campusconnect.edu",
         firstName: "User",
         lastName: "Alpha",
       };
       const userB = {
         id: "user-concurrent-B",
-        email: "userB@campussphere.edu",
+        email: "userB@campusconnect.edu",
         firstName: "User",
         lastName: "Beta",
       };
@@ -379,7 +379,7 @@ describe("Phase 8 — Events Discovery, Capacity Management & Registration Syste
       await expect(
         EventService.registerForEvent("evt-011", {
           id: "demo-student-001",
-          email: "student@campussphere.edu",
+          email: "student@campusconnect.edu",
           firstName: "Aarav",
           lastName: "Mehta",
         })
@@ -418,7 +418,7 @@ describe("Phase 8 — Events Discovery, Capacity Management & Registration Syste
       // Now student can register
       const newReg = await EventService.registerForEvent("evt-011", {
         id: "demo-student-001",
-        email: "student@campussphere.edu",
+        email: "student@campusconnect.edu",
         firstName: "Aarav",
         lastName: "Mehta",
       });
@@ -530,7 +530,7 @@ describe("Phase 8 — Events Discovery, Capacity Management & Registration Syste
       expect(ics).toContain("BEGIN:VEVENT");
       expect(ics).toContain("SUMMARY:National Hackathon 2026");
       expect(ics).toContain("LOCATION:Auditorium A");
-      expect(ics).toContain("UID:event-evt-test-01@campussphere.edu");
+      expect(ics).toContain("UID:event-evt-test-01@campusconnect.edu");
       expect(ics).toContain("END:VEVENT");
       expect(ics).toContain("END:VCALENDAR");
     });

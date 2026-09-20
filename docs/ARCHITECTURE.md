@@ -1,6 +1,6 @@
-# CampusSphere — Technical Architecture & System Design Document
+# Campus Connect — Technical Architecture & System Design Document
 
-**System Name:** CampusSphere (All-in-One College Ecosystem)  
+**System Name:** Campus Connect (All-in-One College Ecosystem)  
 **Version:** 1.0 (Production Release)  
 **Architecture Pattern:** Modular Next.js 16 Full-Stack App Router with Layered Domain Services  
 
@@ -8,7 +8,7 @@
 
 ## 1. System Architecture Overview
 
-CampusSphere is built as a unified web application leveraging Next.js 16 App Router. It combines server-rendered React Server Components (RSC) for dashboard layouts, client components for rich interactive controls (Recharts, dynamic drawers, modals), and dynamic RESTful API route handlers backed by Prisma ORM and PostgreSQL.
+Campus Connect is built as a unified web application leveraging Next.js 16 App Router. It combines server-rendered React Server Components (RSC) for dashboard layouts, client components for rich interactive controls (Recharts, dynamic drawers, modals), and dynamic RESTful API route handlers backed by Prisma ORM and PostgreSQL.
 
 ### High-Level Architecture Diagram
 
@@ -71,7 +71,7 @@ graph TB
 
 ## 2. Authentication & Session Architecture
 
-CampusSphere employs a zero-trust stateless session model utilizing signed JSON Web Tokens (JWTs) generated via `jose` and stored in tamper-proof browser cookies.
+Campus Connect employs a zero-trust stateless session model utilizing signed JSON Web Tokens (JWTs) generated via `jose` and stored in tamper-proof browser cookies.
 
 ### Authentication Flow
 

@@ -4,7 +4,7 @@ import { requireRole } from "@/lib/auth/rbac";
 import { FacultyAnalyticsView } from "@/components/analytics/faculty-analytics-view";
 
 export const metadata: Metadata = {
-  title: "Faculty Teaching Analytics | CampusSphere",
+  title: "Faculty Teaching Analytics | Campus Connect",
   description:
     "Teaching workload distribution, class attendance rates, grading backlog metrics, and division student alerts.",
 };

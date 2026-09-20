@@ -2011,7 +2011,7 @@ export class AnalyticsService {
 
     const rows: string[][] = [];
     const dateStamp = new Date().toISOString().split("T")[0];
-    const filename = `campussphere_${reportType}_${dateStamp}.csv`;
+    const filename = `campusconnect_${reportType}_${dateStamp}.csv`;
 
     switch (reportType) {
       case "attendance": {

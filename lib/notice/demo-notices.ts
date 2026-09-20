@@ -113,7 +113,7 @@ Refer to the attached timetable for subject-wise slot assignments and room alloc
 In accordance with University Academic Regulation Clause 4.2, students are reminded that a minimum aggregate of **75% attendance** is required across theory and laboratory subjects to be eligible for end-semester and mid-term assessments.
 
 #### Action Items for Defaulter Students:
-- Check your real-time attendance percentages in the CampusSphere Student Dashboard.
+- Check your real-time attendance percentages in the Campus Connect Student Dashboard.
 - If your aggregate falls between 60% and 74% on medical or extracurricular grounds, submit relevant official documentation to your Class Coordinator.
 - Students failing to condone unexcused absences before Friday, 5:00 PM will face detention from relevant mid-term papers.`,
     category: NoticeCategory.ATTENDANCE,
@@ -148,7 +148,7 @@ In accordance with University Academic Regulation Clause 4.2, students are remin
     summary: "Eligible B.Tech pre-final and final year candidates with CGPA >= 8.0 are invited to apply for online coding assessments.",
     content: `### Campus Placement Notice: Microsoft India
 
-Microsoft India is visiting CampusSphere for its annual full-time Software Development Engineer (SDE-1) hiring drive.
+Microsoft India is visiting Campus Connect for its annual full-time Software Development Engineer (SDE-1) hiring drive.
 
 #### Eligibility Criteria:
 - Degree: B.Tech in Computer Engineering, Information Technology, or Electronics.
@@ -325,7 +325,7 @@ Regular lectures, practical sessions, and laboratory slots will resume as per ti
 Please be advised that the central datacenter will be performing critical kernel upgrades and optical switch firmware updates on **Saturday, March 15, between 11:00 PM and 04:00 AM IST**.
 
 #### Impact:
-- Campus Wi-Fi (CampusSphere-Secure) and Ethernet ports will experience periodic dropouts.
+- Campus Wi-Fi (CampusConnect-Secure) and Ethernet ports will experience periodic dropouts.
 - High-Performance GPU clusters (HPC-1 through HPC-4) will be powered off.
 - Please save all running jobs and git commits prior to the maintenance window.`,
     category: NoticeCategory.URGENT,

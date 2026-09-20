@@ -3,7 +3,7 @@ import { Role } from "@prisma/client";
 import { StudentPlacementHub } from "@/components/placement/student-placement-hub";
 
 export const metadata = {
-  title: "Placement Hub & Drives | CampusSphere",
+  title: "Placement Hub & Drives | Campus Connect",
   description: "Discover verified on-campus placement drives, check transparent eligibility, and track applications.",
 };
 

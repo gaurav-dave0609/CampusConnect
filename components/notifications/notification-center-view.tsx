@@ -262,17 +262,17 @@ export function NotificationCenterView({
       )}
 
       {/* Header Banner */}
-      <div className="rounded-2xl border border-indigo-200/70 bg-gradient-to-r from-indigo-900 via-indigo-800 to-slate-900 p-6 sm:p-8 text-white shadow-xl shadow-indigo-950/20 relative overflow-hidden">
+      <div className="rounded-2xl border border-emerald-100/80 bg-white p-6 sm:p-8 text-slate-900 shadow-sm relative overflow-hidden">
         <div className="relative z-10 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
           <div>
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-indigo-500/30 text-indigo-200 border border-indigo-400/30 mb-3 backdrop-blur-sm">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200/60 mb-3">
               <Bell className="h-3.5 w-3.5" />
               <span>Campus Communication & Information Hub</span>
             </div>
-            <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight">
+            <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900">
               Notification Center
             </h1>
-            <p className="mt-1.5 text-xs sm:text-sm text-indigo-100/80 max-w-xl">
+            <p className="mt-1.5 text-xs sm:text-sm text-slate-600 max-w-xl">
               Consolidated real-time intelligence: assignment deadlines, attendance risk flags, campus notices, placement drives, club activities, and system alerts.
             </p>
           </div>
@@ -282,9 +282,9 @@ export function NotificationCenterView({
               <button
                 type="button"
                 onClick={() => setShowComposer(true)}
-                className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white text-indigo-900 text-xs font-bold hover:bg-indigo-50 transition-all shadow-md cursor-pointer"
+                className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-emerald-600 text-white text-xs font-bold hover:bg-emerald-700 transition-all shadow-sm cursor-pointer"
               >
-                <Plus className="h-4 w-4 text-indigo-600" />
+                <Plus className="h-4 w-4" />
                 <span>Post Announcement</span>
               </button>
             )}
@@ -295,7 +295,7 @@ export function NotificationCenterView({
                 fetchPreferences();
                 setShowPreferences(true);
               }}
-              className="flex items-center gap-1.5 px-3.5 py-2.5 rounded-xl bg-indigo-700/60 hover:bg-indigo-700 text-white text-xs font-semibold border border-indigo-500/40 transition-colors cursor-pointer"
+              className="flex items-center gap-1.5 px-3.5 py-2.5 rounded-xl bg-emerald-50 hover:bg-emerald-100 text-emerald-800 text-xs font-semibold border border-emerald-200/60 transition-colors cursor-pointer"
             >
               <Settings className="h-4 w-4" />
               <span>Preferences</span>
@@ -305,7 +305,7 @@ export function NotificationCenterView({
               <button
                 type="button"
                 onClick={handleMarkAllRead}
-                className="flex items-center gap-1.5 px-3.5 py-2.5 rounded-xl bg-indigo-700/60 hover:bg-indigo-700 text-white text-xs font-semibold border border-indigo-500/40 transition-colors cursor-pointer"
+                className="flex items-center gap-1.5 px-3.5 py-2.5 rounded-xl bg-emerald-50 hover:bg-emerald-100 text-emerald-800 text-xs font-semibold border border-emerald-200/60 transition-colors cursor-pointer"
               >
                 <CheckCheck className="h-4 w-4" />
                 <span>Mark All Read</span>
@@ -327,8 +327,8 @@ export function NotificationCenterView({
                 onClick={() => setActiveTab(tab.value)}
                 className={`flex-shrink-0 px-3 py-1.5 rounded-xl text-xs font-semibold transition-all cursor-pointer ${
                   activeTab === tab.value
-                    ? "bg-indigo-600 text-white shadow-sm"
-                    : "bg-slate-100 text-slate-600 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700"
+                    ? "bg-[#10B981] text-white shadow-sm"
+                    : "bg-emerald-50/70 text-emerald-800 hover:bg-[#ECFDF5]"
                 }`}
               >
                 {tab.label}
@@ -503,7 +503,7 @@ export function NotificationCenterView({
               <div className="p-3.5 rounded-xl bg-amber-50 text-amber-800 border border-amber-200 dark:bg-amber-950/60 dark:text-amber-300 dark:border-amber-900 text-xs leading-relaxed flex items-start gap-2.5">
                 <AlertTriangle className="h-4 w-4 flex-shrink-0 mt-0.5" />
                 <div>
-                  <strong>Email Delivery Notice:</strong> CampusSphere email gateway is currently simulated/unconfigured. All enabled notifications are delivered directly to the In-App Notification Center and Navigation Bell.
+                  <strong>Email Delivery Notice:</strong> Campus Connect email gateway is currently simulated/unconfigured. All enabled notifications are delivered directly to the In-App Notification Center and Navigation Bell.
                 </div>
               </div>
 
@@ -570,7 +570,7 @@ export function NotificationCenterView({
                 type="button"
                 disabled={isSavingPrefs}
                 onClick={() => handleSavePreferences(preferences)}
-                className="px-5 py-2 text-xs font-semibold text-white bg-indigo-600 hover:bg-indigo-700 rounded-xl shadow-md transition-all disabled:opacity-50 cursor-pointer"
+                className="px-5 py-2 text-xs font-semibold text-white bg-[#10B981] hover:bg-[#059669] rounded-xl shadow-md shadow-emerald-500/20 transition-all disabled:opacity-50 cursor-pointer"
               >
                 {isSavingPrefs ? "Saving..." : "Save Preferences"}
               </button>

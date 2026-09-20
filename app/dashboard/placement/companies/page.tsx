@@ -3,7 +3,7 @@ import { requireRole } from "@/lib/auth/rbac";
 import { OfficerCompaniesManager } from "@/components/placement/officer-companies-manager";
 
 export const metadata = {
-  title: "Corporate Recruiting Partners | CampusSphere",
+  title: "Corporate Recruiting Partners | Campus Connect",
   description: "Maintain authorized corporate hiring partner organizations and recruiter credentials.",
 };
 

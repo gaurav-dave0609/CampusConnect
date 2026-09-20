@@ -15,7 +15,7 @@ export default function GlobalError({
         <div className="max-w-md w-full text-center p-8 rounded-2xl border border-slate-800 bg-slate-950 shadow-2xl space-y-6">
           <div className="space-y-2">
             <h1 className="text-2xl font-bold tracking-tight text-white">
-              CampusSphere System Error
+              Campus Connect System Error
             </h1>
             <p className="text-sm text-slate-400">
               A critical application error occurred. Click below to reinitialize the workspace.

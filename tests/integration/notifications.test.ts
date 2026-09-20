@@ -25,7 +25,7 @@ describe("Phase 13 — Campus Communication, Notifications & Smart Information H
   const studentUser = {
     id: "demo-student-001",
     role: Role.STUDENT,
-    email: "student@campussphere.edu",
+    email: "student@campusconnect.edu",
     departmentId: "dept-comp",
     divisionId: "div-comp-a",
     semester: 6,
@@ -34,7 +34,7 @@ describe("Phase 13 — Campus Communication, Notifications & Smart Information H
   const studentUserB = {
     id: "demo-student-002",
     role: Role.STUDENT,
-    email: "student2@campussphere.edu",
+    email: "student2@campusconnect.edu",
     departmentId: "dept-it",
     divisionId: "div-it-a",
     semester: 4,
@@ -43,14 +43,14 @@ describe("Phase 13 — Campus Communication, Notifications & Smart Information H
   const facultyUser = {
     id: "demo-faculty-001",
     role: Role.FACULTY,
-    email: "faculty@campussphere.edu",
+    email: "faculty@campusconnect.edu",
     departmentId: "dept-comp",
   };
 
   const adminUser = {
     id: "demo-admin-001",
     role: Role.ADMIN,
-    email: "admin@campussphere.edu",
+    email: "admin@campusconnect.edu",
   };
 
   beforeEach(() => {

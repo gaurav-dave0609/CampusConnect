@@ -2,9 +2,9 @@ import { SignJWT, jwtVerify } from "jose";
 import { cookies } from "next/headers";
 import { Role } from "@prisma/client";
 
-export const COOKIE_NAME = "campussphere_session";
+export const COOKIE_NAME = "campusconnect_session";
 const JWT_SECRET_STRING =
-  process.env.JWT_SECRET || "campussphere-super-secure-jwt-secret-key-2026-evaluation-token";
+  process.env.JWT_SECRET || "campusconnect-super-secure-jwt-secret-key-2026-evaluation-token";
 const SECRET_KEY = new TextEncoder().encode(JWT_SECRET_STRING);
 
 export interface SessionUser {

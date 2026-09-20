@@ -3,7 +3,7 @@ import { requireRole } from "@/lib/auth/rbac";
 import { OfficerDriveDetail } from "@/components/placement/officer-drive-detail";
 
 export const metadata = {
-  title: "Drive Candidates & Operations | CampusSphere",
+  title: "Drive Candidates & Operations | Campus Connect",
   description: "Screen candidates, advance applicant stages, and record recruiter evaluation remarks.",
 };
 

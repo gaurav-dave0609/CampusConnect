@@ -1,7 +1,7 @@
 # Phase 7 — Notices, Announcements & Communication System
 
 ## Overview
-Phase 7 delivers the production-ready **Institutional Notices, Announcements & Communication System** for CampusSphere. The module provides end-to-end communication lifecycle management: authoring, validation, dynamic audience targeting, live previewing, broadcasting event-driven notifications, read tracking, and real-time audience engagement analytics.
+Phase 7 delivers the production-ready **Institutional Notices, Announcements & Communication System** for Campus Connect. The module provides end-to-end communication lifecycle management: authoring, validation, dynamic audience targeting, live previewing, broadcasting event-driven notifications, read tracking, and real-time audience engagement analytics.
 
 ---
 

@@ -61,24 +61,24 @@ export function FacultyAnalyticsView() {
   return (
     <div className="max-w-6xl mx-auto space-y-6 pb-16">
       {/* Header */}
-      <div className="bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 p-8 rounded-3xl text-white shadow-xl flex flex-wrap items-center justify-between gap-4">
+      <div className="bg-white border border-emerald-100/80 p-8 rounded-3xl text-slate-900 shadow-sm flex flex-wrap items-center justify-between gap-4">
         <div>
-          <div className="inline-flex items-center gap-2 bg-indigo-500/20 border border-indigo-400/30 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider text-indigo-200 mb-2">
+          <div className="inline-flex items-center gap-2 bg-emerald-50 border border-emerald-200/60 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider text-emerald-700 mb-2">
             <Activity className="w-3.5 h-3.5" />
             Faculty Academic Portal
           </div>
-          <h1 className="text-3xl font-black tracking-tight">
+          <h1 className="text-3xl font-black tracking-tight text-slate-900">
             Teaching Workload & Student Analytics
           </h1>
-          <p className="text-slate-300 text-sm mt-1">
+          <p className="text-slate-600 text-sm mt-1">
             Weekly scheduled teaching load, division attendance rates, coursework grading progress, and student interventions.
           </p>
         </div>
 
-        <div className="bg-white/10 backdrop-blur-md px-4 py-3 rounded-2xl border border-white/15 text-right">
-          <div className="text-xs text-indigo-200 font-medium">Faculty Member</div>
-          <div className="text-lg font-bold">{analytics?.faculty.name}</div>
-          <div className="text-[11px] text-slate-300">
+        <div className="bg-[#F0FDF4] px-4 py-3 rounded-2xl border border-emerald-100 text-right">
+          <div className="text-xs text-slate-500 font-medium">Faculty Member</div>
+          <div className="text-lg font-bold text-slate-900">{analytics?.faculty.name}</div>
+          <div className="text-[11px] text-slate-500">
             {analytics?.faculty.departmentName} • {analytics?.faculty.employeeId}
           </div>
         </div>

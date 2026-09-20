@@ -135,7 +135,7 @@ export function StudentApplicationTracker() {
 
         <Link
           href="/dashboard/student/placements"
-          className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-indigo-600 text-white text-sm font-semibold hover:bg-indigo-700 transition-colors shadow-sm self-start sm:self-auto"
+          className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-[#10B981] text-white text-sm font-semibold hover:bg-[#059669] transition-colors shadow-sm self-start sm:self-auto"
         >
           <span>Explore More Drives</span>
           <ArrowRight className="h-4 w-4" />
@@ -160,7 +160,7 @@ export function StudentApplicationTracker() {
           </p>
           <Link
             href="/dashboard/student/placements"
-            className="mt-4 inline-flex items-center gap-2 px-5 py-2.5 text-sm font-bold rounded-xl bg-indigo-600 text-white hover:bg-indigo-700 shadow-md"
+            className="mt-4 inline-flex items-center gap-2 px-5 py-2.5 text-sm font-bold rounded-xl bg-[#10B981] text-white hover:bg-[#059669] shadow-md shadow-emerald-500/20"
           >
             <span>Discover Drives</span>
             <ArrowRight className="h-4 w-4" />

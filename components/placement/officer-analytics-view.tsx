@@ -63,28 +63,28 @@ export function OfficerAnalyticsView() {
   return (
     <div className="max-w-7xl mx-auto space-y-8 pb-16">
       {/* Header Banner */}
-      <div className="rounded-3xl border border-indigo-100 bg-gradient-to-br from-slate-900 via-indigo-950 to-blue-900 p-6 sm:p-8 text-white shadow-xl dark:border-indigo-950 flex flex-col sm:flex-row sm:items-center justify-between gap-6">
+      <div className="rounded-3xl border border-emerald-100/80 bg-white p-6 sm:p-8 text-slate-900 shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-6">
         <div className="space-y-2 max-w-xl">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-indigo-500/30 text-indigo-200 border border-indigo-400/30">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200/60">
             <TrendingUp className="h-3.5 w-3.5" />
             <span>Institutional Placement Analytics</span>
           </div>
-          <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight">
+          <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900">
             Recruitment Funnel &amp; Outcomes
           </h1>
-          <p className="text-xs sm:text-sm text-indigo-200 leading-relaxed">
+          <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
             Real-time conversion metrics, institutional salary distributions, and hiring partner yield across active recruitment cycles.
           </p>
         </div>
 
-        <div className="bg-white/10 backdrop-blur-md px-6 py-4 rounded-2xl border border-white/20 text-center shrink-0">
-          <span className="text-xs text-indigo-200 font-semibold uppercase tracking-wider">
+        <div className="bg-[#F0FDF4] px-6 py-4 rounded-2xl border border-emerald-100 text-center shrink-0">
+          <span className="text-xs text-slate-600 font-semibold uppercase tracking-wider">
             Overall Conversion
           </span>
-          <p className="text-3xl sm:text-4xl font-black text-white mt-1">
+          <p className="text-3xl sm:text-4xl font-black text-emerald-700 mt-1">
             {analytics?.conversionRate || 19.0}%
           </p>
-          <span className="text-[11px] text-emerald-400 font-bold">
+          <span className="text-[11px] text-emerald-800 font-bold">
             {analytics?.offeredCount || 8} Offers Extended
           </span>
         </div>

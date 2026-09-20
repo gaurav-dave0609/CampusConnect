@@ -200,7 +200,7 @@ describe("Phase 9 — Club Management, Membership & Coordinator Workflows Tests"
     it("16. allows student to submit join request creating PENDING membership", async () => {
       const newStudent = {
         id: "new-student-test-01",
-        email: "new.student@campussphere.edu",
+        email: "new.student@campusconnect.edu",
         firstName: "Kavya",
         lastName: "Patel",
         studentId: "STU-2024-0501",
@@ -226,7 +226,7 @@ describe("Phase 9 — Club Management, Membership & Coordinator Workflows Tests"
     it("17. prevents duplicate membership application by same student", async () => {
       const student = {
         id: "demo-student-001",
-        email: "student@campussphere.edu",
+        email: "student@campusconnect.edu",
         firstName: "Aarav",
         lastName: "Mehta",
       };
@@ -241,7 +241,7 @@ describe("Phase 9 — Club Management, Membership & Coordinator Workflows Tests"
       const suspendedClub = DEMO_CLUBS_STORE.find((c) => c.status === ClubStatus.SUSPENDED)!;
       const student = {
         id: "test-stu-09",
-        email: "test09@campussphere.edu",
+        email: "test09@campusconnect.edu",
         firstName: "Test",
         lastName: "Student",
       };

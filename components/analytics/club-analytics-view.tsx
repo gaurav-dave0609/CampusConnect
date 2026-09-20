@@ -54,16 +54,16 @@ export function ClubCoordinatorAnalyticsView() {
   return (
     <div className="max-w-6xl mx-auto space-y-6 pb-16">
       {/* Header */}
-      <div className="bg-gradient-to-r from-rose-950 via-indigo-950 to-slate-900 p-8 rounded-3xl text-white shadow-xl flex flex-wrap items-center justify-between gap-4">
+      <div className="bg-white border border-emerald-100/80 p-8 rounded-3xl text-slate-900 shadow-sm flex flex-wrap items-center justify-between gap-4">
         <div>
-          <div className="inline-flex items-center gap-2 bg-rose-500/20 border border-rose-400/30 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider text-rose-200 mb-2">
-            <Activity className="w-3.5 h-3.5" />
+          <div className="inline-flex items-center gap-2 bg-emerald-50 border border-emerald-200/80 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider text-emerald-800 mb-2">
+            <Activity className="w-3.5 h-3.5 text-[#10B981]" />
             Club Coordinator Desk
           </div>
-          <h1 className="text-3xl font-black tracking-tight">
-            Club Engagement & Chapter Telemetry
+          <h1 className="text-3xl font-extrabold tracking-tight text-slate-900">
+            Club Engagement &amp; Chapter Telemetry
           </h1>
-          <p className="text-slate-300 text-sm mt-1">
+          <p className="text-slate-500 text-sm mt-1">
             Membership telemetry, scheduled activities, and deterministic engagement index rankings.
           </p>
         </div>

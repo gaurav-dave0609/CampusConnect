@@ -2,7 +2,7 @@
 
 ## Overview
 
-Phase 13 establishes the central communication nervous system of **CampusSphere — All-in-One College Ecosystem**. It unifies and coordinates alerts, circulars, and reminders across all previously delivered institutional modules:
+Phase 13 establishes the central communication nervous system of **Campus Connect — All-in-One College Ecosystem**. It unifies and coordinates alerts, circulars, and reminders across all previously delivered institutional modules:
 - **Academic Setup & Governance** (Phase 12)
 - **Lost & Found Community Board & Claims** (Phase 11)
 - **Placement Drives & Timed Quizzes** (Phase 10)

@@ -1,5 +1,5 @@
 // Node.js live verification script testing Phase 2 and Phase 3 endpoints over HTTP
-const BASE_URL = "http://localhost:3000";
+const BASE_URL = "http://127.0.0.1:3000";
 
 async function runTests() {
   console.log("==================================================");
@@ -24,7 +24,7 @@ async function runTests() {
   const badLoginRes = await fetch(`${BASE_URL}/api/auth/login`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ email: "admin@campussphere.edu", password: "WrongPassword999" }),
+    body: JSON.stringify({ email: "admin@campusconnect.edu", password: "WrongPassword999" }),
   });
   assert(badLoginRes.status === 401, "Invalid password returns HTTP 401");
 
@@ -32,7 +32,7 @@ async function runTests() {
   const studentLoginRes = await fetch(`${BASE_URL}/api/auth/login`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ email: "student@campussphere.edu", password: "StudentPassword@123" }),
+    body: JSON.stringify({ email: "student@campusconnect.edu", password: "StudentPassword@123" }),
   });
   const studentCookie = studentLoginRes.headers.get("set-cookie") || "";
   assert(studentLoginRes.status === 200, "Student login returns HTTP 200");
@@ -41,7 +41,7 @@ async function runTests() {
   const adminLoginRes = await fetch(`${BASE_URL}/api/auth/login`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ email: "admin@campussphere.edu", password: "AdminPassword@123" }),
+    body: JSON.stringify({ email: "admin@campusconnect.edu", password: "AdminPassword@123" }),
   });
   const adminCookie = adminLoginRes.headers.get("set-cookie") || "";
   assert(adminLoginRes.status === 200, "Admin login returns HTTP 200");
@@ -50,7 +50,7 @@ async function runTests() {
   const facultyLoginRes = await fetch(`${BASE_URL}/api/auth/login`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ email: "faculty@campussphere.edu", password: "FacultyPassword@123" }),
+    body: JSON.stringify({ email: "faculty@campusconnect.edu", password: "FacultyPassword@123" }),
   });
   const facultyCookie = facultyLoginRes.headers.get("set-cookie") || "";
   assert(facultyLoginRes.status === 200, "Faculty login returns HTTP 200");
@@ -1171,7 +1171,7 @@ async function runTests() {
   const c_coordinatorLoginRes = await fetch(`${BASE_URL}/api/auth/login`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ email: "club@campussphere.edu", password: "ClubPassword@123" }),
+    body: JSON.stringify({ email: "club@campusconnect.edu", password: "ClubPassword@123" }),
   });
   const c_coordinatorCookie = c_coordinatorLoginRes.headers.get("set-cookie") || "";
   assert(c_coordinatorLoginRes.status === 200, "C1: Club Coordinator login returns HTTP 200");
@@ -1241,7 +1241,7 @@ async function runTests() {
       category: "ROBOTICS",
       description: "Dedicated to building autonomous ground vehicles, drone swarms, and perception pipelines for university challenges.",
       shortDescription: "Autonomous rovers and drone engineering guild.",
-      contactEmail: "autonomous@campussphere.edu",
+      contactEmail: "autonomous@campusconnect.edu",
       status: "DRAFT",
     }),
   });
@@ -1263,7 +1263,7 @@ async function runTests() {
       name: "Illicit Student Club",
       category: "SOCIAL",
       description: "Should be blocked by server-side RBAC",
-      contactEmail: "hack@campussphere.edu",
+      contactEmail: "hack@campusconnect.edu",
     }),
   });
   assert(c_studentCreateClubRes.status === 403, "C12: Student forbidden from creating a club (HTTP 403)");
@@ -1490,7 +1490,7 @@ async function runTests() {
   const pl_officerLoginRes = await fetch(`${BASE_URL}/api/auth/login`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ email: "placement@campussphere.edu", password: "PlacementPassword@123" }),
+    body: JSON.stringify({ email: "placement@campusconnect.edu", password: "PlacementPassword@123" }),
   });
   const placementCookie = pl_officerLoginRes.headers.get("set-cookie") || "";
   assert(pl_officerLoginRes.status === 200, "PL1: Placement Officer login succeeds (HTTP 200)");
@@ -1612,7 +1612,7 @@ async function runTests() {
     method: "POST",
     headers: { "Content-Type": "application/json", Cookie: studentCookie },
     body: JSON.stringify({
-      resumeUrl: "https://campussphere.edu/resumes/tirth-resume.pdf",
+      resumeUrl: "https://campusconnect.edu/resumes/tirth-resume.pdf",
       coverNote: "Live HTTP verified candidate application.",
     }),
   });
@@ -1626,7 +1626,7 @@ async function runTests() {
     method: "POST",
     headers: { "Content-Type": "application/json", Cookie: studentCookie },
     body: JSON.stringify({
-      resumeUrl: "https://campussphere.edu/resumes/tirth-resume.pdf",
+      resumeUrl: "https://campusconnect.edu/resumes/tirth-resume.pdf",
     }),
   });
   assert(pl_dupApplyRes.status === 409, "PL13: Duplicate application rejected (HTTP 409)");
@@ -1635,7 +1635,7 @@ async function runTests() {
   const pl_ineligibleApplyRes = await fetch(`${BASE_URL}/api/placements/drives/drv-012/apply`, {
     method: "POST",
     headers: { "Content-Type": "application/json", Cookie: studentCookie },
-    body: JSON.stringify({ resumeUrl: "https://campussphere.edu/resumes/test.pdf" }),
+    body: JSON.stringify({ resumeUrl: "https://campusconnect.edu/resumes/test.pdf" }),
   });
   assert(pl_ineligibleApplyRes.status === 400 || pl_ineligibleApplyRes.status === 403, "PL14: Ineligible or closed drive application blocked");
 
@@ -2859,7 +2859,7 @@ async function runTests() {
   const an_clubLoginRes = await fetch(`${BASE_URL}/api/auth/login`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ email: "club@campussphere.edu", password: "ClubPassword@123" }),
+    body: JSON.stringify({ email: "club@campusconnect.edu", password: "ClubPassword@123" }),
   });
   const an_clubCookie = an_clubLoginRes.headers.get("set-cookie") || "";
   assert(an_clubLoginRes.status === 200, "AN0a: Club Coordinator login succeeds for analytics (HTTP 200)");
@@ -2867,7 +2867,7 @@ async function runTests() {
   const an_placementLoginRes = await fetch(`${BASE_URL}/api/auth/login`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ email: "placement@campussphere.edu", password: "PlacementPassword@123" }),
+    body: JSON.stringify({ email: "placement@campusconnect.edu", password: "PlacementPassword@123" }),
   });
   const an_placementCookie = an_placementLoginRes.headers.get("set-cookie") || "";
   assert(an_placementLoginRes.status === 200, "AN0b: Placement Officer login succeeds for analytics (HTTP 200)");

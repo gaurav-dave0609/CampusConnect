@@ -1,6 +1,6 @@
 # Artificial Intelligence (AI) Usage & Governance Disclosure
 
-**Project Name:** CampusSphere — All-in-One College Ecosystem  
+**Project Name:** Campus Connect — All-in-One College Ecosystem  
 **Subject:** Software Project Management (SPM)  
 **Document Purpose:** Academic Transparency & AI Attribution  
 **Status:** Approved for Submission  

@@ -469,7 +469,7 @@ export function StudentAssignmentDetail({
                     placeholder="Provide a brief summary, deployment links, or repository notes..."
                     value={submissionText}
                     onChange={(e) => setSubmissionText(e.target.value)}
-                    className="w-full px-3 py-2.5 text-xs rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500/30 resize-none"
+                    className="w-full px-3 py-2.5 text-xs rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500/30 resize-none"
                   />
                 </div>
 
@@ -478,7 +478,7 @@ export function StudentAssignmentDetail({
                   type="button"
                   disabled={isSubmitting || (!selectedFile && !submissionText.trim())}
                   onClick={() => setShowConfirmModal(true)}
-                  className="w-full py-3 px-4 rounded-xl text-sm font-semibold bg-indigo-600 text-white hover:bg-indigo-700 disabled:opacity-50 disabled:cursor-not-allowed shadow-md shadow-indigo-500/20 transition-all flex items-center justify-center gap-2"
+                  className="w-full py-3 px-4 rounded-xl text-sm font-semibold bg-[#10B981] text-white hover:bg-[#059669] disabled:opacity-50 disabled:cursor-not-allowed shadow-md shadow-emerald-500/20 transition-all flex items-center justify-center gap-2"
                 >
                   {isSubmitting ? (
                     <>
@@ -503,7 +503,7 @@ export function StudentAssignmentDetail({
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in duration-150">
           <div className="w-full max-w-md p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-2xl space-y-4">
             <h3 className="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
-              <CheckCircle2 className="w-5 h-5 text-indigo-600" />
+              <CheckCircle2 className="w-5 h-5 text-[#10B981]" />
               Ready to submit?
             </h3>
             <p className="text-sm text-slate-600 dark:text-slate-400">
@@ -528,7 +528,7 @@ export function StudentAssignmentDetail({
               <button
                 type="button"
                 onClick={executeSubmission}
-                className="px-4 py-2 rounded-xl text-xs font-semibold bg-indigo-600 text-white hover:bg-indigo-700 shadow-sm transition-colors"
+                className="px-4 py-2 rounded-xl text-xs font-semibold bg-[#10B981] text-white hover:bg-[#059669] shadow-sm transition-colors"
               >
                 Confirm &amp; Submit
               </button>

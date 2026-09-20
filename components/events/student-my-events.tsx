@@ -265,14 +265,14 @@ export function StudentMyEvents({ upcomingEvents, pastEvents }: StudentMyEventsP
 
       {/* Cancel RSVP Confirmation Dialog */}
       {cancelTarget && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in">
-          <div className="w-full max-w-md rounded-2xl bg-card border border-border p-6 shadow-2xl space-y-5">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm animate-in fade-in">
+          <div className="w-full max-w-md rounded-2xl bg-white border border-slate-200 p-6 shadow-2xl space-y-5 relative">
             <div className="flex items-start gap-3">
-              <div className="w-10 h-10 rounded-xl bg-rose-100 text-rose-600 dark:bg-rose-950 dark:text-rose-400 flex items-center justify-center shrink-0">
+              <div className="w-10 h-10 rounded-xl bg-rose-100 text-rose-600 flex items-center justify-center shrink-0">
                 <XCircle className="h-5 w-5" />
               </div>
               <div>
-                <h3 className="text-base font-bold text-foreground">Release Registration Seat?</h3>
+                <h3 className="text-base font-bold text-slate-900">Release Registration Seat?</h3>
                 <p className="text-xs text-muted-foreground mt-0.5">
                   Confirm cancellation for &quot;{cancelTarget.title}&quot;. Your seat and confirmation code will be invalidated immediately.
                 </p>

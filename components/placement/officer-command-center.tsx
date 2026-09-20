@@ -54,44 +54,43 @@ export function OfficerCommandCenter({ officerName }: { officerName: string }) {
   return (
     <div className="space-y-8 max-w-7xl mx-auto pb-16">
       {/* Welcome Banner */}
-      <div className="rounded-3xl border border-amber-200/80 bg-gradient-to-r from-amber-950 via-slate-900 to-indigo-950 p-6 sm:p-8 text-white shadow-xl relative overflow-hidden">
+      <div className="rounded-3xl border border-emerald-100/80 bg-white p-6 sm:p-8 text-slate-900 shadow-sm relative overflow-hidden">
         <div className="relative z-10 max-w-2xl space-y-3">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-amber-500/30 text-amber-200 border border-amber-400/30 backdrop-blur-sm">
-            <Sparkles className="h-3.5 w-3.5" />
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-800 border border-emerald-200/80">
+            <Sparkles className="h-3.5 w-3.5 text-[#10B981]" />
             <span>Corporate Relations &bull; Placement Phase 10</span>
           </div>
-          <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight">
+          <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900">
             Placement Command &bull; {officerName}
           </h1>
-          <p className="text-sm text-amber-100/80 leading-relaxed">
+          <p className="text-sm text-slate-600 leading-relaxed">
             Manage company recruiting partnerships, author verified eligibility criteria, publish campus drives, track candidate applicant pipelines, and orchestrate aptitude preparations.
           </p>
 
           <div className="flex flex-wrap gap-3 pt-2">
             <Link
               href="/dashboard/placement/drives"
-              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-amber-500 text-slate-950 text-xs font-bold hover:bg-amber-400 transition-colors shadow-md"
+              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#10B981] text-white text-xs font-bold hover:bg-emerald-600 transition-colors shadow-sm"
             >
               <Plus className="h-4 w-4" />
               <span>Post New Drive</span>
             </Link>
             <Link
               href="/dashboard/placement/companies"
-              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white/10 text-white text-xs font-semibold hover:bg-white/20 border border-white/20 transition-colors"
+              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-50 text-slate-700 text-xs font-semibold hover:bg-slate-100 border border-slate-200 transition-colors"
             >
-              <Building2 className="h-4 w-4 text-amber-300" />
+              <Building2 className="h-4 w-4 text-emerald-600" />
               <span>Recruiting Partners</span>
             </Link>
             <Link
               href="/dashboard/placement/applications"
-              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white/10 text-white text-xs font-semibold hover:bg-white/20 border border-white/20 transition-colors"
+              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-50 text-slate-700 text-xs font-semibold hover:bg-slate-100 border border-slate-200 transition-colors"
             >
-              <FileCheck className="h-4 w-4 text-amber-300" />
+              <FileCheck className="h-4 w-4 text-emerald-600" />
               <span>Applicants Pipeline</span>
             </Link>
           </div>
         </div>
-        <div className="absolute right-0 bottom-0 translate-x-8 translate-y-8 w-64 h-64 bg-amber-500/20 rounded-full blur-3xl pointer-events-none" />
       </div>
 
       {/* KPI Cards Grid */}

@@ -101,7 +101,7 @@ describe("Phase 10 — Placement Drives, Prep Bank, Timed Quizzes & Application 
 
     it("5. validates student application payload with optional cover note", () => {
       const payload = {
-        resumeUrl: "https://campussphere.edu/resumes/tirth-resume.pdf",
+        resumeUrl: "https://campusconnect.edu/resumes/tirth-resume.pdf",
         notes: "Excited about distributed algorithms and high-throughput systems.",
       };
       const result = applyDriveSchema.safeParse(payload);
@@ -419,7 +419,7 @@ describe("Phase 10 — Placement Drives, Prep Bank, Timed Quizzes & Application 
       const app = await PlacementService.applyToDrive({
         driveId: "drv-003",
         studentUserId: "demo-student-001",
-        resumeUrl: "https://campussphere.edu/resumes/tirth-resume.pdf",
+        resumeUrl: "https://campusconnect.edu/resumes/tirth-resume.pdf",
         coverNote: "Passionate about full-stack enterprise solutions.",
       });
 
@@ -504,13 +504,13 @@ describe("Phase 10 — Placement Drives, Prep Bank, Timed Quizzes & Application 
         studentId: "STU-002",
         studentUserId: "demo-student-002",
         studentName: "Priya Sharma",
-        studentEmail: "priya@campussphere.edu",
+        studentEmail: "priya@campusconnect.edu",
         rollNumber: "22COMPA102",
         departmentName: "Computer Engineering",
         semester: 6,
         cgpa: 9.1,
         activeBacklogs: 0,
-        resumeUrl: "https://campussphere.edu/resumes/priya.pdf",
+        resumeUrl: "https://campusconnect.edu/resumes/priya.pdf",
         status: ApplicationStatus.APPLIED,
         remarks: "Applied",
         appliedAt: new Date().toISOString(),

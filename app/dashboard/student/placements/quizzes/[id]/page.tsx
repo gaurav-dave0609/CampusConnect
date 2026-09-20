@@ -3,7 +3,7 @@ import { Role } from "@prisma/client";
 import { StudentTimedQuiz } from "@/components/placement/student-timed-quiz";
 
 export const metadata = {
-  title: "Live Timed Assessment | CampusSphere",
+  title: "Live Timed Assessment | Campus Connect",
   description: "Timed recruitment screener with countdown auto-submit, question navigation, and server-side scoring.",
 };
 

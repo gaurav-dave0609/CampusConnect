@@ -444,14 +444,14 @@ export function StudentEventDetail({ event, currentUserId }: EventDetailProps) {
 
       {/* Confirmation Modal Dialog */}
       {showRegisterDialog && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in">
-          <div className="w-full max-w-md rounded-2xl bg-card border border-border p-6 shadow-2xl space-y-5">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm animate-in fade-in">
+          <div className="w-full max-w-md rounded-2xl bg-white border border-emerald-100 p-6 shadow-2xl space-y-5 relative">
             <div className="flex items-start justify-between gap-3">
-              <div className="w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center shrink-0">
+              <div className="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 border border-emerald-100/80 flex items-center justify-center shrink-0">
                 <Ticket className="h-5 w-5" />
               </div>
               <div className="flex-1">
-                <h3 className="text-base font-bold text-foreground">Confirm Event Registration</h3>
+                <h3 className="text-base font-bold text-slate-900">Confirm Event Registration</h3>
                 <p className="text-xs text-muted-foreground mt-0.5">
                   Confirm your reservation for this campus event.
                 </p>
@@ -515,14 +515,14 @@ export function StudentEventDetail({ event, currentUserId }: EventDetailProps) {
 
       {/* Cancellation Modal Dialog */}
       {showCancelDialog && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in">
-          <div className="w-full max-w-md rounded-2xl bg-card border border-border p-6 shadow-2xl space-y-5">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm animate-in fade-in">
+          <div className="w-full max-w-md rounded-2xl bg-white border border-slate-200 p-6 shadow-2xl space-y-5 relative">
             <div className="flex items-start gap-3">
-              <div className="w-10 h-10 rounded-xl bg-rose-100 text-rose-600 dark:bg-rose-950 dark:text-rose-400 flex items-center justify-center shrink-0">
+              <div className="w-10 h-10 rounded-xl bg-rose-100 text-rose-600 flex items-center justify-center shrink-0">
                 <XCircle className="h-5 w-5" />
               </div>
               <div>
-                <h3 className="text-base font-bold text-foreground">Cancel Registration?</h3>
+                <h3 className="text-base font-bold text-slate-900">Cancel Registration?</h3>
                 <p className="text-xs text-muted-foreground mt-0.5">
                   Are you sure you want to cancel your seat? This will release your spot to the campus waitlist.
                 </p>

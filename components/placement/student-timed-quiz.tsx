@@ -332,7 +332,7 @@ export function StudentTimedQuiz({ quizId }: { quizId: string }) {
               type="button"
               disabled={submitting}
               onClick={handleStartQuiz}
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-2xl bg-indigo-600 text-white font-extrabold text-sm hover:bg-indigo-700 transition-all shadow-md shadow-indigo-600/30 disabled:opacity-50"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-2xl bg-[#10B981] text-white font-extrabold text-sm hover:bg-[#059669] transition-all shadow-md shadow-emerald-500/20 disabled:opacity-50 cursor-pointer"
             >
               <span>{submitting ? "Preparing Session..." : "Begin Timed Assessment"}</span>
               <ArrowRight className="h-4 w-4" />
@@ -384,7 +384,7 @@ export function StudentTimedQuiz({ quizId }: { quizId: string }) {
           <button
             type="button"
             onClick={() => setSubmitModalOpen(true)}
-            className="px-4 py-2 rounded-xl bg-indigo-600 text-white text-xs font-bold hover:bg-indigo-700 transition-colors shadow-sm"
+            className="px-4 py-2 rounded-xl bg-[#10B981] text-white text-xs font-bold hover:bg-[#059669] transition-colors shadow-sm cursor-pointer"
           >
             Finish &amp; Submit
           </button>
@@ -566,7 +566,7 @@ export function StudentTimedQuiz({ quizId }: { quizId: string }) {
                   type="button"
                   disabled={submitting}
                   onClick={handleSubmitAttempt}
-                  className="px-5 py-2 rounded-xl bg-indigo-600 text-white text-xs font-bold hover:bg-indigo-700 shadow-md shadow-indigo-600/30 disabled:opacity-50"
+                  className="px-5 py-2 rounded-xl bg-[#10B981] text-white text-xs font-bold hover:bg-[#059669] shadow-md shadow-emerald-500/20 disabled:opacity-50 cursor-pointer"
                 >
                   {submitting ? "Grading on Server..." : "Confirm & Submit"}
                 </button>
@@ -591,34 +591,34 @@ export function StudentTimedQuiz({ quizId }: { quizId: string }) {
     <div className="max-w-4xl mx-auto space-y-8 pb-20">
       {/* Score Card Banner */}
       <div
-        className={`rounded-3xl p-6 sm:p-8 text-white shadow-xl flex flex-col sm:flex-row sm:items-center justify-between gap-6 ${
+        className={`rounded-3xl p-6 sm:p-8 text-slate-900 shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-6 ${
           passed
-            ? "bg-gradient-to-br from-slate-900 via-emerald-950 to-teal-900 border border-emerald-500/30"
-            : "bg-gradient-to-br from-slate-900 via-slate-950 to-rose-950 border border-rose-500/30"
+            ? "bg-white border border-emerald-200"
+            : "bg-white border border-rose-200"
         }`}
       >
         <div className="space-y-2">
           <span
             className={`inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full text-xs font-bold ${
               passed
-                ? "bg-emerald-500/20 text-emerald-300 border border-emerald-400/30"
-                : "bg-rose-500/20 text-rose-300 border border-rose-400/30"
+                ? "bg-emerald-50 text-emerald-700 border border-emerald-200"
+                : "bg-rose-50 text-rose-700 border border-rose-200"
             }`}
           >
             {passed ? "Assessment Passed" : "Needs Review"}
           </span>
-          <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight">
+          <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900">
             Quiz Result &bull; {quiz.title}
           </h1>
-          <p className="text-xs text-slate-300">
-            Authoritatively verified and graded by CampusSphere server evaluation engine.
+          <p className="text-xs text-slate-500">
+            Authoritatively verified and graded by Campus Connect server evaluation engine.
           </p>
         </div>
 
-        <div className="flex items-baseline gap-2 bg-white/10 backdrop-blur-md px-6 py-4 rounded-2xl border border-white/20 self-start sm:self-auto">
-          <span className="text-4xl font-black text-white">{score}</span>
-          <span className="text-lg text-slate-300 font-bold">/ {totalMarks}</span>
-          <span className="ml-2 text-xs font-bold text-emerald-400">
+        <div className="flex items-baseline gap-2 bg-[#F0FDF4] px-6 py-4 rounded-2xl border border-emerald-100 self-start sm:self-auto">
+          <span className="text-4xl font-black text-emerald-700">{score}</span>
+          <span className="text-lg text-slate-500 font-bold">/ {totalMarks}</span>
+          <span className="ml-2 text-xs font-bold text-emerald-700">
             ({percentage}%)
           </span>
         </div>
@@ -635,7 +635,7 @@ export function StudentTimedQuiz({ quizId }: { quizId: string }) {
         </Link>
         <Link
           href="/dashboard/student/placements"
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-indigo-600 text-white text-xs font-bold hover:bg-indigo-700"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#10B981] text-white text-xs font-bold hover:bg-[#059669]"
         >
           <span>Return to Placement Hub</span>
           <ArrowRight className="h-4 w-4" />
@@ -645,7 +645,7 @@ export function StudentTimedQuiz({ quizId }: { quizId: string }) {
       {/* Question by Question Detailed Review */}
       <div className="space-y-6">
         <h2 className="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
-          <CheckCircle2 className="h-5 w-5 text-indigo-600" />
+          <CheckCircle2 className="h-5 w-5 text-[#10B981]" />
           <span>Question-by-Question Detailed Review</span>
         </h2>
 

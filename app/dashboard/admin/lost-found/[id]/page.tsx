@@ -5,7 +5,7 @@ import { LostFoundService } from "@/services/lost-found.service";
 import { StudentItemDetail } from "@/components/lost-found/student-item-detail";
 
 export const metadata = {
-  title: "Admin Item Audit & Verification | CampusSphere",
+  title: "Admin Item Audit & Verification | Campus Connect",
   description: "Administrative inspection of item report, potential matches, and associated claims.",
 };
 

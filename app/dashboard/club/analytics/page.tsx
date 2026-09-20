@@ -4,7 +4,7 @@ import { requireRole } from "@/lib/auth/rbac";
 import { ClubCoordinatorAnalyticsView } from "@/components/analytics/club-analytics-view";
 
 export const metadata: Metadata = {
-  title: "Club Engagement Analytics | CampusSphere",
+  title: "Club Engagement Analytics | Campus Connect",
   description:
     "Club chapter telemetry: active memberships, activity scheduling, and deterministic engagement index.",
 };

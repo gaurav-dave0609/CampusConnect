@@ -1,7 +1,7 @@
 # Phase 14 — Reports, Analytics & Admin Intelligence
 
 ## Executive Summary
-Phase 14 transforms CampusSphere from a collection of discrete operational modules into a unified, data-driven academic intelligence platform. By integrating authoritative calculations and records from Phases 1 through 13, Phase 14 provides role-tailored dashboards, deterministic at-risk student detection, classroom & lab utilization tracking, faculty workload capacity audits, cross-departmental benchmarking, and RFC 4180 CSV export functionality with strict zero-trust security and IDOR protection.
+Phase 14 transforms Campus Connect from a collection of discrete operational modules into a unified, data-driven academic intelligence platform. By integrating authoritative calculations and records from Phases 1 through 13, Phase 14 provides role-tailored dashboards, deterministic at-risk student detection, classroom & lab utilization tracking, faculty workload capacity audits, cross-departmental benchmarking, and RFC 4180 CSV export functionality with strict zero-trust security and IDOR protection.
 
 ---
 

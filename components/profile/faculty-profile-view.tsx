@@ -105,19 +105,22 @@ export function FacultyProfileView({
       )}
 
       {/* Profile Header Card */}
-      <div className="rounded-3xl border border-slate-200 bg-white shadow-sm overflow-hidden dark:border-slate-800 dark:bg-slate-900">
-        <div className="h-36 bg-gradient-to-r from-emerald-600 via-teal-700 to-slate-900 relative">
+      <div className="rounded-3xl border border-emerald-100/80 bg-white shadow-[0_4px_20px_-2px_rgba(16,185,129,0.06)] overflow-hidden">
+        {/* Decorative Cover Gradient */}
+        <div className="h-36 bg-gradient-to-r from-[#10B981] via-[#0D9488] to-[#059669] relative">
           <div className="absolute inset-0 bg-black/10" />
           <div className="absolute right-6 bottom-4 text-xs font-semibold px-3 py-1 rounded-full bg-white/20 text-white backdrop-blur-sm border border-white/30 flex items-center gap-1.5">
             <ShieldCheck className="h-3.5 w-3.5" />
-            <span>Faculty Academic Roster</span>
+            <span>Verified Faculty Member</span>
           </div>
         </div>
 
+        {/* Profile Info Row */}
         <div className="px-6 sm:px-8 pb-8 pt-0 relative">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between -mt-16 gap-4">
             <div className="flex items-end gap-5">
-              <div className="h-28 w-28 rounded-2xl border-4 border-white bg-gradient-to-tr from-emerald-600 to-teal-500 text-white flex items-center justify-center font-extrabold text-3xl shadow-lg shadow-emerald-600/20 dark:border-slate-900 overflow-hidden flex-shrink-0">
+              {/* Avatar */}
+              <div className="h-28 w-28 rounded-2xl border-4 border-white bg-gradient-to-tr from-[#10B981] to-[#059669] text-white flex items-center justify-center font-extrabold text-3xl shadow-lg shadow-emerald-600/20 overflow-hidden flex-shrink-0">
                 {profile.avatarUrl ? (
                   // eslint-disable-next-line @next/next/no-img-element
                   <img
@@ -131,10 +134,10 @@ export function FacultyProfileView({
               </div>
 
               <div className="mb-2">
-                <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white">
+                <h1 className="text-2xl sm:text-3xl font-bold text-slate-900">
                   {profile.fullName}
                 </h1>
-                <p className="text-sm text-slate-600 dark:text-slate-400 font-medium">
+                <p className="text-sm text-slate-500 font-medium">
                   {faculty?.designation} &bull; Dept. of {faculty?.department}
                 </p>
               </div>
@@ -150,7 +153,7 @@ export function FacultyProfileView({
                 setEditAvatarUrl(profile.avatarUrl || "");
                 setIsEditOpen(true);
               }}
-              className="inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-600 px-5 py-2.5 text-xs font-semibold text-white shadow-sm hover:bg-emerald-500 transition-all cursor-pointer"
+              className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#10B981] px-5 py-2.5 text-xs font-semibold text-white shadow-sm hover:bg-[#059669] transition-all cursor-pointer"
             >
               <Edit3 className="h-4 w-4" />
               <span>Update Faculty Info</span>
@@ -163,63 +166,63 @@ export function FacultyProfileView({
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Column 1 & 2: Official Institutional Records */}
         <div className="lg:col-span-2 space-y-6">
-          <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900">
-            <div className="flex items-center justify-between pb-4 border-b border-slate-100 dark:border-slate-800">
+          <div className="rounded-2xl border border-emerald-100/80 bg-white p-6 shadow-[0_4px_20px_-2px_rgba(16,185,129,0.05)]">
+            <div className="flex items-center justify-between pb-4 border-b border-emerald-100/60">
               <div className="flex items-center gap-2.5">
-                <div className="h-8 w-8 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center dark:bg-emerald-950 dark:text-emerald-400">
+                <div className="h-8 w-8 rounded-lg bg-[#ECFDF5] text-[#10B981] flex items-center justify-center">
                   <Briefcase className="h-4 w-4" />
                 </div>
                 <div>
-                  <h2 className="text-sm font-bold text-slate-900 dark:text-white">
+                  <h2 className="text-sm font-bold text-slate-900">
                     Official Appointment Credentials
                   </h2>
                   <p className="text-xs text-slate-500">Institutional records governed by Administration</p>
                 </div>
               </div>
 
-              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-slate-100 text-slate-600 border border-slate-200 dark:bg-slate-800 dark:text-slate-400">
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-slate-100 text-slate-600 border border-slate-200">
                 <Lock className="h-3 w-3 text-slate-500" />
                 Immutable by Faculty
               </span>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-5">
-              <div className="p-3.5 rounded-xl border border-slate-100 bg-slate-50/70 dark:border-slate-800 dark:bg-slate-800/40">
-                <div className="text-[11px] font-bold text-slate-500 uppercase tracking-wider">
+              <div className="p-3.5 rounded-xl border border-emerald-100/60 bg-[#F9FDFB]">
+                <div className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">
                   Employee ID
                 </div>
-                <div className="text-base font-bold text-slate-900 dark:text-white mt-1">
+                <div className="text-base font-bold text-slate-900 mt-1">
                   {faculty?.employeeId}
                 </div>
                 <div className="text-[10px] text-slate-400 mt-0.5">Assigned by HR / Registrar</div>
               </div>
 
-              <div className="p-3.5 rounded-xl border border-slate-100 bg-slate-50/70 dark:border-slate-800 dark:bg-slate-800/40">
-                <div className="text-[11px] font-bold text-slate-500 uppercase tracking-wider flex items-center gap-1.5">
-                  <Building2 className="h-3 w-3" />
+              <div className="p-3.5 rounded-xl border border-emerald-100/60 bg-[#F9FDFB]">
+                <div className="text-[11px] font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1.5">
+                  <Building2 className="h-3 w-3 text-emerald-600" />
                   Department
                 </div>
-                <div className="text-sm font-semibold text-slate-900 dark:text-white mt-1">
+                <div className="text-sm font-semibold text-slate-900 mt-1">
                   {faculty?.department}
                 </div>
               </div>
 
-              <div className="p-3.5 rounded-xl border border-slate-100 bg-slate-50/70 dark:border-slate-800 dark:bg-slate-800/40">
-                <div className="text-[11px] font-bold text-slate-500 uppercase tracking-wider flex items-center gap-1.5">
-                  <Award className="h-3 w-3" />
+              <div className="p-3.5 rounded-xl border border-emerald-100/60 bg-[#F9FDFB]">
+                <div className="text-[11px] font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1.5">
+                  <Award className="h-3 w-3 text-emerald-600" />
                   Academic Designation
                 </div>
-                <div className="text-sm font-semibold text-slate-900 dark:text-white mt-1">
+                <div className="text-sm font-semibold text-slate-900 mt-1">
                   {faculty?.designation}
                 </div>
               </div>
 
-              <div className="p-3.5 rounded-xl border border-slate-100 bg-slate-50/70 dark:border-slate-800 dark:bg-slate-800/40">
-                <div className="text-[11px] font-bold text-slate-500 uppercase tracking-wider flex items-center gap-1.5">
-                  <Mail className="h-3 w-3" />
+              <div className="p-3.5 rounded-xl border border-emerald-100/60 bg-[#F9FDFB]">
+                <div className="text-[11px] font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1.5">
+                  <Mail className="h-3 w-3 text-emerald-600" />
                   Official Email
                 </div>
-                <div className="text-sm font-semibold text-slate-900 dark:text-white mt-1 break-all">
+                <div className="text-sm font-semibold text-slate-900 mt-1 break-all">
                   {profile.email}
                 </div>
               </div>
@@ -227,22 +230,22 @@ export function FacultyProfileView({
           </div>
 
           {/* Academic Specialization & Research */}
-          <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900">
-            <h3 className="text-sm font-bold text-slate-900 dark:text-white mb-3 flex items-center gap-2">
-              <GraduationCap className="h-4 w-4 text-emerald-600" />
+          <div className="rounded-2xl border border-emerald-100/80 bg-white p-6 shadow-[0_4px_20px_-2px_rgba(16,185,129,0.05)]">
+            <h3 className="text-sm font-bold text-slate-900 mb-3 flex items-center gap-2">
+              <GraduationCap className="h-4 w-4 text-[#10B981]" />
               Academic Specialization &amp; Research Interests
             </h3>
             <div className="space-y-3 text-xs">
-              <div className="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/50">
-                <span className="font-bold text-slate-500 uppercase text-[10px]">Specialization:</span>
-                <p className="text-slate-900 dark:text-white font-medium mt-0.5">
+              <div className="p-3.5 rounded-xl border border-emerald-100/60 bg-[#F9FDFB]">
+                <span className="font-bold text-slate-400 uppercase text-[10px]">Specialization:</span>
+                <p className="text-slate-900 font-medium mt-0.5">
                   {faculty?.specialization || "Not specified"}
                 </p>
               </div>
 
-              <div className="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/50">
-                <span className="font-bold text-slate-500 uppercase text-[10px]">Highest Qualification:</span>
-                <p className="text-slate-900 dark:text-white font-medium mt-0.5">
+              <div className="p-3.5 rounded-xl border border-emerald-100/60 bg-[#F9FDFB]">
+                <span className="font-bold text-slate-400 uppercase text-[10px]">Highest Qualification:</span>
+                <p className="text-slate-900 font-medium mt-0.5">
                   {faculty?.qualification || "Not specified"}
                 </p>
               </div>
@@ -252,34 +255,34 @@ export function FacultyProfileView({
 
         {/* Column 3: Contact & Cabin Room */}
         <div className="space-y-6">
-          <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900">
-            <h3 className="text-sm font-bold text-slate-900 dark:text-white mb-4">
+          <div className="rounded-2xl border border-emerald-100/80 bg-white p-6 shadow-[0_4px_20px_-2px_rgba(16,185,129,0.05)]">
+            <h3 className="text-sm font-bold text-slate-900 mb-4">
               Campus Location &amp; Contact
             </h3>
             <div className="space-y-3.5">
               <div className="flex items-start gap-3 text-xs">
-                <div className="p-2 rounded-lg bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-400 mt-0.5">
+                <div className="p-2 rounded-lg bg-[#ECFDF5] text-[#10B981] mt-0.5">
                   <Building className="h-4 w-4" />
                 </div>
                 <div>
-                  <div className="font-semibold text-slate-500 uppercase text-[10px]">
+                  <div className="font-semibold text-slate-400 uppercase text-[10px]">
                     Cabin / Office Room
                   </div>
-                  <div className="text-slate-900 dark:text-white font-medium">
+                  <div className="text-slate-900 font-medium">
                     {faculty?.officeRoom || "Not assigned"}
                   </div>
                 </div>
               </div>
 
               <div className="flex items-start gap-3 text-xs">
-                <div className="p-2 rounded-lg bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-400 mt-0.5">
+                <div className="p-2 rounded-lg bg-[#ECFDF5] text-[#10B981] mt-0.5">
                   <Phone className="h-4 w-4" />
                 </div>
                 <div>
-                  <div className="font-semibold text-slate-500 uppercase text-[10px]">
+                  <div className="font-semibold text-slate-400 uppercase text-[10px]">
                     Direct Extension / Mobile
                   </div>
-                  <div className="text-slate-900 dark:text-white font-medium">
+                  <div className="text-slate-900 font-medium">
                     {profile.phone || "Not provided"}
                   </div>
                 </div>
@@ -292,25 +295,25 @@ export function FacultyProfileView({
       {/* Edit Modal Dialog */}
       {isEditOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 backdrop-blur-sm animate-in fade-in">
-          <div className="w-full max-w-lg rounded-3xl border border-slate-200 bg-white p-6 shadow-2xl dark:border-slate-800 dark:bg-slate-900 max-h-[90vh] overflow-y-auto">
-            <div className="flex items-center justify-between pb-4 border-b border-slate-100 dark:border-slate-800">
+          <div className="w-full max-w-lg rounded-3xl border border-emerald-100 bg-white p-6 shadow-2xl max-h-[90vh] overflow-y-auto">
+            <div className="flex items-center justify-between pb-4 border-b border-emerald-100">
               <div className="flex items-center gap-2">
-                <User className="h-5 w-5 text-emerald-600" />
-                <h3 className="text-base font-bold text-slate-900 dark:text-white">
+                <User className="h-5 w-5 text-[#10B981]" />
+                <h3 className="text-base font-bold text-slate-900">
                   Update Permitted Faculty Details
                 </h3>
               </div>
               <button
                 type="button"
                 onClick={() => setIsEditOpen(false)}
-                className="p-1 rounded-lg text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"
+                className="p-1 rounded-lg text-slate-400 hover:text-slate-600"
               >
                 <X className="h-5 w-5" />
               </button>
             </div>
 
             {formError && (
-              <div className="mt-4 p-3 rounded-xl bg-rose-50 border border-rose-200 text-xs text-rose-800 dark:bg-rose-950/50 dark:border-rose-900 dark:text-rose-300 flex items-center gap-2">
+              <div className="mt-4 p-3 rounded-xl bg-rose-50 border border-rose-200 text-xs text-rose-800 flex items-center gap-2">
                 <AlertCircle className="h-4 w-4 text-rose-600 flex-shrink-0" />
                 <span>{formError}</span>
               </div>
@@ -318,7 +321,7 @@ export function FacultyProfileView({
 
             <form onSubmit={handleSave} className="space-y-4 mt-5 text-xs">
               <div>
-                <label className="block font-semibold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1">
+                <label className="block font-semibold uppercase tracking-wider text-slate-700 mb-1">
                   Cabin / Office Room
                 </label>
                 <input
@@ -326,12 +329,12 @@ export function FacultyProfileView({
                   value={editOfficeRoom}
                   onChange={(e) => setEditOfficeRoom(e.target.value)}
                   placeholder="e.g. Room 408, Faculty Annex Building"
-                  className="w-full rounded-xl border border-slate-300 bg-slate-50 px-3.5 py-2.5 text-slate-900 focus:border-emerald-600 focus:bg-white focus:outline-none dark:border-slate-700 dark:bg-slate-800 dark:text-white"
+                  className="w-full rounded-xl border border-slate-200 bg-[#F9FDFB] px-3.5 py-2.5 text-slate-900 focus:border-[#10B981] focus:bg-white focus:outline-none focus:ring-1 focus:ring-[#10B981]"
                 />
               </div>
 
               <div>
-                <label className="block font-semibold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1">
+                <label className="block font-semibold uppercase tracking-wider text-slate-700 mb-1">
                   Academic Qualification
                 </label>
                 <input
@@ -339,12 +342,12 @@ export function FacultyProfileView({
                   value={editQualification}
                   onChange={(e) => setEditQualification(e.target.value)}
                   placeholder="e.g. Ph.D. in Computer Science"
-                  className="w-full rounded-xl border border-slate-300 bg-slate-50 px-3.5 py-2.5 text-slate-900 focus:border-emerald-600 focus:bg-white focus:outline-none dark:border-slate-700 dark:bg-slate-800 dark:text-white"
+                  className="w-full rounded-xl border border-slate-200 bg-[#F9FDFB] px-3.5 py-2.5 text-slate-900 focus:border-[#10B981] focus:bg-white focus:outline-none focus:ring-1 focus:ring-[#10B981]"
                 />
               </div>
 
               <div>
-                <label className="block font-semibold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1">
+                <label className="block font-semibold uppercase tracking-wider text-slate-700 mb-1">
                   Research Specialization
                 </label>
                 <input
@@ -352,12 +355,12 @@ export function FacultyProfileView({
                   value={editSpecialization}
                   onChange={(e) => setEditSpecialization(e.target.value)}
                   placeholder="e.g. Distributed Systems & Cloud Computing"
-                  className="w-full rounded-xl border border-slate-300 bg-slate-50 px-3.5 py-2.5 text-slate-900 focus:border-emerald-600 focus:bg-white focus:outline-none dark:border-slate-700 dark:bg-slate-800 dark:text-white"
+                  className="w-full rounded-xl border border-slate-200 bg-[#F9FDFB] px-3.5 py-2.5 text-slate-900 focus:border-[#10B981] focus:bg-white focus:outline-none focus:ring-1 focus:ring-[#10B981]"
                 />
               </div>
 
               <div>
-                <label className="block font-semibold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1">
+                <label className="block font-semibold uppercase tracking-wider text-slate-700 mb-1">
                   Contact Phone
                 </label>
                 <input
@@ -365,12 +368,12 @@ export function FacultyProfileView({
                   value={editPhone}
                   onChange={(e) => setEditPhone(e.target.value)}
                   placeholder="+91 94220 54321"
-                  className="w-full rounded-xl border border-slate-300 bg-slate-50 px-3.5 py-2.5 text-slate-900 focus:border-emerald-600 focus:bg-white focus:outline-none dark:border-slate-700 dark:bg-slate-800 dark:text-white"
+                  className="w-full rounded-xl border border-slate-200 bg-[#F9FDFB] px-3.5 py-2.5 text-slate-900 focus:border-[#10B981] focus:bg-white focus:outline-none focus:ring-1 focus:ring-[#10B981]"
                 />
               </div>
 
               <div>
-                <label className="block font-semibold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1">
+                <label className="block font-semibold uppercase tracking-wider text-slate-700 mb-1">
                   Avatar / Photo URL
                 </label>
                 <input
@@ -378,22 +381,22 @@ export function FacultyProfileView({
                   value={editAvatarUrl}
                   onChange={(e) => setEditAvatarUrl(e.target.value)}
                   placeholder="https://example.com/avatar.jpg"
-                  className="w-full rounded-xl border border-slate-300 bg-slate-50 px-3.5 py-2.5 text-slate-900 focus:border-emerald-600 focus:bg-white focus:outline-none dark:border-slate-700 dark:bg-slate-800 dark:text-white"
+                  className="w-full rounded-xl border border-slate-200 bg-[#F9FDFB] px-3.5 py-2.5 text-slate-900 focus:border-[#10B981] focus:bg-white focus:outline-none focus:ring-1 focus:ring-[#10B981]"
                 />
               </div>
 
-              <div className="flex items-center justify-end gap-3 pt-4 border-t border-slate-100 dark:border-slate-800">
+              <div className="flex items-center justify-end gap-3 pt-4 border-t border-emerald-100">
                 <button
                   type="button"
                   onClick={() => setIsEditOpen(false)}
-                  className="px-4 py-2 rounded-xl border border-slate-200 text-slate-600 hover:bg-slate-100 dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-800"
+                  className="px-4 py-2 rounded-xl border border-slate-200 text-slate-600 hover:bg-slate-50 cursor-pointer"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
                   disabled={isSaving}
-                  className="inline-flex items-center gap-2 px-5 py-2 rounded-xl bg-emerald-600 text-white font-semibold shadow hover:bg-emerald-500 disabled:opacity-50 cursor-pointer"
+                  className="inline-flex items-center gap-2 px-5 py-2 rounded-xl bg-[#10B981] text-white font-semibold shadow hover:bg-[#059669] disabled:opacity-50 cursor-pointer"
                 >
                   {isSaving && <Loader2 className="h-3.5 w-3.5 animate-spin" />}
                   <span>Save Faculty Record</span>

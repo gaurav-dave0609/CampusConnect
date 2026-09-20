@@ -4,7 +4,7 @@ import { requireRole } from "@/lib/auth/rbac";
 import { StudentAnalyticsView } from "@/components/analytics/student-analytics-view";
 
 export const metadata: Metadata = {
-  title: "Academic Analytics & Progress | CampusSphere",
+  title: "Academic Analytics & Progress | Campus Connect",
   description:
     "Personal student analytics: attendance health, mathematical projection, assignment completion, and placement readiness.",
 };

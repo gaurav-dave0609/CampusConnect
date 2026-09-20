@@ -4,7 +4,7 @@ import { AttendanceService } from "@/services/attendance.service";
 import { FacultyAttendanceRegister } from "@/components/attendance/faculty-attendance-register";
 
 export const metadata = {
-  title: "Mark Class Attendance | CampusSphere",
+  title: "Mark Class Attendance | Campus Connect",
   description: "Record class attendance, load enrolled division student rosters, and finalize lecture sessions.",
 };
 

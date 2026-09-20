@@ -43,21 +43,20 @@ export default async function AcademicSetupHubPage() {
   return (
     <div className="space-y-6 max-w-7xl mx-auto pb-12">
       {/* Top Banner */}
-      <div className="rounded-2xl border border-indigo-200/80 bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 p-6 sm:p-8 text-white shadow-xl shadow-indigo-950/20 relative overflow-hidden">
+      <div className="rounded-2xl border border-emerald-100/80 bg-white p-6 sm:p-8 text-slate-900 shadow-sm relative overflow-hidden">
         <div className="relative z-10 max-w-3xl">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-indigo-500/30 text-indigo-200 border border-indigo-400/30 mb-3 backdrop-blur-sm">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200/60 mb-3">
             <Sparkles className="h-3.5 w-3.5" />
-            <span>CampusSphere Academic Administration &bull; Institutional Setup</span>
+            <span>Campus Connect Academic Administration &bull; Institutional Setup</span>
           </div>
-          <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight">
+          <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900">
             Academic Infrastructure & Setup Hub
           </h1>
-          <p className="mt-2 text-sm text-indigo-100/80 leading-relaxed">
+          <p className="mt-2 text-sm text-slate-600 leading-relaxed">
             Central command for collegiate academic hierarchy, department governance, program curriculums,
             divisions, course syllabus, faculty teaching allocations, physical facilities, and CSP timetable engine readiness.
           </p>
         </div>
-        <div className="absolute right-0 bottom-0 translate-x-8 translate-y-8 w-64 h-64 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none" />
       </div>
 
       {/* Health Indicator Banner */}

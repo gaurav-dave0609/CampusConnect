@@ -3,7 +3,7 @@ import { requireRole } from "@/lib/auth/rbac";
 import { OfficerDrivesManager } from "@/components/placement/officer-drives-manager";
 
 export const metadata = {
-  title: "Placement Drives Manager | CampusSphere",
+  title: "Placement Drives Manager | Campus Connect",
   description: "Publish on-campus drives, configure academic eligibility criteria, and track applications.",
 };
 

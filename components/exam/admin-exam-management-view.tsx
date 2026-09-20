@@ -210,7 +210,7 @@ export function AdminExamManagementView() {
 
         <button
           onClick={() => setIsCreateOpen(true)}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-xs font-semibold text-white shadow-md shadow-indigo-500/20 transition"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#10B981] hover:bg-[#059669] text-xs font-semibold text-white shadow-md shadow-emerald-500/20 transition cursor-pointer"
         >
           <Plus className="h-4 w-4" />
           <span>New Examination</span>
@@ -232,47 +232,47 @@ export function AdminExamManagementView() {
 
       {/* KPI Cards */}
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
-        <div className="bg-white dark:bg-slate-900 p-4 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
+        <div className="bg-white p-4 rounded-2xl border border-emerald-100/70 shadow-sm">
           <div className="text-xs text-slate-400 font-semibold uppercase">Total Exams</div>
-          <div className="text-2xl font-bold text-slate-900 dark:text-white mt-1">{totalCount}</div>
+          <div className="text-2xl font-bold text-slate-900 mt-1">{totalCount}</div>
           <div className="text-[11px] text-slate-500 mt-1">Institutional records</div>
         </div>
 
-        <div className="bg-white dark:bg-slate-900 p-4 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
+        <div className="bg-white p-4 rounded-2xl border border-emerald-100/70 shadow-sm">
           <div className="text-xs text-slate-400 font-semibold uppercase">Scheduled</div>
-          <div className="text-2xl font-bold text-blue-600 dark:text-blue-400 mt-1">{scheduledCount}</div>
+          <div className="text-2xl font-bold text-blue-600 mt-1">{scheduledCount}</div>
           <div className="text-[11px] text-slate-500 mt-1">Upcoming sessions</div>
         </div>
 
-        <div className="bg-white dark:bg-slate-900 p-4 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
+        <div className="bg-white p-4 rounded-2xl border border-emerald-100/70 shadow-sm">
           <div className="text-xs text-slate-400 font-semibold uppercase">Results Pending</div>
-          <div className="text-2xl font-bold text-amber-600 dark:text-amber-400 mt-1">{pendingCount}</div>
+          <div className="text-2xl font-bold text-amber-600 mt-1">{pendingCount}</div>
           <div className="text-[11px] text-slate-500 mt-1">Awaiting moderation</div>
         </div>
 
-        <div className="bg-white dark:bg-slate-900 p-4 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
+        <div className="bg-white p-4 rounded-2xl border border-emerald-100/70 shadow-sm">
           <div className="text-xs text-slate-400 font-semibold uppercase">Published</div>
-          <div className="text-2xl font-bold text-emerald-600 dark:text-emerald-400 mt-1">{publishedCount}</div>
+          <div className="text-2xl font-bold text-emerald-600 mt-1">{publishedCount}</div>
           <div className="text-[11px] text-slate-500 mt-1">Visible to candidates</div>
         </div>
 
-        <div className="bg-white dark:bg-slate-900 p-4 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
+        <div className="bg-white p-4 rounded-2xl border border-emerald-100/70 shadow-sm">
           <div className="text-xs text-slate-400 font-semibold uppercase">Locked</div>
-          <div className="text-2xl font-bold text-purple-600 dark:text-purple-400 mt-1">{lockedCount}</div>
+          <div className="text-2xl font-bold text-purple-600 mt-1">{lockedCount}</div>
           <div className="text-[11px] text-slate-500 mt-1">Archived & certified</div>
         </div>
       </div>
 
       {/* Filter Tabs */}
-      <div className="flex items-center gap-2 overflow-x-auto border-b border-slate-200 dark:border-slate-800 pb-3">
+      <div className="flex items-center gap-2 overflow-x-auto border-b border-emerald-100/70 pb-3">
         {["ALL", "SCHEDULED", "RESULTS_PENDING", "PUBLISHED", "LOCKED", "DRAFT"].map((status) => (
           <button
             key={status}
             onClick={() => setFilterStatus(status)}
-            className={`px-3.5 py-1.5 rounded-xl text-xs font-semibold transition whitespace-nowrap ${
+            className={`px-3.5 py-1.5 rounded-xl text-xs font-semibold transition whitespace-nowrap cursor-pointer ${
               filterStatus === status
-                ? "bg-indigo-600 text-white shadow-sm"
-                : "bg-slate-100 text-slate-600 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-300"
+                ? "bg-[#10B981] text-white shadow-sm"
+                : "bg-emerald-50/70 text-emerald-800 hover:bg-[#ECFDF5]"
             }`}
           >
             {status.replace(/_/g, " ")}
@@ -281,7 +281,7 @@ export function AdminExamManagementView() {
       </div>
 
       {/* Exams Roster Table */}
-      <div className="rounded-2xl border border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-900 overflow-hidden shadow-sm">
+      <div className="rounded-2xl border border-emerald-100/70 bg-white overflow-hidden shadow-sm">
         <div className="overflow-x-auto">
           <table className="w-full text-left text-xs">
             <thead className="bg-slate-50 dark:bg-slate-800/60 uppercase font-semibold text-slate-500 border-b border-slate-200 dark:border-slate-800">
@@ -482,7 +482,7 @@ export function AdminExamManagementView() {
                 <button
                   type="submit"
                   disabled={submittingSchedule}
-                  className="px-5 py-2 rounded-xl font-semibold text-white bg-indigo-600 hover:bg-indigo-700 shadow-md shadow-indigo-500/20 transition"
+                  className="px-5 py-2 rounded-xl font-semibold text-white bg-[#10B981] hover:bg-[#059669] shadow-md shadow-emerald-500/20 transition cursor-pointer"
                 >
                   {submittingSchedule ? "Validating..." : "Confirm Schedule"}
                 </button>
@@ -495,8 +495,8 @@ export function AdminExamManagementView() {
       {/* Create Exam Modal */}
       {isCreateOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 backdrop-blur-sm">
-          <div className="w-full max-w-lg rounded-2xl bg-white p-6 shadow-2xl dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
-            <h3 className="text-lg font-bold text-slate-900 dark:text-white">
+          <div className="w-full max-w-lg rounded-2xl bg-white p-6 shadow-2xl border border-emerald-100">
+            <h3 className="text-lg font-bold text-slate-900">
               Create New Examination
             </h3>
             <p className="mt-1 text-xs text-slate-500">
@@ -505,7 +505,7 @@ export function AdminExamManagementView() {
 
             <form onSubmit={handleCreateExam} className="mt-5 space-y-4 text-xs">
               <div>
-                <label className="block font-semibold text-slate-700 dark:text-slate-300 mb-1">
+                <label className="block font-semibold text-slate-700 mb-1">
                   Examination Title *
                 </label>
                 <input
@@ -514,19 +514,19 @@ export function AdminExamManagementView() {
                   placeholder="e.g. End-Semester Evaluation — Distributed Systems"
                   value={newTitle}
                   onChange={(e) => setNewTitle(e.target.value)}
-                  className="w-full px-3 py-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm"
+                  className="w-full px-3 py-2 rounded-xl border border-slate-300 bg-white text-sm"
                 />
               </div>
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block font-semibold text-slate-700 dark:text-slate-300 mb-1">
+                  <label className="block font-semibold text-slate-700 mb-1">
                     Assessment Type *
                   </label>
                   <select
                     value={newType}
                     onChange={(e) => setNewType(e.target.value)}
-                    className="w-full px-3 py-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm"
+                    className="w-full px-3 py-2 rounded-xl border border-slate-300 bg-white text-sm"
                   >
                     <option value="MIDTERM">Midterm</option>
                     <option value="INTERNAL">Internal Assessment</option>
@@ -535,13 +535,13 @@ export function AdminExamManagementView() {
                   </select>
                 </div>
                 <div>
-                  <label className="block font-semibold text-slate-700 dark:text-slate-300 mb-1">
+                  <label className="block font-semibold text-slate-700 mb-1">
                     Target Subject *
                   </label>
                   <select
                     value={newSubjectId}
                     onChange={(e) => setNewSubjectId(e.target.value)}
-                    className="w-full px-3 py-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm"
+                    className="w-full px-3 py-2 rounded-xl border border-slate-300 bg-white text-sm"
                   >
                     <option value="sub-cs601">CS601: Cloud Computing</option>
                     <option value="sub-cs602">CS602: Machine Learning</option>
@@ -553,7 +553,7 @@ export function AdminExamManagementView() {
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block font-semibold text-slate-700 dark:text-slate-300 mb-1">
+                  <label className="block font-semibold text-slate-700 mb-1">
                     Maximum Marks *
                   </label>
                   <input
@@ -563,11 +563,11 @@ export function AdminExamManagementView() {
                     required
                     value={newMaxMarks}
                     onChange={(e) => setNewMaxMarks(parseFloat(e.target.value))}
-                    className="w-full px-3 py-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm"
+                    className="w-full px-3 py-2 rounded-xl border border-slate-300 bg-white text-sm"
                   />
                 </div>
                 <div>
-                  <label className="block font-semibold text-slate-700 dark:text-slate-300 mb-1">
+                  <label className="block font-semibold text-slate-700 mb-1">
                     Passing Marks *
                   </label>
                   <input
@@ -577,7 +577,7 @@ export function AdminExamManagementView() {
                     required
                     value={newPassingMarks}
                     onChange={(e) => setNewPassingMarks(parseFloat(e.target.value))}
-                    className="w-full px-3 py-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm"
+                    className="w-full px-3 py-2 rounded-xl border border-slate-300 bg-white text-sm"
                   />
                 </div>
               </div>
@@ -586,14 +586,14 @@ export function AdminExamManagementView() {
                 <button
                   type="button"
                   onClick={() => setIsCreateOpen(false)}
-                  className="px-4 py-2 rounded-xl font-semibold text-slate-600 dark:text-slate-400 hover:bg-slate-100 transition"
+                  className="px-4 py-2 rounded-xl font-semibold text-slate-600 hover:bg-slate-100 transition cursor-pointer"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
                   disabled={submittingCreate}
-                  className="px-5 py-2 rounded-xl font-semibold text-white bg-indigo-600 hover:bg-indigo-700 shadow-md shadow-indigo-500/20 transition"
+                  className="px-5 py-2 rounded-xl font-semibold text-white bg-[#10B981] hover:bg-[#059669] shadow-md shadow-emerald-500/20 transition cursor-pointer"
                 >
                   {submittingCreate ? "Creating..." : "Create Exam"}
                 </button>

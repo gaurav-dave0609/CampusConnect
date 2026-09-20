@@ -5,7 +5,7 @@ import { FacultyNoticeCenter, FacultyNoticeItem } from "@/components/notices/fac
 import { Role } from "@prisma/client";
 
 export const metadata = {
-  title: "Faculty Notice Center | CampusSphere",
+  title: "Faculty Notice Center | Campus Connect",
   description: "Academic notices, departmental guidelines, and institutional circulars.",
 };
 

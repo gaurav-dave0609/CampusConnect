@@ -243,7 +243,7 @@ export function StudentReportWizard() {
                   onChange={(e) => setContactPreference(e.target.value)}
                   className="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 p-2.5 text-sm outline-none transition focus:border-blue-500 focus:bg-white dark:border-slate-800 dark:bg-slate-950"
                 >
-                  <option value="CAMPUS_PORTAL">CampusSphere Portal Messages (Recommended)</option>
+                  <option value="CAMPUS_PORTAL">Campus Connect Portal Messages (Recommended)</option>
                   <option value="SECURITY_DESK">Deliver to Main Gate Security Desk</option>
                   <option value="DEPT_OFFICE">Department Coordinator Office</option>
                 </select>

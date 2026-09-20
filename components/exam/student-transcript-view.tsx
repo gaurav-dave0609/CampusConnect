@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import {
   GraduationCap,
   Printer,
@@ -79,7 +80,7 @@ export function StudentTranscriptView() {
             <span>Back to Exam Results</span>
           </Link>
           <h1 className="text-2xl font-bold text-slate-900 dark:text-white tracking-tight flex items-center gap-2.5">
-            <GraduationCap className="h-6 w-6 text-indigo-600" />
+            <GraduationCap className="h-6 w-6 text-[#10B981]" />
             <span>Official Academic Transcript</span>
           </h1>
           <p className="text-xs text-slate-500 dark:text-slate-400">
@@ -90,14 +91,14 @@ export function StudentTranscriptView() {
         <div className="flex items-center gap-2.5">
           <button
             onClick={handleCsvDownload}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-700 shadow-sm transition"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-emerald-100 bg-white text-xs font-semibold text-slate-700 hover:bg-[#ECFDF5] hover:text-emerald-800 shadow-xs transition"
           >
-            <Download className="h-4 w-4 text-slate-500" />
+            <Download className="h-4 w-4 text-emerald-600" />
             <span>Export CSV</span>
           </button>
           <button
             onClick={handlePrint}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-xs font-semibold text-white shadow-md shadow-indigo-500/20 transition"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#10B981] hover:bg-[#059669] text-xs font-semibold text-white shadow-md shadow-emerald-500/20 transition"
           >
             <Printer className="h-4 w-4" />
             <span>Print / PDF Document</span>
@@ -106,14 +107,22 @@ export function StudentTranscriptView() {
       </div>
 
       {/* Transcript Document Paper Layout */}
-      <div className="rounded-3xl border border-slate-200 bg-white p-8 sm:p-12 dark:border-slate-800 dark:bg-slate-900 shadow-lg relative overflow-hidden">
+      <div className="rounded-3xl border border-emerald-100/90 bg-white p-8 sm:p-12 shadow-lg relative overflow-hidden">
         {/* Institutional Header */}
-        <div className="text-center border-b-2 border-slate-900 dark:border-slate-700 pb-6 mb-8">
-          <div className="inline-flex items-center justify-center h-12 w-12 rounded-2xl bg-indigo-600 text-white font-bold text-xl shadow-md mb-2">
-            CS
+        <div className="text-center border-b-2 border-emerald-800/60 pb-6 mb-8">
+          <div className="inline-flex items-center justify-center mb-2">
+            <div className="relative h-14 w-14 overflow-hidden rounded-2xl shadow-sm border border-emerald-100">
+              <Image
+                src="/brand-icon.png"
+                alt="CampusConnect Official Seal"
+                fill
+                className="object-cover"
+                sizes="56px"
+              />
+            </div>
           </div>
           <h2 className="text-xl sm:text-2xl font-black tracking-tight text-slate-900 dark:text-white uppercase">
-            CampusSphere College of Engineering & Technology
+            Campus Connect College of Engineering & Technology
           </h2>
           <p className="text-xs text-slate-600 dark:text-slate-400 font-medium">
             Affiliated to State Technological University | Accredited Grade &apos;A+&apos; by NAAC
@@ -242,7 +251,7 @@ export function StudentTranscriptView() {
           <div>Issued on: {transcript.summary.issuedDate} | Electronic transcript record</div>
           <div className="flex items-center gap-1 text-emerald-600 font-semibold mt-2 sm:mt-0">
             <ShieldCheck className="h-3.5 w-3.5" />
-            <span>Cryptographically Verified by CampusSphere Academic Office</span>
+            <span>Cryptographically Verified by Campus Connect Academic Office</span>
           </div>
         </div>
       </div>

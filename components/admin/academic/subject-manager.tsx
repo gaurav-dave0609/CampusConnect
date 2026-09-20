@@ -579,7 +579,7 @@ export function SubjectManager({
                 </label>
                 <input
                   type="url"
-                  placeholder="https://campussphere.edu/syllabus/comp-301.pdf"
+                  placeholder="https://campusconnect.edu/syllabus/comp-301.pdf"
                   value={formData.syllabusUrl}
                   onChange={(e) => setFormData({ ...formData, syllabusUrl: e.target.value })}
                   className="w-full px-3 py-2 text-xs rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500"

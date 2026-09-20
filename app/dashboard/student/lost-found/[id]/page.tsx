@@ -5,7 +5,7 @@ import { LostFoundService } from "@/services/lost-found.service";
 import { StudentItemDetail } from "@/components/lost-found/student-item-detail";
 
 export const metadata = {
-  title: "Item Details & Claim Verification | CampusSphere",
+  title: "Item Details & Claim Verification | Campus Connect",
   description: "View item information, deterministic matches, and submit verified recovery claims.",
 };
 

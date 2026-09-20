@@ -36,7 +36,7 @@ export async function GET(request: NextRequest) {
       // Generate standard RFC 4180 CSV
       const rows: string[] = [];
       rows.push(`"OFFICIAL ACADEMIC TRANSCRIPT"`);
-      rows.push(`"Institution","CampusSphere College of Engineering & Technology"`);
+      rows.push(`"Institution","Campus Connect College of Engineering & Technology"`);
       rows.push(`"Student Name","${transcript.student.name}"`);
       rows.push(`"Roll Number","${transcript.student.rollNumber}"`);
       rows.push(`"PRN Number","${transcript.student.prnNumber}"`);
@@ -123,7 +123,7 @@ export async function GET(request: NextRequest) {
     <button onclick="window.print()" style="padding: 8px 16px; background: #2563eb; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: bold;">Print / Save as PDF</button>
   </div>
   <div class="header">
-    <h1>CampusSphere Institute of Technology</h1>
+    <h1>Campus Connect Institute of Technology</h1>
     <p>Office of Academic Affairs & Controller of Examinations</p>
     <p><strong>OFFICIAL ACADEMIC TRANSCRIPT</strong></p>
   </div>

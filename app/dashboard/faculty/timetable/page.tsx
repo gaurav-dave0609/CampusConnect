@@ -4,7 +4,7 @@ import { TimetableService } from "@/services/timetable.service";
 import { FacultyTimetableView } from "@/components/timetable/faculty-timetable-view";
 
 export const metadata = {
-  title: "Faculty Teaching Schedule | CampusSphere",
+  title: "Faculty Teaching Schedule | Campus Connect",
   description: "View consolidated weekly teaching schedule across assigned academic divisions and rooms.",
 };
 

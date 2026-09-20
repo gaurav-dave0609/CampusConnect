@@ -4,7 +4,7 @@ import { AttendanceService } from "@/services/attendance.service";
 import { StudentAttendanceView } from "@/components/attendance/student-attendance-view";
 
 export const metadata = {
-  title: "My Attendance & Projection | CampusSphere",
+  title: "My Attendance & Projection | Campus Connect",
   description: "View subject-wise attendance, calendar breakdown, history, and real-time projection simulator.",
 };
 

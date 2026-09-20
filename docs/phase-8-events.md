@@ -2,7 +2,7 @@
 
 ## 1. Executive Architecture Summary
 
-Phase 8 introduces an institutional-grade event management and discovery platform to CampusSphere. The system orchestrates the complete lifecycle:
+Phase 8 introduces an institutional-grade event management and discovery platform to Campus Connect. The system orchestrates the complete lifecycle:
 $$\text{Authoring} \longrightarrow \text{Validation} \longrightarrow \text{Publishing} \longrightarrow \text{Discovery} \longrightarrow \text{Atomic Capacity Check} \longrightarrow \text{Ticket Generation} \longrightarrow \text{Attendance} \longrightarrow \text{Analytics}$$
 
 Designed for multi-role university operations, the module empowers Admins, Faculty, Club Coordinators, and Placement Officers to host hackathons, technical workshops, cultural galas, sports tournaments, and recruitment drives with strict concurrency safeguards and real-time attendance telemetry.

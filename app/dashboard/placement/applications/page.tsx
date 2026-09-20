@@ -3,7 +3,7 @@ import { requireRole } from "@/lib/auth/rbac";
 import { OfficerApplicationsPipeline } from "@/components/placement/officer-applications-pipeline";
 
 export const metadata = {
-  title: "Candidate Recruitment Pipeline | CampusSphere",
+  title: "Candidate Recruitment Pipeline | Campus Connect",
   description: "Cross-drive applicant screening, status transitions, and audit records.",
 };
 

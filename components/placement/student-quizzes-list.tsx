@@ -60,25 +60,25 @@ export function StudentQuizzesList() {
   return (
     <div className="max-w-6xl mx-auto space-y-8 pb-16">
       {/* Header Banner */}
-      <div className="rounded-3xl border border-indigo-100 bg-gradient-to-br from-slate-900 via-indigo-950 to-blue-900 p-6 sm:p-8 text-white shadow-xl dark:border-indigo-950 flex flex-col sm:flex-row sm:items-center justify-between gap-6">
+      <div className="rounded-3xl border border-emerald-100/80 bg-white p-6 sm:p-8 text-slate-900 shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-6">
         <div className="space-y-3 max-w-xl">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-indigo-500/30 text-indigo-200 border border-indigo-400/30 backdrop-blur-sm">
-            <Flame className="h-3.5 w-3.5 text-amber-400" />
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200/60">
+            <Flame className="h-3.5 w-3.5 text-amber-500" />
             <span>Timed Placement Assessments</span>
           </div>
-          <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight">
+          <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900">
             Timed Evaluation Quizzes
           </h1>
-          <p className="text-sm text-indigo-100/80 leading-relaxed">
+          <p className="text-sm text-slate-600 leading-relaxed">
             Simulate real recruitment screener rounds with server-enforced countdown timers, instant server grading, question palette review, and comprehensive explanations.
           </p>
         </div>
 
         <Link
           href="/dashboard/student/placements/preparation"
-          className="inline-flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-indigo-800/60 text-white text-xs font-bold hover:bg-indigo-700/60 border border-indigo-400/30 transition-colors shrink-0"
+          className="inline-flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-emerald-50 text-emerald-800 text-xs font-bold hover:bg-emerald-100 border border-emerald-200/60 transition-colors shrink-0"
         >
-          <BookOpen className="h-4 w-4 text-indigo-300" />
+          <BookOpen className="h-4 w-4 text-emerald-700" />
           <span>Browse Prep Bank</span>
         </Link>
       </div>
@@ -92,8 +92,8 @@ export function StudentQuizzesList() {
             onClick={() => setSelectedCategory(cat)}
             className={`px-4 py-2 rounded-xl text-xs font-bold shrink-0 transition-all ${
               selectedCategory === cat
-                ? "bg-indigo-600 text-white shadow-md shadow-indigo-600/30"
-                : "bg-white text-slate-700 hover:bg-slate-100 border border-slate-200 dark:bg-slate-900 dark:text-slate-300 dark:border-slate-800"
+                ? "bg-[#10B981] text-white shadow-md shadow-emerald-500/20"
+                : "bg-white text-slate-700 hover:bg-[#ECFDF5] border border-emerald-100"
             }`}
           >
             {cat.replace(/_/g, " ")}
@@ -162,7 +162,7 @@ export function StudentQuizzesList() {
                 <div className="mt-5 pt-2">
                   <Link
                     href={`/dashboard/student/placements/quizzes/${quiz.id}`}
-                    className="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-indigo-600 text-white text-xs font-bold hover:bg-indigo-700 transition-colors shadow-sm"
+                    className="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-[#10B981] text-white text-xs font-bold hover:bg-[#059669] transition-colors shadow-sm"
                   >
                     <span>Start Timed Attempt</span>
                     <ArrowRight className="h-3.5 w-3.5" />

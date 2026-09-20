@@ -374,7 +374,7 @@ export class ClubService {
       coordinatorName: input.coordinatorId ? "Student Coordinator" : null,
       logoUrl: input.logoUrl || "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=300&q=80",
       bannerUrl: input.bannerUrl || "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=1200&q=80",
-      contactEmail: input.contactEmail || `info@${slug}.campussphere.edu`,
+      contactEmail: input.contactEmail || `info@${slug}.campusconnect.edu`,
       contactPhone: input.contactPhone || null,
       establishedYear: input.establishedYear || new Date().getFullYear(),
       isRecruiting: input.isRecruiting !== undefined ? input.isRecruiting : true,

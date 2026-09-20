@@ -235,28 +235,28 @@ export function FacultyAttendanceRegister({
   return (
     <div className="space-y-6">
       {/* Top Banner */}
-      <div className="rounded-2xl bg-gradient-to-r from-blue-700 via-indigo-700 to-violet-800 p-6 sm:p-8 text-white shadow-xl">
+      <div className="rounded-2xl bg-white border border-emerald-100/80 p-6 sm:p-8 text-slate-900 shadow-sm">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-xs font-semibold backdrop-blur-sm border border-white/20 mb-2">
-              <ShieldCheck className="h-3.5 w-3.5 text-blue-200" />
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200/80 text-xs font-semibold mb-2">
+              <ShieldCheck className="h-3.5 w-3.5 text-[#10B981]" />
               Official Faculty Attendance Register
             </div>
-            <h1 className="text-2xl sm:text-3xl font-black tracking-tight">
+            <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900">
               Class Attendance Sheet
             </h1>
-            <p className="text-blue-100 text-sm mt-1 max-w-xl">
+            <p className="text-slate-500 text-sm mt-1 max-w-xl">
               Server-authorized attendance recording with real-time enrolled roster verification, duplicate conflict blocking, and audit tracking.
             </p>
           </div>
 
-          <div className="flex items-center gap-3 self-start md:self-auto bg-white/10 backdrop-blur-md px-4 py-3 rounded-xl border border-white/20">
-            <Users className="h-8 w-8 text-blue-200" />
+          <div className="flex items-center gap-3 self-start md:self-auto bg-[#F0FDF4] px-4 py-3 rounded-xl border border-emerald-100">
+            <Users className="h-8 w-8 text-emerald-600" />
             <div>
-              <div className="text-xs text-blue-200 uppercase font-semibold tracking-wider">
+              <div className="text-xs text-slate-500 uppercase font-semibold tracking-wider">
                 Assigned Classes
               </div>
-              <div className="text-lg font-bold">
+              <div className="text-lg font-bold text-slate-900">
                 {assignedSubjects.length} Subject Allocation{assignedSubjects.length > 1 ? "s" : ""}
               </div>
             </div>

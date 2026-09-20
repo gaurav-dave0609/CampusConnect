@@ -100,25 +100,25 @@ export function StudentPrepBank() {
   return (
     <div className="max-w-6xl mx-auto space-y-8 pb-16">
       {/* Hero Banner */}
-      <div className="rounded-3xl border border-purple-100 bg-gradient-to-br from-slate-900 via-purple-950 to-indigo-950 p-6 sm:p-8 text-white shadow-xl dark:border-purple-950 flex flex-col sm:flex-row sm:items-center justify-between gap-6">
+      <div className="rounded-3xl border border-emerald-100/80 bg-white p-6 sm:p-8 text-slate-900 shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-6">
         <div className="space-y-3 max-w-xl">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-purple-500/30 text-purple-200 border border-purple-400/30 backdrop-blur-sm">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200/60">
             <BookOpen className="h-3.5 w-3.5" />
             <span>Placement Knowledge Repository</span>
           </div>
-          <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight">
+          <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900">
             Aptitude &amp; Technical Prep Bank
           </h1>
-          <p className="text-sm text-purple-100/80 leading-relaxed">
+          <p className="text-sm text-slate-600 leading-relaxed">
             Master campus interview questions across Quantitative Math, Logical Reasoning, DSA, DBMS, Operating Systems, and HR situational frameworks.
           </p>
         </div>
 
         <Link
           href="/dashboard/student/placements/quizzes"
-          className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-2xl bg-white text-slate-900 text-sm font-extrabold hover:bg-slate-100 transition-colors shadow-lg shadow-black/20 self-start sm:self-auto shrink-0"
+          className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-2xl bg-emerald-600 text-white text-sm font-extrabold hover:bg-emerald-700 transition-colors shadow-sm self-start sm:self-auto shrink-0"
         >
-          <Clock className="h-4 w-4 text-purple-600" />
+          <Clock className="h-4 w-4" />
           <span>Launch Timed Quizzes</span>
           <ArrowRight className="h-4 w-4" />
         </Link>

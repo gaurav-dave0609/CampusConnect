@@ -3,7 +3,7 @@ import { Role } from "@prisma/client";
 import { StudentApplicationTracker } from "@/components/placement/student-application-tracker";
 
 export const metadata = {
-  title: "Application Pipeline Tracker | CampusSphere",
+  title: "Application Pipeline Tracker | Campus Connect",
   description: "Monitor official application stages, shortlists, assessment invites, offers, and audit remarks.",
 };
 

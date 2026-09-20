@@ -167,28 +167,28 @@ export function NotificationBell() {
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className="relative p-2 rounded-xl text-slate-500 hover:bg-slate-100 hover:text-slate-700 dark:hover:bg-slate-800 dark:hover:text-slate-200 transition-colors cursor-pointer"
+        className="relative p-2 rounded-xl text-slate-500 hover:bg-[#ECFDF5] hover:text-emerald-700 transition-colors cursor-pointer"
         title="Notifications"
         aria-label="View notifications"
       >
         <Bell className="h-5 w-5" />
         {unreadCount > 0 && (
-          <span className="absolute top-1 right-1 flex items-center justify-center min-w-[18px] h-[18px] px-1 rounded-full bg-rose-600 text-white text-[10px] font-bold border-2 border-white dark:border-slate-900 animate-in zoom-in-50">
+          <span className="absolute top-1 right-1 flex items-center justify-center min-w-[18px] h-[18px] px-1 rounded-full bg-[#10B981] text-white text-[10px] font-bold border-2 border-white animate-in zoom-in-50 shadow-xs">
             {unreadCount > 99 ? "99+" : unreadCount}
           </span>
         )}
       </button>
 
       {isOpen && (
-        <div className="absolute right-0 mt-2 w-80 sm:w-96 rounded-2xl border border-slate-200 bg-white shadow-2xl dark:border-slate-800 dark:bg-slate-900 z-50 overflow-hidden animate-in fade-in-50 slide-in-from-top-2">
+        <div className="absolute right-0 mt-2 w-80 sm:w-96 rounded-2xl border border-emerald-100 bg-white shadow-xl z-50 overflow-hidden animate-in fade-in-50 slide-in-from-top-2">
           {/* Header */}
-          <div className="flex items-center justify-between px-4 py-3 border-b border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/50">
+          <div className="flex items-center justify-between px-4 py-3 border-b border-emerald-50 bg-[#F0FDF4]/60">
             <div className="flex items-center gap-2">
-              <span className="text-sm font-bold text-slate-900 dark:text-white">
+              <span className="text-sm font-bold text-slate-900">
                 Notifications
               </span>
               {unreadCount > 0 && (
-                <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-indigo-100 text-indigo-700 dark:bg-indigo-950 dark:text-indigo-300">
+                <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-[#ECFDF5] text-emerald-700 border border-emerald-200">
                   {unreadCount} new
                 </span>
               )}
@@ -197,7 +197,7 @@ export function NotificationBell() {
               <button
                 type="button"
                 onClick={handleMarkAllRead}
-                className="flex items-center gap-1 text-[11px] font-medium text-indigo-600 hover:text-indigo-800 dark:text-indigo-400 dark:hover:text-indigo-300 transition-colors cursor-pointer"
+                className="flex items-center gap-1 text-[11px] font-semibold text-[#10B981] hover:text-emerald-800 transition-colors cursor-pointer"
               >
                 <CheckCheck className="h-3.5 w-3.5" />
                 <span>Mark all read</span>
@@ -206,15 +206,15 @@ export function NotificationBell() {
           </div>
 
           {/* List */}
-          <div className="max-h-[380px] overflow-y-auto divide-y divide-slate-100 dark:divide-slate-800">
+          <div className="max-h-[380px] overflow-y-auto divide-y divide-slate-100">
             {isLoading ? (
               <div className="p-8 text-center text-xs text-slate-400">
-                <div className="animate-spin h-5 w-5 border-2 border-indigo-600 border-t-transparent rounded-full mx-auto mb-2" />
+                <div className="animate-spin h-5 w-5 border-2 border-[#10B981] border-t-transparent rounded-full mx-auto mb-2" />
                 Loading alerts...
               </div>
             ) : notifications.length === 0 ? (
-              <div className="p-8 text-center text-slate-500 dark:text-slate-400">
-                <Bell className="h-8 w-8 mx-auto text-slate-300 dark:text-slate-600 mb-2" />
+              <div className="p-8 text-center text-slate-500">
+                <Bell className="h-8 w-8 mx-auto text-slate-300 mb-2" />
                 <p className="text-xs font-semibold">No notifications right now</p>
                 <p className="text-[11px] text-slate-400 mt-0.5">You're all caught up!</p>
               </div>
@@ -230,9 +230,9 @@ export function NotificationBell() {
                   <div
                     key={notif.id}
                     onClick={() => handleNotificationClick(notif)}
-                    className={`group p-3.5 flex items-start gap-3 hover:bg-slate-50 dark:hover:bg-slate-800/60 transition-colors cursor-pointer relative ${
+                    className={`group p-3.5 flex items-start gap-3 hover:bg-[#F0FDF4]/50 transition-colors cursor-pointer relative ${
                       !notif.isRead
-                        ? "bg-indigo-50/30 dark:bg-indigo-950/20"
+                        ? "bg-[#ECFDF5]/50"
                         : "opacity-85"
                     }`}
                   >
@@ -244,22 +244,22 @@ export function NotificationBell() {
 
                     <div className="flex-1 min-w-0 pr-4">
                       <div className="flex items-center gap-1.5 flex-wrap">
-                        <span className="text-xs font-bold text-slate-900 dark:text-white line-clamp-1">
+                        <span className="text-xs font-bold text-slate-900 line-clamp-1">
                           {notif.title}
                         </span>
                         {isHighOrUrgent && (
                           <span
                             className={`px-1.5 py-0.2 rounded text-[9px] font-extrabold uppercase ${
                               notif.priority === NotificationPriority.URGENT
-                                ? "bg-rose-100 text-rose-700 dark:bg-rose-950 dark:text-rose-300"
-                                : "bg-amber-100 text-amber-700 dark:bg-amber-950 dark:text-amber-300"
+                                ? "bg-rose-100 text-rose-700"
+                                : "bg-amber-100 text-amber-700"
                             }`}
                           >
                             {notif.priority}
                           </span>
                         )}
                       </div>
-                      <p className="text-[11px] text-slate-600 dark:text-slate-300 line-clamp-2 mt-0.5 leading-relaxed">
+                      <p className="text-[11px] text-slate-600 line-clamp-2 mt-0.5 leading-relaxed">
                         {notif.message}
                       </p>
                       <div className="flex items-center gap-2 mt-1.5 text-[10px] text-slate-400">
@@ -268,7 +268,7 @@ export function NotificationBell() {
                           {formatRelativeTime(notif.createdAt)}
                         </span>
                         {notif.link && (
-                          <span className="text-indigo-600 dark:text-indigo-400 font-medium inline-flex items-center gap-0.5">
+                          <span className="text-[#10B981] font-medium inline-flex items-center gap-0.5">
                             Open <ExternalLink className="h-2.5 w-2.5" />
                           </span>
                         )}
@@ -279,7 +279,7 @@ export function NotificationBell() {
                       <button
                         type="button"
                         onClick={(e) => handleMarkAsRead(notif.id, e)}
-                        className="opacity-0 group-hover:opacity-100 p-1 rounded-md text-slate-400 hover:text-indigo-600 hover:bg-white dark:hover:bg-slate-700 transition-all absolute right-2 top-3"
+                        className="opacity-0 group-hover:opacity-100 p-1 rounded-md text-slate-400 hover:text-emerald-700 hover:bg-white transition-all absolute right-2 top-3"
                         title="Mark as read"
                       >
                         <Check className="h-3.5 w-3.5" />
@@ -292,11 +292,11 @@ export function NotificationBell() {
           </div>
 
           {/* Footer */}
-          <div className="p-2 border-t border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/50 text-center">
+          <div className="p-2 border-t border-emerald-50 bg-[#F0FDF4]/40 text-center">
             <Link
               href="/dashboard/notifications"
               onClick={() => setIsOpen(false)}
-              className="block w-full py-1.5 text-xs font-semibold text-indigo-600 hover:text-indigo-800 dark:text-indigo-400 dark:hover:text-indigo-300 transition-colors"
+              className="block w-full py-1.5 text-xs font-semibold text-[#10B981] hover:text-emerald-800 transition-colors"
             >
               View all in Notification Center &rarr;
             </Link>

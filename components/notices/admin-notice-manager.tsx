@@ -272,7 +272,7 @@ export function AdminNoticeManager({ initialNotices, initialAnalytics }: Props) 
 
         <button
           onClick={() => setIsModalOpen(true)}
-          className="inline-flex items-center gap-2 px-4 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold rounded-xl shadow-xs transition-colors shrink-0"
+          className="inline-flex items-center gap-2 px-4 py-2.5 bg-[#10B981] hover:bg-[#059669] text-white text-sm font-semibold rounded-xl shadow-xs transition-colors shrink-0 cursor-pointer"
         >
           <Plus className="w-4 h-4" />
           <span>Create Notice</span>
@@ -838,7 +838,7 @@ export function AdminNoticeManager({ initialNotices, initialAnalytics }: Props) 
                 type="button"
                 disabled={isSubmitting}
                 onClick={() => handleCreateNotice(NoticeStatus.PUBLISHED)}
-                className="inline-flex items-center gap-1.5 px-4 py-2 text-xs font-semibold bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg transition-colors shadow-xs"
+                className="inline-flex items-center gap-1.5 px-4 py-2 text-xs font-semibold bg-[#10B981] hover:bg-[#059669] text-white rounded-lg transition-colors shadow-xs cursor-pointer"
               >
                 <Send className="w-3.5 h-3.5" />
                 <span>Publish Notice</span>

@@ -32,11 +32,11 @@ export function generateICS(event: {
   const lines = [
     "BEGIN:VCALENDAR",
     "VERSION:2.0",
-    "PRODID:-//CampusSphere//Institutional Event System//EN",
+    "PRODID:-//Campus Connect//Institutional Event System//EN",
     "CALSCALE:GREGORIAN",
     "METHOD:PUBLISH",
     "BEGIN:VEVENT",
-    `UID:event-${event.id}@campussphere.edu`,
+    `UID:event-${event.id}@campusconnect.edu`,
     `DTSTAMP:${formatICSDate(now)}`,
     `DTSTART:${formatICSDate(startDate)}`,
     `DTEND:${formatICSDate(endDate)}`,
@@ -44,7 +44,7 @@ export function generateICS(event: {
     `DESCRIPTION:${escapeICSText(event.summary || event.description.slice(0, 200))}`,
     `LOCATION:${escapeICSText(event.venue)}`,
     `STATUS:CONFIRMED`,
-    `ORGANIZER;CN=${escapeICSText(event.organizerName || "CampusSphere Coordinator")}:mailto:events@campussphere.edu`,
+    `ORGANIZER;CN=${escapeICSText(event.organizerName || "Campus Connect Coordinator")}:mailto:events@campusconnect.edu`,
     "END:VEVENT",
     "END:VCALENDAR",
   ];

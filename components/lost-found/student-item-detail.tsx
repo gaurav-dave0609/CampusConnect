@@ -219,18 +219,18 @@ export function StudentItemDetail({
 
       {/* Potential Matches Section */}
       {potentialMatches && potentialMatches.length > 0 && (
-        <div className="rounded-2xl border border-indigo-100 bg-gradient-to-br from-indigo-50/50 to-sky-50/50 p-6 dark:border-indigo-950/50 dark:bg-slate-900/50 space-y-4">
+        <div className="rounded-2xl border border-emerald-100 bg-[#F6FDF9] p-6 space-y-4">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-indigo-600 text-white">
+            <div className="flex items-center gap-2.5">
+              <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-[#10B981] text-white shadow-xs">
                 <Sparkles className="h-4 w-4" />
               </div>
               <div>
-                <h3 className="text-sm font-bold text-slate-900 dark:text-white">
+                <h3 className="text-sm font-bold text-slate-900">
                   Automated Potential Matches Found ({potentialMatches.length})
                 </h3>
                 <p className="text-[11px] text-slate-500">
-                  CampusSphere algorithm identified opposite reports matching category, location, and keywords.
+                  Campus Connect algorithm identified opposite reports matching category, location, and keywords.
                 </p>
               </div>
             </div>

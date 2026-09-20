@@ -117,7 +117,7 @@ export function OfficerCompaniesManager() {
         <button
           type="button"
           onClick={() => setModalOpen(true)}
-          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-2xl bg-indigo-600 text-white text-xs font-bold hover:bg-indigo-700 transition-colors shadow-sm self-start sm:self-auto"
+          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-2xl bg-[#10B981] text-white text-xs font-bold hover:bg-[#059669] transition-colors shadow-sm self-start sm:self-auto cursor-pointer"
         >
           <Plus className="h-4 w-4" />
           <span>Add Recruiting Partner</span>
@@ -174,7 +174,7 @@ export function OfficerCompaniesManager() {
                     {company.name}
                   </h3>
                   <p className="text-xs text-slate-500 line-clamp-2 mt-1">
-                    {company.description || "Corporate recruiting partner of CampusSphere."}
+                    {company.description || "Corporate recruiting partner of Campus Connect."}
                   </p>
                 </div>
 
@@ -349,7 +349,7 @@ export function OfficerCompaniesManager() {
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="px-5 py-2 text-xs font-bold rounded-xl bg-indigo-600 text-white hover:bg-indigo-700 disabled:opacity-50 shadow-md"
+                  className="px-5 py-2 text-xs font-bold rounded-xl bg-[#10B981] text-white hover:bg-[#059669] disabled:opacity-50 shadow-md shadow-emerald-500/20 cursor-pointer"
                 >
                   {submitting ? "Registering..." : "Add Partner"}
                 </button>

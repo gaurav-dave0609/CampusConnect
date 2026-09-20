@@ -1,6 +1,7 @@
 import { prisma } from "@/lib/prisma";
 import { DEMO_USERS } from "@/lib/auth/demo-users";
 import { isDatabaseOnline } from "@/lib/db-health";
+import { StudentDirectoryService } from "@/lib/data/campusconnect-students";
 import {
   STUDENT_IMMUTABLE_FIELDS,
   FACULTY_IMMUTABLE_FIELDS,
@@ -118,7 +119,38 @@ export class ProfileService {
 
     // Fallback to Demo Catalog
     const demo = DEMO_USERS.find((u) => u.id === userId);
-    if (!demo) return null;
+    if (!demo) {
+      // Check official Student Directory dataset
+      const dirStudent = StudentDirectoryService.getStudentById(userId) || StudentDirectoryService.getStudentByEmail(userId);
+      if (dirStudent) {
+        const nameParts = dirStudent.name.split(" ");
+        return {
+          id: dirStudent.studentId,
+          email: dirStudent.email,
+          role: Role.STUDENT,
+          firstName: nameParts[0],
+          lastName: nameParts.slice(1).join(" ") || "",
+          fullName: dirStudent.name,
+          phone: "+91 98200 12345",
+          avatarUrl: null,
+          isActive: true,
+          createdAt: new Date("2024-08-01"),
+          student: {
+            studentId: dirStudent.studentId,
+            rollNumber: dirStudent.rollNumber,
+            prnNumber: `PRN2024${dirStudent.studentId.replace("CC", "")}`,
+            department: dirStudent.stream,
+            semester: dirStudent.semester,
+            division: `Division ${dirStudent.division}`,
+            batchYear: dirStudent.year === "FY" ? "2024-2027" : dirStudent.year === "SY" ? "2023-2026" : "2022-2025",
+            cgpa: dirStudent.cgpa,
+            skills: dirStudent.skills,
+            bio: `${dirStudent.stream} (${dirStudent.year}) student at CampusConnect.`,
+          },
+        };
+      }
+      return null;
+    }
 
     return {
       id: demo.id,

@@ -13,8 +13,13 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "CampusSphere — All-in-One College Ecosystem",
+  title: "CampusConnect — Learn. Connect. Grow.",
   description: "Next-generation comprehensive campus management, timetable optimization, attendance projection, and academic lifecycle platform.",
+  icons: {
+    icon: "/brand-icon.png",
+    shortcut: "/brand-icon.png",
+    apple: "/brand-icon.png",
+  },
 };
 
 export default function RootLayout({
@@ -24,7 +29,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col bg-slate-50 text-slate-900 selection:bg-indigo-500 selection:text-white dark:bg-slate-950 dark:text-slate-100">
+      <body className="min-h-full flex flex-col bg-transparent text-slate-900 selection:bg-emerald-500 selection:text-white">
         {children}
       </body>
     </html>

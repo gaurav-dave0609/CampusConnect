@@ -138,15 +138,15 @@ export function StudentNoticeCenter({ initialNotices, unreadCount }: Props) {
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 border-b border-slate-200 dark:border-slate-800 pb-6">
         <div>
-          <div className="flex items-center gap-2">
-            <span className="p-2 bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 rounded-lg border border-indigo-200/60 dark:border-indigo-800/60">
+          <div className="flex items-center gap-2.5">
+            <span className="p-2.5 bg-[#ECFDF5] text-[#10B981] rounded-xl border border-emerald-200/80">
               <BellRing className="w-5 h-5" />
             </span>
-            <h1 className="text-2xl font-bold text-slate-900 dark:text-white tracking-tight">
+            <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
               Notice Center
             </h1>
           </div>
-          <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
+          <p className="text-sm text-slate-500 font-medium mt-1">
             Stay informed about what&apos;s happening across your campus.
           </p>
         </div>
@@ -155,80 +155,80 @@ export function StudentNoticeCenter({ initialNotices, unreadCount }: Props) {
       {/* KPI Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {/* Unread */}
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-4 shadow-sm">
+        <div className="bg-white border border-emerald-100/70 rounded-2xl p-5 shadow-[0_4px_20px_-2px_rgba(16,185,129,0.05)] hover:shadow-md transition-all">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
+            <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider">
               Unread Notices
             </span>
-            <span className="p-2 bg-indigo-50 dark:bg-indigo-950/50 text-indigo-600 dark:text-indigo-400 rounded-lg">
-              <BellRing className="w-4 h-4" />
-            </span>
+            <div className="h-10 w-10 rounded-xl bg-indigo-500 text-white flex items-center justify-center shadow-sm">
+              <BellRing className="w-5 h-5" />
+            </div>
           </div>
-          <div className="mt-2 flex items-baseline gap-2">
-            <span className="text-2xl font-bold text-slate-900 dark:text-white">
+          <div className="mt-3 flex items-baseline gap-2">
+            <span className="text-3xl font-extrabold text-slate-900">
               {kpis.unread}
             </span>
-            <span className="text-xs text-slate-500">requiring review</span>
+            <span className="text-xs text-slate-400 font-medium">requiring review</span>
           </div>
         </div>
 
         {/* Urgent / Important */}
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-4 shadow-sm">
+        <div className="bg-white border border-emerald-100/70 rounded-2xl p-5 shadow-[0_4px_20px_-2px_rgba(16,185,129,0.05)] hover:shadow-md transition-all">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
-              Important & Urgent
+            <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider">
+              Important &amp; Urgent
             </span>
-            <span className="p-2 bg-rose-50 dark:bg-rose-950/50 text-rose-600 dark:text-rose-400 rounded-lg">
-              <AlertCircle className="w-4 h-4" />
-            </span>
+            <div className="h-10 w-10 rounded-xl bg-rose-500 text-white flex items-center justify-center shadow-sm">
+              <AlertCircle className="w-5 h-5" />
+            </div>
           </div>
-          <div className="mt-2 flex items-baseline gap-2">
-            <span className="text-2xl font-bold text-slate-900 dark:text-white">
+          <div className="mt-3 flex items-baseline gap-2">
+            <span className="text-3xl font-extrabold text-slate-900">
               {kpis.urgentImportant}
             </span>
-            <span className="text-xs text-slate-500">high-priority circulars</span>
+            <span className="text-xs text-slate-400 font-medium">high-priority circulars</span>
           </div>
         </div>
 
         {/* Academic */}
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-4 shadow-sm">
+        <div className="bg-white border border-emerald-100/70 rounded-2xl p-5 shadow-[0_4px_20px_-2px_rgba(16,185,129,0.05)] hover:shadow-md transition-all">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
-              Academic & Exams
+            <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider">
+              Academic &amp; Exams
             </span>
-            <span className="p-2 bg-emerald-50 dark:bg-emerald-950/50 text-emerald-600 dark:text-emerald-400 rounded-lg">
-              <BookOpen className="w-4 h-4" />
-            </span>
+            <div className="h-10 w-10 rounded-xl bg-[#10B981] text-white flex items-center justify-center shadow-sm">
+              <BookOpen className="w-5 h-5" />
+            </div>
           </div>
-          <div className="mt-2 flex items-baseline gap-2">
-            <span className="text-2xl font-bold text-slate-900 dark:text-white">
+          <div className="mt-3 flex items-baseline gap-2">
+            <span className="text-3xl font-extrabold text-slate-900">
               {kpis.academic}
             </span>
-            <span className="text-xs text-slate-500">syllabus & schedule</span>
+            <span className="text-xs text-slate-400 font-medium">syllabus &amp; schedule</span>
           </div>
         </div>
 
         {/* New this week */}
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-4 shadow-sm">
+        <div className="bg-white border border-emerald-100/70 rounded-2xl p-5 shadow-[0_4px_20px_-2px_rgba(16,185,129,0.05)] hover:shadow-md transition-all">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
+            <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider">
               New This Week
             </span>
-            <span className="p-2 bg-amber-50 dark:bg-amber-950/50 text-amber-600 dark:text-amber-400 rounded-lg">
-              <Sparkles className="w-4 h-4" />
-            </span>
+            <div className="h-10 w-10 rounded-xl bg-amber-500 text-white flex items-center justify-center shadow-sm">
+              <Sparkles className="w-5 h-5" />
+            </div>
           </div>
-          <div className="mt-2 flex items-baseline gap-2">
-            <span className="text-2xl font-bold text-slate-900 dark:text-white">
+          <div className="mt-3 flex items-baseline gap-2">
+            <span className="text-3xl font-extrabold text-slate-900">
               {kpis.newThisWeek}
             </span>
-            <span className="text-xs text-slate-500">past 7 days</span>
+            <span className="text-xs text-slate-400 font-medium">past 7 days</span>
           </div>
         </div>
       </div>
 
       {/* Filters and Search Bar */}
-      <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-4 shadow-sm space-y-4">
+      <div className="bg-white border border-emerald-100/70 rounded-2xl p-5 shadow-[0_4px_20px_-2px_rgba(16,185,129,0.05)] space-y-4">
         <div className="flex flex-col lg:flex-row gap-3">
           {/* Search Input */}
           <div className="relative flex-1">
@@ -238,38 +238,38 @@ export function StudentNoticeCenter({ initialNotices, unreadCount }: Props) {
               placeholder="Search notices by title, summary, or department..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-lg text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              className="w-full pl-10 pr-4 py-2 bg-[#F9FDFB] border border-emerald-100/80 rounded-xl text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-[#10B981]"
             />
           </div>
 
           {/* Read State Toggle */}
-          <div className="flex items-center bg-slate-100 dark:bg-slate-800 p-1 rounded-lg text-xs font-medium">
+          <div className="flex items-center bg-[#F0FDF4] border border-emerald-100 p-1 rounded-xl text-xs font-medium">
             <button
               onClick={() => setSelectedReadFilter("ALL")}
-              className={`px-3 py-1.5 rounded-md transition-colors ${
+              className={`px-3 py-1.5 rounded-lg transition-colors cursor-pointer ${
                 selectedReadFilter === "ALL"
-                  ? "bg-white dark:bg-slate-900 text-slate-900 dark:text-white shadow-xs font-semibold"
-                  : "text-slate-600 dark:text-slate-400 hover:text-slate-900"
+                  ? "bg-white text-emerald-900 shadow-xs font-bold"
+                  : "text-slate-600 hover:text-emerald-900"
               }`}
             >
               All Notices
             </button>
             <button
               onClick={() => setSelectedReadFilter("UNREAD")}
-              className={`px-3 py-1.5 rounded-md transition-colors ${
+              className={`px-3 py-1.5 rounded-lg transition-colors cursor-pointer ${
                 selectedReadFilter === "UNREAD"
-                  ? "bg-white dark:bg-slate-900 text-indigo-600 dark:text-indigo-400 shadow-xs font-semibold"
-                  : "text-slate-600 dark:text-slate-400 hover:text-slate-900"
+                  ? "bg-white text-[#10B981] shadow-xs font-bold"
+                  : "text-slate-600 hover:text-emerald-900"
               }`}
             >
               Unread ({kpis.unread})
             </button>
             <button
               onClick={() => setSelectedReadFilter("READ")}
-              className={`px-3 py-1.5 rounded-md transition-colors ${
+              className={`px-3 py-1.5 rounded-lg transition-colors cursor-pointer ${
                 selectedReadFilter === "READ"
-                  ? "bg-white dark:bg-slate-900 text-slate-900 dark:text-white shadow-xs font-semibold"
-                  : "text-slate-600 dark:text-slate-400 hover:text-slate-900"
+                  ? "bg-white text-emerald-900 shadow-xs font-bold"
+                  : "text-slate-600 hover:text-emerald-900"
               }`}
             >
               Read
@@ -281,7 +281,7 @@ export function StudentNoticeCenter({ initialNotices, unreadCount }: Props) {
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value as any)}
-              className="px-3 py-2 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-xs text-slate-700 dark:text-slate-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 font-medium"
+              className="px-3 py-2 bg-[#F9FDFB] border border-emerald-100/80 rounded-xl text-xs text-slate-700 focus:outline-none focus:ring-1 focus:ring-[#10B981] font-medium"
             >
               <option value="priority">Priority First</option>
               <option value="newest">Newest First</option>
@@ -296,10 +296,10 @@ export function StudentNoticeCenter({ initialNotices, unreadCount }: Props) {
             <button
               key={cat.value}
               onClick={() => setSelectedCategory(cat.value)}
-              className={`px-3 py-1 rounded-full text-xs font-medium whitespace-nowrap transition-all ${
+              className={`px-3 py-1 rounded-full text-xs font-semibold whitespace-nowrap transition-all cursor-pointer ${
                 selectedCategory === cat.value
-                  ? "bg-slate-900 text-white dark:bg-white dark:text-slate-900 shadow-xs"
-                  : "bg-slate-100 text-slate-600 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-400 dark:hover:bg-slate-700"
+                  ? "bg-[#10B981] text-white shadow-xs"
+                  : "bg-white text-slate-600 hover:bg-[#ECFDF5] hover:text-emerald-800 border border-emerald-100/80"
               }`}
             >
               {cat.label}
@@ -334,10 +334,10 @@ export function StudentNoticeCenter({ initialNotices, unreadCount }: Props) {
               <Link
                 key={notice.id}
                 href={`/dashboard/student/notices/${notice.id}`}
-                className={`group block bg-white dark:bg-slate-900 border rounded-xl p-5 transition-all hover:shadow-md hover:border-indigo-300 dark:hover:border-indigo-700 relative overflow-hidden ${
+                className={`group block bg-white border rounded-xl p-5 transition-all hover:shadow-md hover:border-emerald-300 relative overflow-hidden ${
                   !notice.isRead
-                    ? "border-indigo-200 dark:border-indigo-900/60 bg-gradient-to-r from-indigo-50/20 to-transparent dark:from-indigo-950/10"
-                    : "border-slate-200 dark:border-slate-800"
+                    ? "border-emerald-200 bg-gradient-to-r from-emerald-50/40 to-transparent"
+                    : "border-slate-200"
                 }`}
               >
                 {/* Priority accent stripe */}

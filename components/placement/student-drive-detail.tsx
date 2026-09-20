@@ -43,7 +43,7 @@ export function StudentDriveDetail({ driveId }: { driveId: string }) {
   const [loading, setLoading] = useState(true);
   const [applyModalOpen, setApplyModalOpen] = useState(false);
   const [submitting, setSubmitting] = useState(false);
-  const [resumeUrl, setResumeUrl] = useState("https://campussphere.edu/resumes/tirth-resume.pdf");
+  const [resumeUrl, setResumeUrl] = useState("https://campusconnect.edu/resumes/tirth-resume.pdf");
   const [coverNote, setCoverNote] = useState("");
   const [applySuccess, setApplySuccess] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
@@ -124,7 +124,7 @@ export function StudentDriveDetail({ driveId }: { driveId: string }) {
         </p>
         <Link
           href="/dashboard/student/placements"
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-indigo-600 text-white text-sm font-semibold"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#10B981] hover:bg-[#059669] text-white text-sm font-semibold transition"
         >
           <ChevronLeft className="h-4 w-4" />
           <span>Back to Opportunities</span>
@@ -224,7 +224,7 @@ export function StudentDriveDetail({ driveId }: { driveId: string }) {
               <button
                 type="button"
                 onClick={() => setApplyModalOpen(true)}
-                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-2xl bg-indigo-600 text-white font-bold hover:bg-indigo-700 shadow-md shadow-indigo-600/30 transition-all text-sm"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-2xl bg-[#10B981] text-white font-bold hover:bg-[#059669] shadow-md shadow-emerald-500/20 transition-all text-sm cursor-pointer"
               >
                 <FileCheck className="h-4 w-4" />
                 <span>Apply to Drive</span>
@@ -451,7 +451,7 @@ export function StudentDriveDetail({ driveId }: { driveId: string }) {
                   <button
                     type="submit"
                     disabled={submitting}
-                    className="px-5 py-2 rounded-xl bg-indigo-600 text-white text-sm font-bold hover:bg-indigo-700 disabled:opacity-50 transition-all shadow-md"
+                    className="px-5 py-2 rounded-xl bg-[#10B981] text-white text-sm font-bold hover:bg-[#059669] disabled:opacity-50 transition-all shadow-md shadow-emerald-500/20 cursor-pointer"
                   >
                     {submitting ? "Submitting..." : "Confirm & Submit"}
                   </button>

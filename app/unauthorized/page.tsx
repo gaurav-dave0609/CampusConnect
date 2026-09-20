@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { ShieldAlert, ArrowLeft, LogOut } from "lucide-react";
 import { getSession } from "@/lib/auth/session";
 
@@ -24,10 +25,18 @@ export default async function UnauthorizedPage({
   const returnUrl = dashboardRouteMap[currentRole] || "/login";
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4 bg-slate-50 dark:bg-slate-950">
-      <div className="max-w-md w-full text-center p-8 rounded-2xl border border-slate-200 bg-white/90 shadow-xl backdrop-blur-md dark:border-slate-800 dark:bg-slate-900/90">
-        <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-rose-100 text-rose-600 dark:bg-rose-950/60 dark:text-rose-400 mb-6 shadow-sm">
-          <ShieldAlert className="h-9 w-9" />
+    <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-[#F0FDF4] via-[#F6FDF9] to-[#E0F7F1]">
+      <div className="max-w-md w-full text-center p-8 rounded-3xl border border-emerald-100 bg-white/95 shadow-xl backdrop-blur-md">
+        <div className="mx-auto mb-5 relative h-10 w-44">
+          <Image
+            src="/brand-logo.png"
+            alt="CampusConnect"
+            fill
+            className="object-contain"
+          />
+        </div>
+        <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-rose-50 text-rose-600 mb-4 shadow-sm border border-rose-100">
+          <ShieldAlert className="h-7 w-7" />
         </div>
 
         <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-rose-50 text-rose-700 border border-rose-200 dark:bg-rose-950 dark:text-rose-300 dark:border-rose-900 mb-3">
@@ -53,7 +62,7 @@ export default async function UnauthorizedPage({
         <div className="mt-8 flex flex-col gap-3">
           <Link
             href={returnUrl}
-            className="inline-flex items-center justify-center gap-2 rounded-xl bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 transition-all"
+            className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#10B981] px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-[#059669] transition-all"
           >
             <ArrowLeft className="h-4 w-4" />
             Return to Authorized Dashboard

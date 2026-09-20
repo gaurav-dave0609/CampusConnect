@@ -3,7 +3,7 @@ import { requireRole } from "@/lib/auth/rbac";
 import { OfficerCommandCenter } from "@/components/placement/officer-command-center";
 
 export const metadata = {
-  title: "Placement Command Center | CampusSphere",
+  title: "Placement Command Center | Campus Connect",
   description: "Corporate recruitment command, drive publishing, and candidate pipeline tracking.",
 };
 

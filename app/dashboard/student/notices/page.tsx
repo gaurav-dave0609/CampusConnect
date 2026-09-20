@@ -6,7 +6,7 @@ import { StudentNoticeCenter, NoticeCardData } from "@/components/notices/studen
 import { Role } from "@prisma/client";
 
 export const metadata = {
-  title: "Notice Center | CampusSphere",
+  title: "Notice Center | Campus Connect",
   description: "Official notices, circulars, and institutional announcements.",
 };
 

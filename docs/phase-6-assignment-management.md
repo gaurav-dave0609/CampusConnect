@@ -1,7 +1,7 @@
 # Phase 6 — Assignment Management & Submission System
 
 ## Overview
-Phase 6 delivers the production-ready **Assignment Management & Submission System** for CampusSphere. The module provides end-to-end academic coursework authoring, resource attachment management, role-scoped publishing, student submission stations with dynamic countdown timers, server-authoritative deadline evaluation, late submission handling, resubmissions, grading drawers, and Recharts analytics.
+Phase 6 delivers the production-ready **Assignment Management & Submission System** for Campus Connect. The module provides end-to-end academic coursework authoring, resource attachment management, role-scoped publishing, student submission stations with dynamic countdown timers, server-authoritative deadline evaluation, late submission handling, resubmissions, grading drawers, and Recharts analytics.
 
 ---
 
@@ -124,6 +124,6 @@ The following models and enums represent the assignment domain in `prisma/schema
 
 ## 7. Demo Accounts & Credentials
 
-- **Student Account**: `student@campussphere.edu` / `StudentPassword@123` (Aarav Mehta, Roll No: `22COMPA101`, Division A)
-- **Faculty Account**: `faculty@campussphere.edu` / `FacultyPassword@123` (Prof. Meera Sen, DBMS & Computer Networks)
-- **Admin Account**: `admin@campussphere.edu` / `AdminPassword@123` (Dr. Rajeshwar Sharma)
+- **Student Account**: `student@campusconnect.edu` / `StudentPassword@123` (Aarav Mehta, Roll No: `22COMPA101`, Division A)
+- **Faculty Account**: `faculty@campusconnect.edu` / `FacultyPassword@123` (Prof. Meera Sen, DBMS & Computer Networks)
+- **Admin Account**: `admin@campusconnect.edu` / `AdminPassword@123` (Dr. Rajeshwar Sharma)

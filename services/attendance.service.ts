@@ -6,6 +6,7 @@ import {
   DEMO_ENROLLED_STUDENTS,
   DemoSessionRecord,
 } from "@/lib/attendance/demo-attendance";
+import { StudentDirectoryService } from "@/lib/data/campusconnect-students";
 import {
   calculateAttendancePercentage,
   calculateAttendanceProjection,
@@ -53,6 +54,58 @@ export class AttendanceService {
     const studentRecords = DEMO_ATTENDANCE_DATABASE.filter(
       (r) => r.studentId === studentUserId
     );
+
+    if (studentRecords.length === 0) {
+      const dirStudent =
+        StudentDirectoryService.getStudentById(studentUserId) ||
+        StudentDirectoryService.getStudentByEmail(studentUserId);
+
+      if (dirStudent) {
+        const totalConducted = 50;
+        const totalPresent = Math.round(totalConducted * (dirStudent.overallAttendancePercentage / 100));
+        const totalAbsent = totalConducted - totalPresent;
+        const overallPercentage = dirStudent.overallAttendancePercentage;
+        const overallRisk = getAttendanceRisk(overallPercentage, targetPercentage);
+        const projection = calculateAttendanceProjection(totalPresent, totalConducted, targetPercentage);
+
+        const streamSubjects = [
+          { code: "COMP-301", name: "Database Management Systems", faculty: "Prof. Meera Sen" },
+          { code: "COMP-302", name: "Computer Networks", faculty: "Prof. Meera Sen" },
+          { code: "COMP-303", name: "Operating Systems", faculty: "Prof. Arvind Kulkarni" },
+          { code: "COMP-304", name: "Software Project Management", faculty: "Dr. Sandeep Joshi" },
+        ];
+
+        const subjectBreakdown: SubjectAttendanceStat[] = streamSubjects.map((s, idx) => {
+          const subConducted = 12 + (idx % 2);
+          const subPresent = Math.min(subConducted, Math.max(0, Math.round(subConducted * (overallPercentage / 100))));
+          const pct = calculateAttendancePercentage(subPresent, subConducted);
+          return {
+            subjectId: s.code,
+            subjectCode: s.code,
+            subjectName: s.name,
+            facultyName: s.faculty,
+            conducted: subConducted,
+            present: subPresent,
+            absent: subConducted - subPresent,
+            percentage: pct,
+            risk: getAttendanceRisk(pct, targetPercentage),
+            projectionText: calculateAttendanceProjection(subPresent, subConducted, targetPercentage).projectionMessage,
+          };
+        });
+
+        return {
+          studentId: dirStudent.studentId,
+          rollNumber: dirStudent.rollNumber,
+          overallConducted: totalConducted,
+          overallPresent: totalPresent,
+          overallAbsent: totalAbsent,
+          overallPercentage,
+          overallRisk,
+          projection,
+          subjectBreakdown,
+        };
+      }
+    }
 
     // Group by subject
     const subjectMap: Record<

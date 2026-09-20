@@ -15,7 +15,7 @@ describe("Authentication & Server-Side RBAC Integration", () => {
 
       expect(user).not.toBeNull();
       expect(user?.role).toBe(Role.ADMIN);
-      expect(user?.email).toBe("admin@campussphere.edu");
+      expect(user?.email).toBe("admin@campusconnect.edu");
     });
 
     it("should authenticate the STUDENT demo user", async () => {
@@ -66,7 +66,7 @@ describe("Authentication & Server-Side RBAC Integration", () => {
 
     it("should reject incorrect password for existing user", async () => {
       const user = await AuthService.authenticate({
-        email: "admin@campussphere.edu",
+        email: "admin@campusconnect.edu",
         password: "WrongPassword@999",
       });
 
@@ -75,7 +75,7 @@ describe("Authentication & Server-Side RBAC Integration", () => {
 
     it("should reject non-existent user", async () => {
       const user = await AuthService.authenticate({
-        email: "ghost@campussphere.edu",
+        email: "ghost@campusconnect.edu",
         password: "SomePassword@123",
       });
 
@@ -86,7 +86,7 @@ describe("Authentication & Server-Side RBAC Integration", () => {
   describe("Zod Input Validation", () => {
     it("should pass for valid email and password format", () => {
       const result = loginSchema.safeParse({
-        email: "student@campussphere.edu",
+        email: "student@campusconnect.edu",
         password: "ValidPassword123",
       });
       expect(result.success).toBe(true);
@@ -102,7 +102,7 @@ describe("Authentication & Server-Side RBAC Integration", () => {
 
     it("should fail for short password under 6 characters", () => {
       const result = loginSchema.safeParse({
-        email: "student@campussphere.edu",
+        email: "student@campusconnect.edu",
         password: "123",
       });
       expect(result.success).toBe(false);

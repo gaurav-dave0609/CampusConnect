@@ -3,7 +3,7 @@ import { requireRole } from "@/lib/auth/rbac";
 import { OfficerAnalyticsView } from "@/components/placement/officer-analytics-view";
 
 export const metadata = {
-  title: "Placement Analytics & Funnel | CampusSphere",
+  title: "Placement Analytics & Funnel | Campus Connect",
   description: "Institutional recruitment outcomes, hiring conversion rates, and package distributions.",
 };
 

@@ -4,7 +4,7 @@ import { AdminTimetableManager } from "@/components/timetable/admin-timetable-ma
 import { DEMO_ROOMS, DEMO_TIMETABLES_STORE } from "@/lib/timetable/demo-timetable";
 
 export const metadata = {
-  title: "Timetable Generator (CSP) | CampusSphere Admin",
+  title: "Timetable Generator (CSP) | Campus Connect Admin",
   description: "Deterministic Constraint Satisfaction Problem solver for academic course schedules.",
 };
 

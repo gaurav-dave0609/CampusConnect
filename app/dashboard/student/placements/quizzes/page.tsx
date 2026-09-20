@@ -3,7 +3,7 @@ import { Role } from "@prisma/client";
 import { StudentQuizzesList } from "@/components/placement/student-quizzes-list";
 
 export const metadata = {
-  title: "Timed Placement Quizzes | CampusSphere",
+  title: "Timed Placement Quizzes | Campus Connect",
   description: "Take timed aptitude and technical placement tests with countdown timers and instant server grading.",
 };
 

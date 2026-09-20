@@ -34,7 +34,7 @@ export interface DemoUser {
 export const DEMO_USERS: DemoUser[] = [
   {
     id: "demo-admin-001",
-    email: "admin@campussphere.edu",
+    email: "admin@campusconnect.edu",
     passwordPlainText: "AdminPassword@123",
     passwordHash: "$2a$10$vN0dYx0eZ2hXw.g7kU2fC.B2e4vQ6Qp9GZgT.P3P9T8U7v2l3QvGy",
     role: Role.ADMIN,
@@ -47,7 +47,7 @@ export const DEMO_USERS: DemoUser[] = [
   },
   {
     id: "demo-student-001",
-    email: "student@campussphere.edu",
+    email: "student@campusconnect.edu",
     passwordPlainText: "StudentPassword@123",
     passwordHash: "$2a$10$O0F9mE2Tq7H4aW9Zk1cEw.wP3lJ7rB9sM4zF5tH8vK2xQ6gL9mN4u",
     role: Role.STUDENT,
@@ -68,7 +68,7 @@ export const DEMO_USERS: DemoUser[] = [
   },
   {
     id: "demo-faculty-001",
-    email: "faculty@campussphere.edu",
+    email: "faculty@campusconnect.edu",
     passwordPlainText: "FacultyPassword@123",
     passwordHash: "$2a$10$S9zL3mQ1kR4vW7xP5eJ8tu3G2hY6rT9wE4nB7vC1xZ8mQ4pK2lD0e",
     role: Role.FACULTY,
@@ -87,7 +87,7 @@ export const DEMO_USERS: DemoUser[] = [
   },
   {
     id: "demo-placement-001",
-    email: "placement@campussphere.edu",
+    email: "placement@campusconnect.edu",
     passwordPlainText: "PlacementPassword@123",
     passwordHash: "$2a$10$K7wP2mE9rL4tQ8yU1cO3re5H8gN2vF7sT6wE3nB9vX4kM1zL0jP5a",
     role: Role.PLACEMENT_OFFICER,
@@ -100,7 +100,7 @@ export const DEMO_USERS: DemoUser[] = [
   },
   {
     id: "demo-club-001",
-    email: "club@campussphere.edu",
+    email: "club@campusconnect.edu",
     passwordPlainText: "ClubPassword@123",
     passwordHash: "$2a$10$V3xN8mK2rP5tQ9yW4eL1ze7H4gM6vB2sT9wE1nB5vC8kM3zL6jR2b",
     role: Role.CLUB_COORDINATOR,

@@ -402,7 +402,7 @@ describe("Phase 14 — Reports, Analytics & Admin Intelligence Tests", () => {
         Role.ADMIN,
         adminId
       );
-      expect(filename).toMatch(/campussphere_attendance_\d{4}-\d{2}-\d{2}\.csv/);
+      expect(filename).toMatch(/campusconnect_attendance_\d{4}-\d{2}-\d{2}\.csv/);
       expect(csv).toContain("Student ID,Roll Number,Student Name,Department,Division");
       expect(csv).toContain("22COMPA101");
     });
@@ -414,7 +414,7 @@ describe("Phase 14 — Reports, Analytics & Admin Intelligence Tests", () => {
         Role.PLACEMENT_OFFICER,
         placementOfficerId
       );
-      expect(filename).toMatch(/campussphere_placement_/);
+      expect(filename).toMatch(/campusconnect_placement_/);
       expect(csv).toContain("Drive ID,Company Name,Role,Employment Type");
     });
 
@@ -425,7 +425,7 @@ describe("Phase 14 — Reports, Analytics & Admin Intelligence Tests", () => {
         Role.CLUB_COORDINATOR,
         clubCoordinatorId
       );
-      expect(filename).toMatch(/campussphere_clubs_/);
+      expect(filename).toMatch(/campusconnect_clubs_/);
       expect(csv).toContain("Club ID,Club Name,Category,Active Members");
     });
   });

@@ -3,7 +3,7 @@ import { Role } from "@prisma/client";
 import { StudentMyReports } from "@/components/lost-found/student-my-reports";
 
 export const metadata = {
-  title: "My Lost & Found Reports | CampusSphere",
+  title: "My Lost & Found Reports | Campus Connect",
   description: "Track, manage, publish, and archive your personal lost item reports and found item notifications.",
 };
 

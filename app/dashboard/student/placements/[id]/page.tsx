@@ -3,7 +3,7 @@ import { Role } from "@prisma/client";
 import { StudentDriveDetail } from "@/components/placement/student-drive-detail";
 
 export const metadata = {
-  title: "Drive Details & Eligibility | CampusSphere",
+  title: "Drive Details & Eligibility | Campus Connect",
   description: "View transparent academic eligibility requirements, job profile description, and submit candidacy.",
 };
 

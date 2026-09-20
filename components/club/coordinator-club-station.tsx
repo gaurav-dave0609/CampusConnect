@@ -64,23 +64,22 @@ export function CoordinatorClubStation({ user, club }: CoordinatorStationProps) 
   return (
     <div className="space-y-6 max-w-7xl mx-auto pb-12">
       {/* Executive Command Header */}
-      <div className="rounded-3xl border border-rose-200/80 bg-gradient-to-r from-rose-950 via-slate-900 to-indigo-950 p-6 sm:p-8 text-white shadow-xl shadow-rose-950/20 relative overflow-hidden">
+      <div className="rounded-3xl border border-emerald-100/80 bg-white p-6 sm:p-8 text-slate-900 shadow-sm relative overflow-hidden">
         <div className="relative z-10 max-w-2xl space-y-2">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-rose-500/30 text-rose-200 border border-rose-400/30 backdrop-blur-sm">
-            <Sparkles className="h-3.5 w-3.5" />
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-800 border border-emerald-200/80">
+            <Sparkles className="h-3.5 w-3.5 text-[#10B981]" />
             <span>Executive Station &bull; {club.name}</span>
           </div>
 
-          <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight">
+          <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900">
             Club Command Station &bull; {user.firstName} {user.lastName}
           </h1>
 
-          <p className="text-sm text-rose-100/80 leading-relaxed">
+          <p className="text-sm text-slate-600 leading-relaxed">
             Manage membership admissions, schedule technical sessions &amp; workshops, and coordinate
             campus-wide competitive events.
           </p>
         </div>
-        <div className="absolute right-0 bottom-0 translate-x-8 translate-y-8 w-64 h-64 bg-rose-500/20 rounded-full blur-3xl pointer-events-none" />
       </div>
 
       {/* KPI Cards Grid */}

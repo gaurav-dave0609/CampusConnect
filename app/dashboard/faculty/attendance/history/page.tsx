@@ -5,7 +5,7 @@ import { FacultyAttendanceHistoryView } from "@/components/attendance/faculty-at
 import { DEMO_ATTENDANCE_DATABASE } from "@/lib/attendance/demo-attendance";
 
 export const metadata = {
-  title: "Attendance Logs & Risk Analytics | CampusSphere",
+  title: "Attendance Logs & Risk Analytics | Campus Connect",
   description: "Review historical class attendance sessions, debarment risk rankings, and audited attendance adjustments.",
 };
 

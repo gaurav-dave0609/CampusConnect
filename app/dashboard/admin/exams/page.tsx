@@ -1,7 +1,7 @@
 import { AdminExamManagementView } from "@/components/exam/admin-exam-management-view";
 
 export const metadata = {
-  title: "Exam Management & Scheduling | CampusSphere",
+  title: "Exam Management & Scheduling | Campus Connect",
   description: "Configure academic exams, detect scheduling conflicts, moderate gradebooks, and publish results.",
 };
 

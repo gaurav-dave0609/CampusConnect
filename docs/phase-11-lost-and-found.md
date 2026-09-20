@@ -2,7 +2,7 @@
 
 ## Overview
 
-The **CampusSphere Lost & Found System** provides an institutional, zero-trust community board and recovery ecosystem tailored for modern college campuses. Built entirely on Next.js 16 App Router, TypeScript, Tailwind CSS, Prisma, and PostgreSQL, this module replaces disorganized messaging groups with a structured, verified lifecycle:
+The **Campus Connect Lost & Found System** provides an institutional, zero-trust community board and recovery ecosystem tailored for modern college campuses. Built entirely on Next.js 16 App Router, TypeScript, Tailwind CSS, Prisma, and PostgreSQL, this module replaces disorganized messaging groups with a structured, verified lifecycle:
 
 $$\text{Report (Lost/Found)} \longrightarrow \text{Publish/Draft} \longrightarrow \text{Deterministic Potential Match} \longrightarrow \text{Evidence-Backed Claim} \longrightarrow \text{Admin Verification} \longrightarrow \text{Physical Handover} \longrightarrow \text{Read-Only Resolved}$$
 
@@ -150,7 +150,7 @@ Uploaded attachments (`/api/lost-found/upload`) pass strict server-side validati
 
 ## 7. UI/UX Implementation
 
-All components follow the CampusSphere design system:
+All components follow the Campus Connect design system:
 1. **Student Lost & Found Hub (`student-lost-found-hub.tsx`)**:
    - Filter chips for `ALL`, `LOST`, and `FOUND`.
    - Category selector with custom Lucide icons.

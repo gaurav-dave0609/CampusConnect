@@ -169,16 +169,16 @@ export function StudentEventDiscovery({ initialEvents, currentUserId }: StudentE
   return (
     <div className="space-y-8 max-w-7xl mx-auto pb-12">
       {/* Header Banner */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-border pb-6">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-emerald-50 pb-6">
         <div>
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-indigo-50 text-indigo-700 dark:bg-indigo-950/70 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800 mb-2">
-            <Sparkles className="h-3.5 w-3.5" />
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-[#ECFDF5] text-emerald-800 border border-emerald-200 mb-2">
+            <Sparkles className="h-3.5 w-3.5 text-[#10B981]" />
             <span>Campus Extracurricular &amp; Technical Discovery</span>
           </div>
-          <h1 className="text-3xl font-extrabold tracking-tight text-foreground">
+          <h1 className="text-3xl font-extrabold tracking-tight text-slate-900">
             Campus Events
           </h1>
-          <p className="text-sm text-muted-foreground mt-1 max-w-2xl">
+          <p className="text-sm text-slate-500 mt-1 max-w-2xl">
             Discover workshops, competitions, clubs, and placement bootcamps happening around campus.
           </p>
         </div>
@@ -186,12 +186,12 @@ export function StudentEventDiscovery({ initialEvents, currentUserId }: StudentE
         <div className="flex items-center gap-3">
           <Link
             href="/dashboard/student/events/registered"
-            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-bold bg-primary/10 text-primary hover:bg-primary hover:text-primary-foreground transition shadow-sm"
+            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-bold bg-emerald-50 text-emerald-700 hover:bg-[#10B981] hover:text-white border border-emerald-200 transition shadow-xs"
           >
             <BookmarkCheck className="h-4 w-4" />
             <span>My Registered Events</span>
             {registeredCount > 0 && (
-              <span className="ml-1 px-1.5 py-0.5 rounded-full text-[10px] bg-primary text-primary-foreground">
+              <span className="ml-1 px-1.5 py-0.5 rounded-full text-[10px] bg-[#10B981] text-white">
                 {registeredCount}
               </span>
             )}
@@ -201,30 +201,30 @@ export function StudentEventDiscovery({ initialEvents, currentUserId }: StudentE
 
       {/* Featured / Hero Banner Card */}
       {featuredEvent && (
-        <div className="relative rounded-3xl overflow-hidden border border-indigo-200/80 dark:border-indigo-900/50 bg-gradient-to-br from-slate-900 via-indigo-950 to-slate-950 text-white shadow-xl shadow-indigo-950/20">
+        <div className="relative rounded-3xl overflow-hidden border border-emerald-100/80 bg-white text-slate-900 shadow-[0_4px_20px_-2px_rgba(16,185,129,0.05)]">
           <div className="grid grid-cols-1 lg:grid-cols-12 min-h-[320px]">
             {/* Left Info Column */}
             <div className="lg:col-span-7 p-6 sm:p-8 lg:p-10 flex flex-col justify-between relative z-10">
               <div>
                 <div className="flex flex-wrap items-center gap-2 mb-3">
-                  <span className="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-indigo-500/30 text-indigo-200 border border-indigo-400/30 backdrop-blur-sm">
+                  <span className="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-[#ECFDF5] text-emerald-700 border border-emerald-200">
                     Featured Flagship Event
                   </span>
-                  <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-500/20 text-emerald-300 border border-emerald-400/30">
+                  <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-teal-50 text-teal-700 border border-teal-200/60">
                     Registration Active
                   </span>
                 </div>
 
-                <h2 className="text-2xl sm:text-3xl font-black tracking-tight text-white leading-tight">
+                <h2 className="text-2xl sm:text-3xl font-black tracking-tight text-slate-900 leading-tight">
                   {featuredEvent.title}
                 </h2>
-                <p className="mt-2.5 text-sm text-indigo-100/85 line-clamp-2 leading-relaxed">
+                <p className="mt-2.5 text-sm text-slate-600 line-clamp-2 leading-relaxed">
                   {featuredEvent.summary}
                 </p>
 
-                <div className="mt-5 grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs text-indigo-200">
+                <div className="mt-5 grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs text-slate-600">
                   <div className="flex items-center gap-2">
-                    <Calendar className="h-4 w-4 text-indigo-400 shrink-0" />
+                    <Calendar className="h-4 w-4 text-[#10B981] shrink-0" />
                     <span>
                       {new Date(featuredEvent.startDateTime).toLocaleDateString("en-US", {
                         weekday: "short",
@@ -234,31 +234,31 @@ export function StudentEventDiscovery({ initialEvents, currentUserId }: StudentE
                     </span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Clock className="h-4 w-4 text-indigo-400 shrink-0" />
+                    <Clock className="h-4 w-4 text-[#10B981] shrink-0" />
                     <span>
                       {new Date(featuredEvent.startDateTime).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })} –{" "}
                       {new Date(featuredEvent.endDateTime).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
                     </span>
                   </div>
                   <div className="flex items-center gap-2 sm:col-span-2">
-                    <MapPin className="h-4 w-4 text-indigo-400 shrink-0" />
+                    <MapPin className="h-4 w-4 text-[#10B981] shrink-0" />
                     <span className="truncate">{featuredEvent.venue}</span>
                   </div>
                 </div>
               </div>
 
-              <div className="mt-6 pt-5 border-t border-indigo-800/60 flex flex-wrap items-center justify-between gap-4">
+              <div className="mt-6 pt-5 border-t border-emerald-100 flex flex-wrap items-center justify-between gap-4">
                 <div className="flex items-center gap-2">
-                  <Users className="h-4 w-4 text-indigo-300" />
-                  <span className="text-xs font-medium text-indigo-200">
-                    <strong className="text-white font-bold">{featuredEvent.seatsRemaining}</strong> of{" "}
+                  <Users className="h-4 w-4 text-[#10B981]" />
+                  <span className="text-xs font-medium text-slate-600">
+                    <strong className="text-slate-900 font-bold">{featuredEvent.seatsRemaining}</strong> of{" "}
                     {featuredEvent.capacity} seats remaining
                   </span>
                 </div>
 
                 <Link
                   href={`/dashboard/student/events/${featuredEvent.id}`}
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-bold bg-white text-slate-950 hover:bg-indigo-50 transition shadow-lg shadow-white/10 active:scale-95"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-bold bg-[#10B981] text-white hover:bg-emerald-600 transition shadow-sm active:scale-95 cursor-pointer"
                 >
                   <span>{featuredEvent.isUserRegistered ? "View My Pass" : "View Event & Register"}</span>
                   <ArrowRight className="h-4 w-4" />
@@ -271,9 +271,9 @@ export function StudentEventDiscovery({ initialEvents, currentUserId }: StudentE
               <img
                 src={featuredEvent.posterUrl}
                 alt={featuredEvent.title}
-                className="absolute inset-0 w-full h-full object-cover object-center brightness-90"
+                className="absolute inset-0 w-full h-full object-cover object-center"
               />
-              <div className="absolute inset-0 bg-gradient-to-t lg:bg-gradient-to-r from-slate-900 via-slate-900/40 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t lg:bg-gradient-to-r from-white via-white/20 to-transparent pointer-events-none" />
             </div>
           </div>
         </div>
@@ -285,26 +285,26 @@ export function StudentEventDiscovery({ initialEvents, currentUserId }: StudentE
         <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
           {/* Search Input */}
           <div className="relative flex-1 max-w-md">
-            <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+            <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
             <input
               type="text"
               placeholder="Search by title, topic, venue or speaker..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="w-full pl-9 pr-4 py-2.5 text-xs rounded-xl border border-border bg-card text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/20"
+              className="w-full pl-9 pr-4 py-2.5 text-xs rounded-xl border border-emerald-100/80 bg-[#F9FDFB] text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-[#10B981]"
             />
           </div>
 
           {/* Status Tabs */}
-          <div className="flex items-center gap-1.5 p-1 rounded-xl bg-muted/60 border border-border self-start sm:self-auto overflow-x-auto">
+          <div className="flex items-center gap-1.5 p-1 rounded-xl bg-[#F0FDF4] border border-emerald-100 self-start sm:self-auto overflow-x-auto">
             {(["all", "upcoming", "registered", "completed"] as const).map((tab) => (
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
-                className={`px-3 py-1.5 rounded-lg text-xs font-bold transition capitalize whitespace-nowrap ${
+                className={`px-3 py-1.5 rounded-lg text-xs font-bold transition capitalize whitespace-nowrap cursor-pointer ${
                   activeTab === tab
-                    ? "bg-card text-foreground shadow-sm"
-                    : "text-muted-foreground hover:text-foreground"
+                    ? "bg-white text-emerald-900 shadow-xs"
+                    : "text-slate-600 hover:text-emerald-900"
                 }`}
               >
                 {tab === "all" ? "All Events" : tab === "registered" ? `My RSVP (${registeredCount})` : tab}
@@ -319,10 +319,10 @@ export function StudentEventDiscovery({ initialEvents, currentUserId }: StudentE
           <div className="flex items-center gap-1.5 overflow-x-auto pb-1 max-w-full">
             <button
               onClick={() => setSelectedCategory("ALL")}
-              className={`px-3 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap border transition ${
+              className={`px-3 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap border transition cursor-pointer ${
                 selectedCategory === "ALL"
-                  ? "bg-primary text-primary-foreground border-primary"
-                  : "bg-card text-muted-foreground border-border hover:bg-muted/40"
+                  ? "bg-[#10B981] text-white border-emerald-500 shadow-xs"
+                  : "bg-white text-slate-600 border-emerald-100 hover:bg-[#ECFDF5] hover:text-emerald-800"
               }`}
             >
               All Categories
@@ -333,10 +333,10 @@ export function StudentEventDiscovery({ initialEvents, currentUserId }: StudentE
                 <button
                   key={cat}
                   onClick={() => setSelectedCategory(cat)}
-                  className={`px-3 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap border transition ${
+                  className={`px-3 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap border transition cursor-pointer ${
                     selectedCategory === cat
-                      ? "bg-primary text-primary-foreground border-primary"
-                      : "bg-card text-muted-foreground border-border hover:bg-muted/40"
+                      ? "bg-[#10B981] text-white border-emerald-500 shadow-xs"
+                      : "bg-white text-slate-600 border-emerald-100 hover:bg-[#ECFDF5] hover:text-emerald-800"
                   }`}
                 >
                   {CATEGORY_LABELS[cat]}
@@ -347,11 +347,11 @@ export function StudentEventDiscovery({ initialEvents, currentUserId }: StudentE
 
           {/* Sort dropdown */}
           <div className="flex items-center gap-2 self-end sm:self-auto shrink-0">
-            <SlidersHorizontal className="h-3.5 w-3.5 text-muted-foreground" />
+            <SlidersHorizontal className="h-3.5 w-3.5 text-slate-400" />
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value as any)}
-              className="text-xs font-semibold bg-card border border-border rounded-lg px-2.5 py-1.5 text-foreground focus:outline-none"
+              className="text-xs font-semibold bg-white border border-emerald-100/80 rounded-xl px-2.5 py-1.5 text-slate-800 focus:outline-none focus:ring-1 focus:ring-[#10B981]"
             >
               <option value="upcoming">Sort: Date Upcoming</option>
               <option value="latest">Sort: Latest Added</option>
@@ -372,7 +372,7 @@ export function StudentEventDiscovery({ initialEvents, currentUserId }: StudentE
             return (
               <div
                 key={evt.id}
-                className="group rounded-2xl border border-border bg-card hover:border-primary/40 hover:shadow-lg hover:shadow-primary/5 transition-all flex flex-col justify-between overflow-hidden"
+                className="group rounded-2xl border border-emerald-100/70 bg-white hover:border-emerald-300 shadow-[0_4px_20px_-2px_rgba(16,185,129,0.05)] hover:shadow-md transition-all flex flex-col justify-between overflow-hidden"
               >
                 {/* Image & Badges */}
                 <div className="relative h-48 w-full overflow-hidden bg-slate-950">
@@ -461,7 +461,7 @@ export function StudentEventDiscovery({ initialEvents, currentUserId }: StudentE
                               ? "bg-rose-500"
                               : evt.seatsRemaining <= evt.capacity * 0.2
                               ? "bg-amber-500"
-                              : "bg-primary"
+                              : "bg-[#10B981]"
                           }`}
                           style={{
                             width: `${Math.min(100, ((evt.capacity - evt.seatsRemaining) / evt.capacity) * 100)}%`,
@@ -473,12 +473,12 @@ export function StudentEventDiscovery({ initialEvents, currentUserId }: StudentE
                     {/* Action Button */}
                     <Link
                       href={`/dashboard/student/events/${evt.id}`}
-                      className={`w-full inline-flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl text-xs font-bold transition shadow-sm ${
+                      className={`w-full inline-flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl text-xs font-bold transition shadow-xs cursor-pointer ${
                         evt.isUserRegistered
-                          ? "bg-emerald-50 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300 border border-emerald-200 hover:bg-emerald-100"
+                          ? "bg-emerald-50 text-emerald-700 border border-emerald-200 hover:bg-[#10B981] hover:text-white"
                           : isFull
-                          ? "bg-muted text-muted-foreground hover:bg-muted/80"
-                          : "bg-primary text-primary-foreground hover:bg-primary/90"
+                          ? "bg-slate-100 text-slate-500 hover:bg-slate-200"
+                          : "bg-[#10B981] text-white hover:bg-emerald-600"
                       }`}
                     >
                       <span>
@@ -500,12 +500,12 @@ export function StudentEventDiscovery({ initialEvents, currentUserId }: StudentE
         </div>
       ) : (
         /* Empty State */
-        <div className="rounded-2xl border border-dashed border-border p-12 text-center space-y-3 bg-muted/20">
-          <div className="w-12 h-12 rounded-full bg-muted flex items-center justify-center mx-auto text-muted-foreground">
+        <div className="rounded-2xl border border-dashed border-emerald-200 p-12 text-center space-y-3 bg-[#F9FDFB]">
+          <div className="w-12 h-12 rounded-full bg-emerald-50 flex items-center justify-center mx-auto text-[#10B981]">
             <Filter className="h-6 w-6" />
           </div>
-          <h3 className="text-base font-bold text-foreground">No events match your filters</h3>
-          <p className="text-xs text-muted-foreground max-w-sm mx-auto">
+          <h3 className="text-base font-bold text-slate-900">No events match your filters</h3>
+          <p className="text-xs text-slate-500 max-w-sm mx-auto">
             Try adjusting your search terms or select another category from the filter chips above.
           </p>
           <button
@@ -514,7 +514,7 @@ export function StudentEventDiscovery({ initialEvents, currentUserId }: StudentE
               setSelectedCategory("ALL");
               setActiveTab("all");
             }}
-            className="mt-2 inline-flex items-center gap-1.5 px-4 py-2 text-xs font-bold rounded-xl bg-primary text-primary-foreground hover:bg-primary/90"
+            className="mt-2 inline-flex items-center gap-1.5 px-4 py-2 text-xs font-bold rounded-xl bg-[#10B981] text-white hover:bg-emerald-600 cursor-pointer"
           >
             Reset Filters
           </button>
