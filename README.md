@@ -1,5 +1,16 @@
 # Campus Connect — All-in-One College Ecosystem
 
+## Team Members
+
+| Name | SAP ID | Class | Division |
+|------|--------|-------|----------|
+| Ayush Kathrotiya | 53013240023 | TY B.Sc.IT | A |
+| Prince Davra | 53013240024 | TY B.Sc.IT | A |
+| Gaurav Dave | 53013240025 | TY B.Sc.IT | A |
+| Tirth Darji | 53013240007 | TY B.Sc.IT | A |
+| Jemish Ambaliya | 53013240020 | TY B.Sc.IT | A |
+
+
 > A production-grade, multi-role academic enterprise resource planning (ERP) and campus life management platform engineered with Next.js 16 App Router, TypeScript, Tailwind CSS, Prisma ORM, and PostgreSQL.
 
 ---
